@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Matmir</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #ccc;
+        }
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        .number { font-weight: bold; }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #e9e9e9;
+        }
+    </style>
+</head>
+<body>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Home')">Inicio</button>
+        <button class="tablinks" onclick="openTab(event, 'Book')">El Libro de la Redención</button>
+        <button class="tablinks" onclick="openTab(event, 'Traductor')">Traductor</button>
+    </div>
+
+    <div id="Home" class="tabcontent">
+        <h3>Inicio</h3>
+        <p>Bienvenido a nuestra página web. Aquí puedes encontrar información sobre nuestros proyectos y más.</p>
+    </div>
+
+    <div id="Book" class="tabcontent">
+        <h3>El Libro de la Redención</h3>
+        <p><strong>Prólogo: El Surgimiento del Héroe</strong></p>
+        <p><strong>1.1 El Origen de la Luz y la Oscuridad</strong></p>
+        <p><span class="number">1.</span> 1 En los días antiguos, cuando la tierra aún no conocía la sombra del mal, los hombres vivían en paz, y la creación del Creador florecía bajo la luz del sol. 2 Mas en el silencio de los abismos, una fuerza oscura despertó, y su nombre era Malakar, el Oscuro. 3 Nacido del odio y de la desesperanza, Malakar se levantó desde las profundidades, trayendo consigo el terror y la destrucción. 4 Y su sombra se extendió por los reinos de los hombres, corrompiendo todo lo que tocaba. 5 Los cielos se oscurecieron, y la luz se desvaneció, pues Malakar era como una llama de oscuridad, que consume toda esperanza.
+
+           </pn>2. 6 Y los hombres clamaron al Creador, pidiendo auxilio, pues no podían soportar la maldad de Malakar. 7 Y el Creador, en su infinita misericordia, escuchó sus súplicas y preparó un camino para la redención. 8 Y en los corazones de los sabios, plantó una visión, un sueño profético que anunciaba la venida de un salvador. 9 Y así estaba escrito: "En tiempos de gran oscuridad, cuando el mundo se encuentre sumido en la desesperación, se levantará un Redentor. 10 Él será luz en medio de las tinieblas, y con su fuerza y su pureza, desterrará la sombra y restaurará la paz en la tierra."</p>
+    </div>
+
+    <div id="Traductor" class="tabcontent">
+        <h2>Traductor Español a Idioma Inventado</h2>
+        <textarea id="inputText" placeholder="Escribe aquí el texto en español..."></textarea>
+        <button onclick="translateText()">Traducir</button>
+        <div class="result" id="resultText"></div>
+    </div>
+
+    <script>
+
+        const dictionary = {
+            // Pronombres
+            "yo": "ni", "me": "ni", "mi": "mi", "tu": "tu", "el": " ",
+            "ella": " ", "nosotros": "nita", "vosotros": "tuta", "ellos": "shuta",
+
+            // Sustantivos
+            "hombre": "nal", "mujer": "nul", "niño": "iln", "casa": "tani", "agua": "iru",
+            "fuego": "tsar", "tierra": "kan", "cielo": "rul", "sol": "tar", "luna": "nim",
+            "estrella": "sirt", "piedra": "pan", "arbol": "lar", "flor": "mir", "comida": "mat",
+            "dia": "dar", "noche": "nar", "tiempo": "tarin", "amigo": "rin", "mundo": "munar",
+            "vida": "mat", "manzana": "manzan", "manzanas": "manzan", "enemigo":"dashir", "enemigos":"dashir",
+            "bosque":"farn", "guerrero": "glan", 
+
+            // Adjetivos
+            "bueno": "lan", "malo": "lun", "grande": "nar", "pequeño": "tiq", "alto": "tal",
+            "bajo": "kem", "nuevo": "mir", "viejo": "vul", "rapido": "skan", "lento": "lem",
+            "caliente": "tsar", "frio": "nur", "valiente":"valir", "fuerte": "donar", "feroces": "fetir",
+            "oscuro": "nitar", "encantado": "eliar",
+
+            // Palabras comunes y conectores
+            "hola": "haa", "adios": "raak", "gracias": "mali", "si": "ke", "no": "nu",
+            "y": "puh", "o": "no", "pero": "tan", "porque": "lar", "con": "mi", "sin": "lu",
+            "en": "ni", "sobre": "ra", "bajo": "ri", "para": "ku", "de": "na", "muy": "iku",
+            "bien": "opti", "las": "uy", "contra": "lash", "tal":"tuq", "que": "lar",
+
+            // Verbos regulares
+            "comer": "matar", "beber": "liru", "hablar": "lirar", "llamar": "namir",
+            "gustar": "linh",
+        };
+        const verbEndings = {
+            "are": "ire",
+            "aras": "iras",
+            "ara": "ira",
+            "aremos": "iremos",
+            "aran": "iran",
+            "amos": "anta",
+            "imos": "anta",
+            "an": "anta",
+            "en": "anta",
+            "aba": "arash",
+            "abas": "arut",
+            "abamos": "aranta",
+            "abais": "arais",
+            "aban": "aranta",
+            "ia": "irash",
+            "ias": "irut",
+            "iamos": "iranta",
+            "iais": "irais",
+            "ian": "iranta",
+            "i": "ir",
+            "iste": "irut",
+            "io": "irash",
+            "imos": "iranta",
+            "ieron": "iranta",
+            "o": "",
+            "as": "ut",
+            "es": "ut",
+            "a": "ash",
+            "e": "ash"
+        };
+        const infinitiveEndings = {
+            "ar": "ar",
+            "er": "er",
+            "ir": "ir"
+        }
+        const irregularVerbs = {
+            // "hacer" - presente
+            "hago": "mirar",       // primera persona singular
+            "haces": "mirarut",    // segunda persona singular
+            "hace": "mirarash",    // tercera persona singular
+            "hacemos": "miraranta", // primera persona plural
+            "hacen": "miraranta",  // tercera persona plural
+            
+            // "venir" - presente
+            "vengo": "litar",      // primera persona singular
+            "vienes": "litarut",   // segunda persona singular
+            "viene": "litarash",   // tercera persona singular
+            "venimos": "litaranta",// primera persona plural
+            "vienen": "litaranta", // tercera persona plural
+
+            // "decir" - presente
+            "digo": "rutar",       // primera persona singular
+            "dices": "rutarut",    // segunda persona singular
+            "dice": "rutarash",    // tercera persona singular
+            "decimos": "rutaranta",// primera persona plural
+            "dicen": "rutaranta",  // tercera persona plural
+
+            // "dormir" - presente
+            "duermo": "tanir",     // primera persona singular
+            "duermes": "tanirut",  // segunda persona singular
+            "duerme": "tanirash",  // tercera persona singular
+            "dormimos": "taniranta", // primera persona plural
+            "duermen": "taniranta", // tercera persona plural
+
+            // "poder" - presente
+            "puedo": "pritar",     // primera persona singular
+            "puedes": "pritarut",  // segunda persona singular
+            "puede": "pritarash",  // tercera persona singular
+            "podemos": "pritaranta", // primera persona plural
+            "pueden": "pritaranta", // tercera persona plural
+
+            // "pensar" - presente
+            "pienso": "firar",     // primera persona singular
+            "piensas": "firarut",  // segunda persona singular
+            "piensa": "firarash",  // tercera persona singular
+            "pensamos": "firaranta", // primera persona plural
+            "piensan": "firaranta", // tercera persona plural
+
+            // "ir" - presente
+            "voy": "vitar",        // primera persona singular
+            "vas": "vitarut",      // segunda persona singular
+            "va": "vitarash",      // tercera persona singular
+            "vamos": "vitaranta",  // primera persona plural
+            "van": "vitaranta",    // tercera persona plural
+
+            // "tener" - presente
+            "tengo": "karar",      // primera persona singular
+            "tienes": "kararut",   // segunda persona singular
+            "tiene": "kararash",   // tercera persona singular
+            "tenemos": "kararanta",// primera persona plural
+            "tienen": "kararanta", // tercera persona plural
+
+            // "ser" - presente
+            "soy": "tirar",        // primera persona singular
+            "eres": "tirarut",     // segunda persona singular
+            "es": "tirarash",      // tercera persona singular
+            "somos": "tiraranta",  // primera persona plural
+            "son": "tiraranta",    // tercera persona plural
+
+            // "estar" - presente
+            "estoy": "tirar",      // primera persona singular
+            "estás": "tirarut",    // segunda persona singular
+            "está": "tirarash",    // tercera persona singular
+            "estamos": "tiraranta",// primera persona plural
+            "están": "tiraranta"   // tercera persona plural
+        };
+
+        const phrases = {
+            "por favor": "taki",
+            "lo siento": "ruli",
+            "buenos dias": "haa dar",  // Ejemplo adicional
+            // ... Agrega más frases compuestas aquí
+        };
+
+        // Función para traducir verbos y manejar conjugaciones
+        function translateVerb(word) {
+            // Comprobación de verbos irregulares
+            if (irregularVerbs[word]) {
+                return irregularVerbs[word];
+            }
+            for (const [ending, newEnding] of Object.entries(verbEndings)) {
+                if (word.endsWith(ending)) {
+                    const root = word.slice(0, -ending.length);
+                    // Buscar la traducción de la raíz más larga posible en el diccionario
+                    for (const [ending1, newEnding1] of Object.entries(infinitiveEndings)) {
+                        if (dictionary[root + newEnding1]) {
+                            return dictionary[root + newEnding1] + newEnding;
+                        }
+                    }
+                    return root; // Si no se encuentra la traducción, devolver la raíz.
+                }
+            }
+
+            return word;  // Devolver la palabra original si no se detecta ninguna conjugación
+        }
+
+
+        function translateText() {
+            console.log("Hola, mundo!");
+            const inputText = document.getElementById("inputText").value;
+            let words = inputText.split(" ").filter(word => word.trim() !== "");
+            let translatedWords = [];
+            let skipNext = false;
+
+            for (let i = 0; i < words.length; i++) {
+                if (skipNext) {
+                    skipNext = false;
+                    continue;
+                }
+
+                let word = words[i].toLowerCase();
+                let nextWord = words[i + 1] ? words[i + 1].toLowerCase() : '';
+
+                // Chequear frases compuestas de dos palabras
+                if (phrases[word + " " + nextWord]) {
+                    translatedWords.push(phrases[word + " " + nextWord]);
+                    skipNext = true;  // Saltar la siguiente palabra porque ya fue procesada
+                } else if (dictionary[word]) {
+                    translatedWords.push(dictionary[word]); // Traducir usando el diccionario
+                }else if (irregularVerbs[word]) {
+                    translatedWords.push(irregularVerbs[word])
+                }else if (isVerb(word)) {
+                    console.log("Hola, mundo!");
+                    translatedWords.push(translateVerb(word));  // Traducir verbo si es necesario
+                } else if (isCapitalized(words[i]) && i !== 0) {
+                    translatedWords.push(words[i]);  // Mantener palabra original si está capitalizada y no es la primera palabra
+                } else {
+                    translatedWords.push(word);  // Devolver la palabra original si no se encuentra en el diccionario
+                }
+            }
+
+            const translatedSentence = translatedWords.join(" ");
+            document.getElementById("resultText").textContent = translatedSentence;
+        }
+
+
+        // Función auxiliar para verificar si la palabra comienza con una letra mayúscula
+        function isCapitalized(word) {
+            return word && word[0] === word[0].toUpperCase();
+        }
+
+        // Función auxiliar para verificar si una palabra es un verbo conjugado
+        function isVerb(word) {
+            return Object.keys(verbEndings).some(ending => word.endsWith(ending));
+        }
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+            if (tabName === 'Book') {
+                highlightNumbers();
+            }
+        }
+
+        function highlightNumbers() {
+            var bookContent = document.getElementById('Book');
+            bookContent.innerHTML = bookContent.innerHTML.replace(/\b(\d+)\b/g, '<span class="number">$1</span>');
+        }
+    </script>
+</body>
+</html>
