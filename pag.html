@@ -88,7 +88,7 @@
 
     <div id="Traductor" class="tabcontent">
         <h2>Traductor Español a Idioma Inventado</h2>
-        <textarea id="inputText" placeholder="Escribe aquí el texto en español..."></textarea>
+        <textarea id="inputText" placeholder="Escribe aquí el texto en español sin acentos..."></textarea>
         <button onclick="translateText()">Traducir</button>
         <div class="result" id="resultText"></div>
     </div>
@@ -97,22 +97,24 @@
 
         const dictionary = {
             // Pronombres
-            "yo": "ni", "me": "ni", "mi": "mi", "tu": "tu", "el": " ",
+            "yo": "ni", "me": "ni", "mi": "mi", "tu": "tu", "el": " ", "la": " ","un": " ", "una": " ","del":"lash",
             "ella": " ", "nosotros": "nita", "vosotros": "tuta", "ellos": "shuta",
 
             // Sustantivos
-            "hombre": "nal", "mujer": "nul", "niño": "iln", "casa": "tani", "agua": "iru",
+            "hombre": "nal", "mujer": "nul", "niño": "iln", "niña": "iln","casa": "tani", "agua": "iru",
             "fuego": "tsar", "tierra": "kan", "cielo": "rul", "sol": "tar", "luna": "nim",
             "estrella": "sirt", "piedra": "pan", "arbol": "lar", "flor": "mir", "comida": "mat",
             "dia": "dar", "noche": "nar", "tiempo": "tarin", "amigo": "rin", "mundo": "munar",
             "vida": "mat", "manzana": "manzan", "manzanas": "manzan", "enemigo":"dashir", "enemigos":"dashir",
-            "bosque":"farn", "guerrero": "glan", 
+            "bosque":"farn", "guerrero": "glan", "su":"na", "secretos":"krit", "biblioteca":"norosarun","lugar":"noro",
+            "libro":"sarun",
 
             // Adjetivos
-            "bueno": "lan", "malo": "lun", "grande": "nar", "pequeño": "tiq", "alto": "tal",
+            "bueno": "lan", "malo": "lun", "grande": "nar", "pequeño": "tiq", "pequeña": "tiq","alto": "tal",
             "bajo": "kem", "nuevo": "mir", "viejo": "vul", "rapido": "skan", "lento": "lem",
             "caliente": "tsar", "frio": "nur", "valiente":"valir", "fuerte": "donar", "feroces": "fetir",
-            "oscuro": "nitar", "encantado": "eliar",
+            "oscuro": "nitar", "encantado": "eliar", "feroz": "fetir","curioso":"upil","curiosa":"upil",
+            "antiguo":"vul","lleno":"plet","magicos":"rig", "abandonado":"adant", "abandonada":"adant",
 
             // Palabras comunes y conectores
             "hola": "haa", "adios": "raak", "gracias": "mali", "si": "ke", "no": "nu",
@@ -122,7 +124,7 @@
 
             // Verbos regulares
             "comer": "matar", "beber": "liru", "hablar": "lirar", "llamar": "namir",
-            "gustar": "linh",
+            "gustar": "linh", "entrar":"kunar", "salvar":"firar", "encontrar":"entur",
         };
         const verbEndings = {
             "are": "ire",
@@ -226,10 +228,16 @@
 
             // "estar" - presente
             "estoy": "tirar",      // primera persona singular
-            "estás": "tirarut",    // segunda persona singular
-            "está": "tirarash",    // tercera persona singular
+            "estas": "tirarut",    // segunda persona singular
+            "esta": "tirarash",    // tercera persona singular
             "estamos": "tiraranta",// primera persona plural
-            "están": "tiraranta"   // tercera persona plural
+            "estan": "tiraranta",   // tercera persona plural
+            // "herir" - presente
+            "hiero": "danir",       // primera persona singular
+            "hieres": "danirut",    // segunda persona singular
+            "hiere": "danirash",    // tercera persona singular
+            "herimos": "daniranta", // primera persona plural
+            "hieren": "daniranta"   // tercera persona plural
         };
 
         const phrases = {
@@ -263,41 +271,53 @@
 
 
         function translateText() {
-            console.log("Hola, mundo!");
             const inputText = document.getElementById("inputText").value;
-            let words = inputText.split(" ").filter(word => word.trim() !== "");
-            let translatedWords = [];
-            let skipNext = false;
+            
+            // Dividir el texto en oraciones utilizando puntos
+            let sentences = inputText.split('.').filter(sentence => sentence.trim() !== "");
+            
+            // Array para almacenar las oraciones traducidas
+            let translatedSentences = [];
 
-            for (let i = 0; i < words.length; i++) {
-                if (skipNext) {
-                    skipNext = false;
-                    continue;
+            // Procesar cada oración por separado
+            sentences.forEach(sentence => {
+                let words = sentence.split(" ").filter(word => word.trim() !== "");
+                let translatedWords = [];
+                let skipNext = false;
+
+                for (let i = 0; i < words.length; i++) {
+                    if (skipNext) {
+                        skipNext = false;
+                        continue;
+                    }
+
+                    let word = words[i].toLowerCase();
+                    let nextWord = words[i + 1] ? words[i + 1].toLowerCase() : '';
+
+                    // Chequear frases compuestas de dos palabras
+                    if (phrases[word + " " + nextWord]) {
+                        translatedWords.push(phrases[word + " " + nextWord]);
+                        skipNext = true;  // Saltar la siguiente palabra porque ya fue procesada
+                    } else if (dictionary[word]) {
+                        translatedWords.push(dictionary[word]); // Traducir usando el diccionario
+                    } else if (irregularVerbs[word]) {
+                        translatedWords.push(irregularVerbs[word]);
+                    } else if (isVerb(word)) {
+                        translatedWords.push(translateVerb(word));  // Traducir verbo si es necesario
+                    } else if (isCapitalized(words[i]) && i !== 0) {
+                        translatedWords.push(words[i]);  // Mantener palabra original si está capitalizada y no es la primera palabra
+                    } else {
+                        translatedWords.push(word);  // Devolver la palabra original si no se encuentra en el diccionario
+                    }
                 }
 
-                let word = words[i].toLowerCase();
-                let nextWord = words[i + 1] ? words[i + 1].toLowerCase() : '';
+                // Unir las palabras traducidas de la oración
+                translatedSentences.push(translatedWords.join(" "));
+            });
 
-                // Chequear frases compuestas de dos palabras
-                if (phrases[word + " " + nextWord]) {
-                    translatedWords.push(phrases[word + " " + nextWord]);
-                    skipNext = true;  // Saltar la siguiente palabra porque ya fue procesada
-                } else if (dictionary[word]) {
-                    translatedWords.push(dictionary[word]); // Traducir usando el diccionario
-                }else if (irregularVerbs[word]) {
-                    translatedWords.push(irregularVerbs[word])
-                }else if (isVerb(word)) {
-                    console.log("Hola, mundo!");
-                    translatedWords.push(translateVerb(word));  // Traducir verbo si es necesario
-                } else if (isCapitalized(words[i]) && i !== 0) {
-                    translatedWords.push(words[i]);  // Mantener palabra original si está capitalizada y no es la primera palabra
-                } else {
-                    translatedWords.push(word);  // Devolver la palabra original si no se encuentra en el diccionario
-                }
-            }
-
-            const translatedSentence = translatedWords.join(" ");
-            document.getElementById("resultText").textContent = translatedSentence;
+            // Unir todas las oraciones traducidas con un punto y espacio
+            const translatedText = translatedSentences.join(". ");
+            document.getElementById("resultText").textContent = translatedText;
         }
 
 
