@@ -97,155 +97,175 @@
 
         const dictionary = {
             // Pronombres
-            "yo": "ni", "me": "ni", "mi": "mi", "tu": "tu", "el": " ", "la": " ","un": " ", "una": " ","del":"lash",
-            "ella": " ", "nosotros": "nita", "vosotros": "tuta", "ellos": "shuta",
+            "yo": "ni", "me": "ni", "mí": "mi", "mi": "mi", "tú": "tu", "tu": "tu", "él": "shu", "el": "shu", "la": " ", 
+            "un": " ", "una": " ", "del": "lash", "ella": " ", "nosotros": "nita", "vosotros": "tuta", "ellos": "shuta", 
+            "ellas": "shuta", "mío": "miri", "mio": "miri", "tuyo": "turi",
 
             // Sustantivos
-            "hombre": "nal", "mujer": "nul", "niño": "iln", "niña": "iln","casa": "tani", "agua": "iru",
-            "fuego": "tsar", "tierra": "kan", "cielo": "rul", "sol": "tar", "luna": "nim",
-            "estrella": "sirt", "piedra": "pan", "arbol": "lar", "flor": "mir", "comida": "mat",
-            "dia": "dar", "noche": "nar", "tiempo": "tarin", "amigo": "rin", "mundo": "munar",
-            "vida": "mat", "manzana": "manzan", "manzanas": "manzan", "enemigo":"dashir", "enemigos":"dashir",
-            "bosque":"farn", "guerrero": "glan", "su":"na", "secretos":"krit", "biblioteca":"norosarun","lugar":"noro",
-            "libro":"sarun",
+            "hombre": "nal", "mujer": "nul", "niño": "iln", "niña": "iln", "casa": "tani", "agua": "iru", "fuego": "tsar", 
+            "tierra": "kan", "cielo": "rul", "sol": "tar", "luna": "nim", "estrella": "sirt", "piedra": "pan", 
+            "árbol": "lar", "arbol": "lar", "flor": "mir", "comida": "mat", "día": "dar", "dia": "dar", "noche": "nar", 
+            "tiempo": "tarin", "amigo": "rin", "amiga": "rin", "mundo": "munar", "vida": "mat", "manzana": "manzan", 
+            "manzanas": "manzan", "enemigo": "dashir", "enemigos": "dashir", "bosque": "farn", "guerrero": "glan", 
+            "su": "na", "secretos": "krit", "biblioteca": "norosarun", "lugar": "noro", "libro": "sarun", "ojos": "tiran", 
+            "montaña": "gur", "montana": "gur", "ciudad": "metar", "sopa": "linh", "dios": "maki", "mar": "ilvar", 
+            "río": "sek", "rio": "sek", "lago": "narin", "coche": "larik", "avión": "niru", "avion": "niru", "tren": "valen", 
+            "calle": "ken", "camino": "stel", "puerta": "kuni", "ventana": "jar", "mesa": "farnu", "silla": "kenir", 
+            "escuela": "valtar", "universidad": "venotar", "trabajo": "melar", "oficina": "karit", "música": "lenir", 
+            "musica": "lenir", "película": "katar", "pelicula": "katar", "juego": "jirin", "historia": "talir", 
+            "arte": "marin", "ciencia": "zetar", "medicina": "vilar", "luz": "tarn", "oscuridad": "nilat", "sombra": "verin", 
+            "hielo": "firn", "viento": "zalir", "tormenta": "tarik", "trueno": "ronir", "relámpago": "karet", "relampago": "karet", 
+            "lluvia": "nirat", "nieve": "filat", "arena": "matir", "planta": "tilin", "hierba": "malik", "campo": "vatar", 
+            "cueva": "kunir", "valle": "lirin", "océano": "ratal", "oceano": "ratal", "desierto": "kirit", "isla": "nalir", 
+            "playa": "taril", "puerto": "salir", "pueblo": "talir", "aldea": "katir", "capital": "menar", "mercado": "katar", 
+            "supermercado": "valkar", "tienda": "firar", "almacén": "karat", "almacen": "karat", "centro": "farn", "plaza": "talir", 
+            "parque": "narin", "jardín": "tarin", "jardin": "tarin", "teatro": "manir", "cine": "katar", "museo": "tarir", 
+            "galería": "melir", "galeria": "melir", "exposición": "katarin", "exposicion": "katarin", "feria": "selir", 
+            "concierto": "lemir", "festival": "tirar", "evento": "nirar", "espectáculo": "ketar", "espectaculo": "ketar", 
+            "comedia": "vilin", "drama": "kelar", "danza": "tirin", "baile": "tirin", "deporte": "talir", "fútbol": "vikar", 
+            "futbol": "vikar", "tenis": "nirat", "baloncesto": "karan", "voleibol": "kaval", "natación": "karin", 
+            "natacion": "karin", "atletismo": "tarin", "gimnasia": "manir", "lucha": "kitar", "boxeo": "danir", 
+            "karate": "karan", "judo": "nirin", "kickboxing": "talir", "artes": "manar", "marciales": "kitar", 
+            "competición": "manir", "competicion": "manir", "torneo": "kalir", "campeonato": "farin", "liga": "lir", 
+            "copa": "tir", "premio": "ketir", "trofeo": "selir", "medalla": "tarir", "oro": "karin", "plata": "nilin", 
+            "bronce": "panir", "joya": "milin", "diamante": "zarat", "rubí": "nilir", "rubi": "nilir", "zafiro": "velir", 
+            "esmeralda": "tarat", "topacio": "kitir", "turquesa": "kelar", "ámbar": "ketir", "ambar": "ketir", "perla": "firin", 
+            "coral": "tarin", "oro": "karin", "plata": "nilin", "bronce": "panir", "cobre": "vilin", "hierro": "menar", 
+            "acero": "larin", "plomo": "narit", "aluminio": "kanir", "plástico": "manir", "plastico": "manir", "vidrio": "menir", 
+            "cristal": "valir", "cerámica": "felir", "ceramica": "felir", "madera": "larin", "papel": "talir", "cartón": "kalir", 
+            "carton": "kalir", "tela": "nilir", "algodón": "tarin", "algodon": "tarin", "lana": "firin", "seda": "kelir", 
+            "cuero": "natin", "pluma": "pelir", "hilo": "melir", "cuerda": "venar", "cable": "ketar", "cadena": "ferin", 
+            "cordón": "terin", "cordon": "terin", "botón": "tarin", "boton": "tarin", "cremallera": "nilar", "broche": "velar", 
+            "agujeta": "melar", "traje": "manir", "pantalón": "tarin", "pantalon": "tarin", "camisa": "nirin", "blusa": "valar", 
+            "falda": "tirar", "vestido": "melir", "chaqueta": "kelar", "abrigo": "karin", "suéter": "nilir", "sueter": "nilir", 
+            "jersey": "felir", "camiseta": "tanir", "calcetín": "kitir", "calcetin": "kitir", "zapato": "salir", "bota": "kanir", 
+            "sandalia": "taril", "zapatilla": "firar", "gorra": "tirin", "sombrero": "kitar", "bufanda": "ferir", "guante": "menar", 
+            "cinturón": "talar", "cinturon": "talar", "reloj": "kitir", "anillo": "nilir", "collar": "karat", "pulsera": "talir", 
+            "pendiente": "tarin", "arete": "karan", "cintillo": "malin", "diadema": "lerin", "broche": "velar", "moño": "penir", 
+            "mono": "penir", "lazo": "kelar", "corbata": "vatar", "pajarita": "nitar", "pañoleta": "milin", "cintillo": "malin", 
+            "cintillo": "malin", "cinta": "tarin", "faja": "kenir", "corsé": "nilir", "corse": "nilir", "bóxer": "kitar", 
+            "boxer": "kitar", "trusa": "ferin", "pijama": "kelar", "bata": "menar", "chaleco": "tarin", "anorak": "velar", 
+            "gabardina": "vatar", "impermeable": "tilir", "capa": "ferin", "capucha": "tirar", "toga": "melir", "bata": "menar", 
+            "kimono": "kelar", "sari": "tarin", "túnica": "nilir", "tunica": "nilir", "sombrero": "kitar", "casco": "penir", 
+            "gorro": "tirin", "capucha": "tirar", "pañuelo": "menir", "pañuelo": "menir", "cinturón": "talar", "cinturon": "talar", 
+            "collar": "karat", "corona": "larit", "broche": "velar", "anillo": "nilir", "gemelo": "malir", "escarapela": "malin", 
+            "moño": "penir", "lazo": "kelar", "bandera": "nilir", "estandarte": "kelar", "tela": "nilir", "pañuelo": "menir", 
+            "pluma": "pelir", "plumón": "penir", "plumon": "penir", "pelo": "malir", "cabello": "melir", "peluca": "velir", 
+            "bigote": "nilir", "barba": "kalir", "patilla": "ketir", "ceja": "tarin", "pestaña": "menar", "pestaña": "menar", 
+            "ojera": "kenir", "bolsa": "ferin", "pájaro": "niril", "pajaro": "niril", "ave": "nilir", "pez": "nalir",
 
             // Adjetivos
-            "bueno": "lan", "malo": "lun", "grande": "nar", "pequeño": "tiq", "pequeña": "tiq","alto": "tal",
-            "bajo": "kem", "nuevo": "mir", "viejo": "vul", "rapido": "skan", "lento": "lem",
-            "caliente": "tsar", "frio": "nur", "valiente":"valir", "fuerte": "donar", "feroces": "fetir",
-            "oscuro": "nitar", "encantado": "eliar", "feroz": "fetir","curioso":"upil","curiosa":"upil",
-            "antiguo":"vul","lleno":"plet","magicos":"rig", "abandonado":"adant", "abandonada":"adant",
+            "bueno": "lan", "malo": "lun", "grande": "nar", "pequeño": "tiq", "pequeña": "tiq", "alto": "tal",
+            "bajo": "kem", "nuevo": "mir", "viejo": "vul", "rápido": "skan", "rapido": "skan", "lento": "lem",
+            "caliente": "tsar", "frío": "nur", "frio": "nur", "valiente": "valir", "fuerte": "donar", "feroz": "fetir",
+            "feroces": "fetir", "oscuro": "nitar", "encantado": "eliar", "curioso": "upil", "curiosa": "upil",
+            "antiguo": "vul", "lleno": "plet", "mágico": "rig", "magico": "rig", "abandonado": "adant", "abandonada": "adant",
+            "amable": "tiril", "hermoso": "firan", "hermosa": "firan", "joven": "yovar", "duro": "keln", "suave": "meln",
+            "fácil": "tirat", "facil": "tirat", "difícil": "karat", "dificil": "karat", "pequeño": "tiq", "pequeña": "tiq",
+            "tranquilo": "nirat", "tranquila": "nirat", "ruidoso": "ritan", "ruidosa": "ritan", "luminoso": "tiral", 
+            "opaco": "keran", "pesado": "nalan", "ligero": "silen",
 
             // Palabras comunes y conectores
-            "hola": "haa", "adios": "raak", "gracias": "mali", "si": "ke", "no": "nu",
+            "hola": "haa", "adiós": "raak", "adios": "raak", "gracias": "mali", "sí": "ke", "si": "ke", "no": "nu",
             "y": "puh", "o": "no", "pero": "tan", "porque": "lar", "con": "mi", "sin": "lu",
             "en": "ni", "sobre": "ra", "bajo": "ri", "para": "ku", "de": "na", "muy": "iku",
-            "bien": "opti", "las": "uy", "contra": "lash", "tal":"tuq", "que": "lar",
+            "bien": "opti", "las": "uy", "los": "uy", "contra": "lash", "tal": "tuq", "que": "lar",
+            "cuando": "netar", "donde": "narun", "cómo": "kelar", "como": "kelar", "cuál": "kulan", "cual": "kulan",
+            "cuándo": "kenar", "cuanto": "kenar", "al": "nal", "delante": "firat", "detrás": "telat", "debajo": "kelat", 
+            "encima": "rilat", "dentro": "tarat", "fuera": "relat", "hasta": "lanir", "a través": "norit", "a traves": "norit",
 
             // Verbos regulares
-            "comer": "matar", "beber": "liru", "hablar": "lirar", "llamar": "namir",
-            "gustar": "linh", "entrar":"kunar", "salvar":"firar", "encontrar":"entur",
+            "comer": "matar", "beber": "liru", "hablar": "lirar", "llamar": "namir", "gustar": "chet",
+            "entrar": "kunar", "salvar": "firar", "encontrar": "entur", "viajar": "kunir", "vivir": "narir", "jugar": "kitar",
+            "amar": "melar", "correr": "tirar", "caminar": "talir", "saltar": "jirat", "escribir": "karir", "leer": "tarar",
+            "decir": "lirar", "pensar": "firir", "crear": "malir", "cantar": "lenir", "bailar": "tirin", "aprender": "venar",
+            "enseñar": "kalir", "trabajar": "terin", "descansar": "kelin", "dormir": "tanir", "soñar": "penar", "reír": "ferir",
+            "reir": "ferir", "llorar": "ralir", "mirar": "valir", "ver": "sarir", "escuchar": "marir", "oír": "karir",
+            "oir": "karir", "tocar": "kenir", "sentir": "melir", "oler": "narir", "gustar": "kirar", "odiar": "lurir",
+            "construir": "fenir", "destruir": "telir", "ganar": "kirir", "perder": "varir", "vencer": "ralir", "ayudar": "linir",
+            "esperar": "valir", "esperar": "valir", "necesitar": "kunir", "buscar": "tenar", "encontrar": "tirar",
         };
+
+
         const verbEndings = {
-            "are": "ire",
-            "aras": "iras",
-            "ara": "ira",
+            "aré": "iré", "aré": "ire",
+            "arás": "irás", "aras": "iras",
+            "ará": "irá", "ara": "ira",
             "aremos": "iremos",
-            "aran": "iran",
-            "amos": "anta",
-            "imos": "anta",
-            "an": "anta",
-            "en": "anta",
+            "arán": "irán", "aran": "iran",
+            "amos": "anta", "imos": "anta",
+            "an": "anta", "en": "anta",
             "aba": "arash",
             "abas": "arut",
-            "abamos": "aranta",
+            "ábamos": "aranta", "abamos": "aranta",
             "abais": "arais",
             "aban": "aranta",
-            "ia": "irash",
-            "ias": "irut",
-            "iamos": "iranta",
-            "iais": "irais",
-            "ian": "iranta",
-            "i": "ir",
+            "ía": "irash", "ia": "irash",
+            "ías": "irut", "ias": "irut",
+            "íamos": "iranta", "iamos": "iranta",
+            "íais": "irais", "iais": "irais",
+            "ían": "iranta", "ian": "iranta",
+            "é": "ir", "e": "ir",
             "iste": "irut",
-            "io": "irash",
+            "ió": "irash", "io": "irash",
             "imos": "iranta",
             "ieron": "iranta",
-            "o": "",
+            "ó": "", "o": "",
             "as": "ut",
             "es": "ut",
             "a": "ash",
             "e": "ash"
         };
+
         const infinitiveEndings = {
             "ar": "ar",
             "er": "er",
             "ir": "ir"
-        }
+        };
+
         const irregularVerbs = {
             // "hacer" - presente
-            "hago": "mirar",       // primera persona singular
-            "haces": "mirarut",    // segunda persona singular
-            "hace": "mirarash",    // tercera persona singular
-            "hacemos": "miraranta", // primera persona plural
-            "hacen": "miraranta",  // tercera persona plural
+            "hago": "mirar", "haces": "mirarut", "hace": "mirarash", "hacemos": "miraranta", "hacen": "miraranta",
             
             // "venir" - presente
-            "vengo": "litar",      // primera persona singular
-            "vienes": "litarut",   // segunda persona singular
-            "viene": "litarash",   // tercera persona singular
-            "venimos": "litaranta",// primera persona plural
-            "vienen": "litaranta", // tercera persona plural
+            "vengo": "litar", "vienes": "litarut", "viene": "litarash", "venimos": "litaranta", "vienen": "litaranta",
 
             // "decir" - presente
-            "digo": "rutar",       // primera persona singular
-            "dices": "rutarut",    // segunda persona singular
-            "dice": "rutarash",    // tercera persona singular
-            "decimos": "rutaranta",// primera persona plural
-            "dicen": "rutaranta",  // tercera persona plural
+            "digo": "rutar", "dices": "rutarut", "dice": "rutarash", "decimos": "rutaranta", "dicen": "rutaranta",
 
             // "dormir" - presente
-            "duermo": "tanir",     // primera persona singular
-            "duermes": "tanirut",  // segunda persona singular
-            "duerme": "tanirash",  // tercera persona singular
-            "dormimos": "taniranta", // primera persona plural
-            "duermen": "taniranta", // tercera persona plural
+            "duermo": "tanir", "duermes": "tanirut", "duerme": "tanirash", "dormimos": "taniranta", "duermen": "taniranta",
 
             // "poder" - presente
-            "puedo": "pritar",     // primera persona singular
-            "puedes": "pritarut",  // segunda persona singular
-            "puede": "pritarash",  // tercera persona singular
-            "podemos": "pritaranta", // primera persona plural
-            "pueden": "pritaranta", // tercera persona plural
+            "puedo": "pritar", "puedes": "pritarut", "puede": "pritarash", "podemos": "pritaranta", "pueden": "pritaranta",
 
             // "pensar" - presente
-            "pienso": "firar",     // primera persona singular
-            "piensas": "firarut",  // segunda persona singular
-            "piensa": "firarash",  // tercera persona singular
-            "pensamos": "firaranta", // primera persona plural
-            "piensan": "firaranta", // tercera persona plural
+            "pienso": "firar", "piensas": "firarut", "piensa": "firarash", "pensamos": "firaranta", "piensan": "firaranta",
 
             // "ir" - presente
-            "voy": "vitar",        // primera persona singular
-            "vas": "vitarut",      // segunda persona singular
-            "va": "vitarash",      // tercera persona singular
-            "vamos": "vitaranta",  // primera persona plural
-            "van": "vitaranta",    // tercera persona plural
+            "voy": "vitar", "vas": "vitarut", "va": "vitarash", "vamos": "vitaranta", "van": "vitaranta",
 
             // "tener" - presente
-            "tengo": "karar",      // primera persona singular
-            "tienes": "kararut",   // segunda persona singular
-            "tiene": "kararash",   // tercera persona singular
-            "tenemos": "kararanta",// primera persona plural
-            "tienen": "kararanta", // tercera persona plural
+            "tengo": "karar", "tienes": "kararut", "tiene": "kararash", "tenemos": "kararanta", "tienen": "kararanta",
 
             // "ser" - presente
-            "soy": "tirar",        // primera persona singular
-            "eres": "tirarut",     // segunda persona singular
-            "es": "tirarash",      // tercera persona singular
-            "somos": "tiraranta",  // primera persona plural
-            "son": "tiraranta",    // tercera persona plural
+            "soy": "tirar", "eres": "tirarut", "es": "tirarash", "somos": "tiraranta", "son": "tiraranta",
 
             // "estar" - presente
-            "estoy": "tirar",      // primera persona singular
-            "estas": "tirarut",    // segunda persona singular
-            "esta": "tirarash",    // tercera persona singular
-            "estamos": "tiraranta",// primera persona plural
-            "estan": "tiraranta",   // tercera persona plural
+            "estoy": "tirar", "estás": "tirarut", "está": "tirarash", "estamos": "tiraranta", "están": "tiraranta",
+
             // "herir" - presente
-            "hiero": "danir",       // primera persona singular
-            "hieres": "danirut",    // segunda persona singular
-            "hiere": "danirash",    // tercera persona singular
-            "herimos": "daniranta", // primera persona plural
-            "hieren": "daniranta"   // tercera persona plural
+            "hiero": "danir", "hieres": "danirut", "hiere": "danirash", "herimos": "daniranta", "hieren": "daniranta"
         };
 
         const phrases = {
             "por favor": "taki",
             "lo siento": "ruli",
-            "buenos dias": "haa dar",  // Ejemplo adicional
+            "buenos días": "haa dar", "buenos dias": "haa dar",
+            "hasta luego": "liraak", "cómo estás": "kelar tirarut", "como estas": "kelar tirarut",
             // ... Agrega más frases compuestas aquí
         };
+
 
         // Función para traducir verbos y manejar conjugaciones
         function translateVerb(word) {
@@ -262,7 +282,7 @@
                             return dictionary[root + newEnding1] + newEnding;
                         }
                     }
-                    return root; // Si no se encuentra la traducción, devolver la raíz.
+                    return word; // Si no se encuentra la traducción, devolver la raíz.
                 }
             }
 
