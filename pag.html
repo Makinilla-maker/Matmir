@@ -51,7 +51,7 @@
         button {
             padding: 10px 20px;
             background-color: #007bff;
-            color: white;
+            color: rgb(58, 58, 58);
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -63,6 +63,39 @@
             border-radius: 5px;
             background-color: #e9e9e9;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -70,6 +103,7 @@
         <button class="tablinks" onclick="openTab(event, 'Home')">Inicio</button>
         <button class="tablinks" onclick="openTab(event, 'Book')">El Libro de la Redención</button>
         <button class="tablinks" onclick="openTab(event, 'Traductor')">Traductor</button>
+        <button class="tablinks" onclick="openTab(event, 'Regions')">Regiones</button>
     </div>
 
     <div id="Home" class="tabcontent">
@@ -81,9 +115,25 @@
         <h3>El Libro de la Redención</h3>
         <p><strong>Prólogo: El Surgimiento del Héroe</strong></p>
         <p><strong>1.1 El Origen de la Luz y la Oscuridad</strong></p>
-        <p><span class="number">1.</span> 1 En los días antiguos, cuando la tierra aún no conocía la sombra del mal, los hombres vivían en paz, y la creación del Creador florecía bajo la luz del sol. 2 Mas en el silencio de los abismos, una fuerza oscura despertó, y su nombre era Malakar, el Oscuro. 3 Nacido del odio y de la desesperanza, Malakar se levantó desde las profundidades, trayendo consigo el terror y la destrucción. 4 Y su sombra se extendió por los reinos de los hombres, corrompiendo todo lo que tocaba. 5 Los cielos se oscurecieron, y la luz se desvaneció, pues Malakar era como una llama de oscuridad, que consume toda esperanza.
+        <p><span class="number">1.</span> En los días antiguos, cuando la tierra aún no conocía la sombra del mal, los hombres vivían en paz, y la creación del Creador florecía bajo la luz del sol. <span class="number">2.</span> Mas en el silencio de los abismos, una fuerza oscura despertó, y su nombre era Malakar, el Oscuro. <span class="number">3.</span> Nacido del odio y de la desesperanza, Malakar se levantó desde las profundidades, trayendo consigo el terror y la destrucción. <span class="number">4.</span> Y su sombra se extendió por los reinos de los hombres, corrompiendo todo lo que tocaba. <span class="number">5.</span> Los cielos se oscurecieron, y la luz se desvaneció, pues Malakar era como una llama de oscuridad, que consume toda esperanza.</p>
+        <p><span class="number">6.</span> Y los hombres clamaron al Creador, pidiendo auxilio, pues no podían soportar la maldad de Malakar. <span class="number">7.</span> Y el Creador, en su infinita misericordia, escuchó sus súplicas y preparó un camino para la redención. <span class="number">8.</span> Y en los corazones de los sabios, plantó una visión, un sueño profético que anunciaba la venida de un salvador. <span class="number">9.</span> Y así estaba escrito: "En tiempos de gran oscuridad, cuando el mundo se encuentre sumido en la desesperación, se levantará un Redentor. <span class="number">10.</span> Él será luz en medio de las tinieblas, y con su fuerza y su pureza, desterrará la sombra y restaurará la paz en la tierra."</p>
 
-           </pn>2. 6 Y los hombres clamaron al Creador, pidiendo auxilio, pues no podían soportar la maldad de Malakar. 7 Y el Creador, en su infinita misericordia, escuchó sus súplicas y preparó un camino para la redención. 8 Y en los corazones de los sabios, plantó una visión, un sueño profético que anunciaba la venida de un salvador. 9 Y así estaba escrito: "En tiempos de gran oscuridad, cuando el mundo se encuentre sumido en la desesperación, se levantará un Redentor. 10 Él será luz en medio de las tinieblas, y con su fuerza y su pureza, desterrará la sombra y restaurará la paz en la tierra."</p>
+        <p><strong>Capítulo 1: Los Primeros Años de Lucian</strong></p>
+        <p><strong>1.1 Nacimiento y Origen</strong></p>
+        <p><span class="number">1.</span> En los días cuando la luz aún brillaba pura y sin mancha sobre la tierra, y el mal de Malakar aún no había oscurecido los corazones de los hombres, sucedió que en una aldea humilde, a los pies de las montañas verdes, nació un niño al que llamaron Lucian. <span class="number">2.</span> Y su nacimiento fue como un susurro del Creador, sin trompetas ni grandiosidad, en la quietud de una noche iluminada por una estrella solitaria, que resplandecía con una luz suave y bendita sobre el lugar de su nacimiento.</p>
+        <p><span class="number">3.</span> Y los padres de Lucian, Erath y Elara, eran justos ante los ojos del Creador, caminando en todos los caminos de la rectitud y la humildad. <span class="number">4.</span> Y dijeron: "Este niño es un don del Altísimo, y en él pondremos toda nuestra esperanza, para que crezca en bondad y sabiduría, y sea como una luz en estos tiempos de incertidumbre."</p>
+        <img src="primero.png" alt="Héroe del libro">
+        <p><span class="number">5.</span> Y creció Lucian entre los campos verdes y los ríos cristalinos de la aldea de Verdant, amado por todos y conocido por su bondad y compasión. <span class="number">6.</span> Pues desde su infancia, su corazón fue inclinado hacia la justicia y la misericordia, y su mano siempre se extendía hacia los necesitados, compartiendo su pan con los hambrientos y consolando a los que sufrían.</p>
+        <p><span class="number">7.</span> Y cuando los ancianos de la aldea lo veían, decían entre ellos: "Bendito sea este niño, pues en él vemos la promesa de un nuevo amanecer, una luz que no se apagará mientras haya justicia en la tierra." <span class="number">8.</span> Y todos los que lo conocían veían en Lucian un reflejo de la pureza y la virtud que alguna vez reinó en el corazón de los hombres.</p>
+
+        <p><strong>1.2 La Marca del Héroe</strong></p>
+        <p><span class="number">9.</span> Y aconteció en aquellos días, cuando Lucian era aún un niño, que una manada de lobos descendió de las colinas sobre los rebaños de la aldea. <span class="number">10.</span> Y los pastores, al ver la ferocidad de los lobos, huyeron aterrorizados, dejando atrás a las ovejas y a los corderos para que fueran presa de las bestias.</p>
+        <p><span class="number">11.</span> Mas Lucian, viendo el peligro que acechaba, no huyó como los demás, sino que, armado solo con un cayado y una piedra, se enfrentó a los lobos con un valor que no era común en los hombres de su edad. <span class="number">12.</span> Y dijo en voz alta: "¡Oh, lobos de la oscuridad, no temeréis a un niño, mas temed a la luz del Creador que mora en él! Pues protegeré a estos inocentes con toda la fuerza que Él me ha dado."</p>
+        <p><span class="number">13.</span> Y con un corazón lleno de fe y coraje, Lucian se lanzó contra los lobos, y al ver la luz que emanaba de sus ojos, las bestias, llenas de temor, huyeron de su presencia, pues sentían que el Creador estaba con él. <span class="number">14.</span> Y ningún lobo se atrevió a volver a los prados de Verdant mientras Lucian estuvo allí.</p>
+        <p><span class="number">15.</span> Y cuando los aldeanos supieron de esta hazaña, vinieron a él maravillados y dijeron: "Verdaderamente, este niño es elegido por el Creador, pues con su fe y valentía ha puesto en fuga a los lobos y ha salvado a nuestros rebaños." <span class="number">16.</span> Y desde aquel día, Lucian fue conocido no solo por su bondad, sino también por su fuerza y su valor.</p>
+        <p><span class="number">17.</span> Y creció Lucian en sabiduría y estatura, y en gracia para con el Creador y con los hombres. <span class="number">18.</span> Y todos los que lo veían decían: "Este joven será grande entre nosotros, pues la luz del Creador brilla intensamente en él, y su camino está destinado a ser una guía para todos los hombres."</p>
+        <p><span class="number">19.</span> Así pasaron los años, y Lucian continuó caminando en los caminos de la rectitud y la justicia, siempre guiado por la luz interior que el Creador había plantado en su corazón desde su nacimiento. <span class="number">20.</span> Y aunque aún no conocía su destino, el Creador lo estaba preparando para la gran obra que había de realizar, para la redención de todos los hombres.</p>
+        <p><span class="number">21.</span> Y así concluye el primer capítulo de los días de Lucian, el hijo de Verdant, en quien la esperanza del Creador fue depositada para ser luz en medio de las tinieblas. <span class="number">22.</span> Y el pueblo aguardaba, sabiendo que el día vendría en que la verdadera misión de Lucian sería revelada, y la oscuridad que se avecinaba sería enfrentada por la luz que nunca se extingue.</p>
     </div>
 
     <div id="Traductor" class="tabcontent">
@@ -92,6 +142,35 @@
         <button onclick="translateText()">Traducir</button>
         <div class="result" id="resultText"></div>
     </div>
+
+    <div id="Regions" class="tabcontent">
+        <button onclick="openVerdantia()">Verdantia</button>
+    </div>
+    
+    <!-- Modal -->
+    <div id="VerdantiaModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeVerdantia()">&times;</span>
+            <h2>Verdantia</h2>
+            <button onclick="showSection('History')">Historia</button>
+            <button onclick="showSection('Images')">Imágenes</button>
+            <button onclick="showSection('Translator')">Traductor</button>
+    
+            <div id="History" class="verdantiaSection" style="display:none;">
+                <p>Contenido de Historia de Verdantia.</p>
+            </div>
+            <div id="Images" class="verdantiaSection" style="display:none;">
+                <p>Galería de imágenes de Verdantia.</p>
+            </div>
+            <div id="Translator" class="tabcontent" style="display:none;">
+                <h2>Traductor Español a Idioma Inventado</h2>
+                <textarea id="inputText" placeholder="Escribe aquí el texto en español sin acentos..."></textarea>
+                <button onclick="translateText()">Traducir</button>
+                <div class="result" id="resultText"></div>
+            </div>
+        </div>
+    </div>
+    
 
     <script>
 
@@ -265,6 +344,22 @@
             "hasta luego": "liraak", "cómo estás": "kelar tirarut", "como estas": "kelar tirarut",
             // ... Agrega más frases compuestas aquí
         };
+
+        function openVerdantia() {
+            document.getElementById('VerdantiaModal').style.display = 'block';
+        }
+
+        function closeVerdantia() {
+            document.getElementById('VerdantiaModal').style.display = 'none';
+        }
+
+        function showSection(sectionId) {
+            var sections = document.getElementsByClassName('verdantiaSection');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = 'none';
+            }
+            document.getElementById(sectionId).style.display = 'block';
+        }
 
 
         // Función para traducir verbos y manejar conjugaciones
