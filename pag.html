@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Matmir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Noto Serif', serif;
             margin: 0;
             display: flex;
             height: 100vh; /* Asegura que el body toma toda la altura de la ventana */
             overflow: hidden; /* Evita el scroll innecesario */
+        }
+        .tabcontent h3, .tabcontent strong {
+            font-family: 'Arial', sans-serif;
+            color: #333;
         }
 
         .tab {
@@ -51,6 +56,7 @@
 
         .number {
             font-weight: bold;
+            color: #555;
         }
 
         .container {
@@ -99,12 +105,17 @@
 
         .modal-content {
             background-color: #fefefe;
-            margin: 5% auto; /* Ajusta el margen superior para centrar verticalmente */
-            padding: 20px;
+            margin: 2% auto;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 40px;
+            padding-right: 40px;
             border: 1px solid #888;
-            width: 1800px; /* Ancho del modal */
-            height: 900px; /* Altura del modal */
-            overflow: auto; /* Permite scroll si el contenido es mayor que el espacio visible */
+            /*width: 1500px;
+            height: 900px;*/
+            width: 60vw;
+            height: 80vh;
+            overflow: auto;
         }
 
         .close {
@@ -154,19 +165,34 @@
             z-index: 1000;
         }
         .religion-button {
+            color: blue; /* Cambia a azul */
+            display: flex;
+            align-items: flex-end; /* Alinea el contenido textual al fondo */
+            justify-content: center; /* Centra el contenido textual horizontalmente */
+            text-align: center; /* Asegura que el texto esté centrado dentro del espacio asignado */
+            text-shadow: 1px 1px 2px black; /* Sombra negra para mejorar la legibilidad */
             border: none;
             color: white;
             text-shadow: 1px 1px 2px black;
             padding: 10px 20px;
             font-size: 16px;
-            cursor: pointer;
+            font- cursor: pointer;
             outline: none;
             width: 300px; /* Ajusta al tamaño deseado */
-            height: 100px; /* Ajusta al tamaño deseado */
+            height: 300px; /* Ajusta al tamaño deseado */
             border-radius: 5px;
             background-size: cover !important;
             background-position: center !important;
         }
+            .religion-button:hover {
+                background-color: #3e8e41; /* Cambia el color de fondo cuando el mouse está sobre el botón */
+            }
+
+            .religion-button:active {
+                background-color: #366030; /* Cambia el color de fondo cuando el botón está presionado */
+            }
+
+
 
         #lucianismo {
             background: url('img/Lucianismo.webp') no-repeat center center;
@@ -182,7 +208,7 @@
         <button class="tablinks" onclick="openTab(event, 'Regions')">Regiones</button>
         <button class="tablinks" onclick="openTab(event, 'Races')">Razas</button>
         <button class="tablinks" onclick="openTab(event, 'Religions')">Religiones</button>
-        <button class="tablinks" onclick="openTab(event, 'Gods')">Deus</button>
+        <button class="tablinks" onclick="openTab(event, 'Gods')">Dioses</button>
     </div>
 
     <div id="Home" class="tabcontent">
@@ -219,7 +245,8 @@
         <div id="map-container">
             <img src="img/continentMap.png" alt="Mapa Mundial">
             <!-- Marcadores visuales -->
-            <button class="marker" style="left: 65%; top: 65%;" data-info="Verdantia" onclick="openVerdantia()"></button>
+            <button class="marker" style="left: 50%; top: 15%;" data-info="Verdantia" onclick="openModal('VerdantiaModal', 'Informacion');"></button>
+            <button class="marker" style="left: 65%; top: 65%;" data-info="Stilport" onclick="openModal('StilportModal', 'Informacion');"></button>
             <div class="tooltip" id="tooltip"></div>
         </div>
     </div>
@@ -228,8 +255,8 @@
 
     </div>
     <div id="Religions" class="tabcontent">
-        <button id="lucianismo" class="religion-button">
-            Lucianismo
+        <button id="lucianismo" class="religion-button" onclick="openModal('LucianismoModal',' ');">
+            Lucianismo 
         </button>
     </div>
     <div id="Gods" class="tabcontent">
@@ -239,7 +266,7 @@
     <!-- Modal -->
     <div id="VerdantiaModal" class="modal" style="display:none;">
         <div class="modal-content">
-            <span class="close" onclick="closeVerdantia()">&times;</span>
+            <span class="close" onclick="closeModal('VerdantiaModal')">&times;</span>
             <h2>Verdantia</h2>
             <button onclick="showSection('Informacion')">Informacion</button>
             <button onclick="showSection('Translator')">Traductor</button>
@@ -270,6 +297,21 @@
         </div>
     </div>
 
+    <div id="LucianismoModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('LucianismoModal')">&times;</span>
+            <h2>Lucianismo</h2>
+            
+        </div>
+    </div>
+
+    <div id="StilportModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('StilportModal')">&times;</span>
+            <h2>Stilport</h2>
+            
+        </div>
+    </div>
 
     <script>
 
@@ -478,24 +520,31 @@
             // ... Agrega más frases compuestas aquí
         };
 
-        function openVerdantia() {
-            document.getElementById('VerdantiaModal').style.display = 'block';
-            showSection('Informacion');
+        function openModal(modalId, sectionId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            if (sectionId != ' ') {
+                showSection(modalId, sectionId);
+            }
         }
 
         // Función para cerrar el modal de Verdantia
-        function closeVerdantia() {
-            document.getElementById('VerdantiaModal').style.display = 'none';
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
         }
 
-        function showSection(sectionId) {
-            // Ocultar todas las secciones
-            var sections = document.getElementsByClassName('verdantiaSection');
+        function showSection(modalId, sectionId) {
+            // Ocultar todas las secciones dentro del modal especificado
+            var modal = document.getElementById(modalId);
+            var sections = modal.getElementsByClassName('section');
             for (var i = 0; i < sections.length; i++) {
                 sections[i].style.display = 'none';
             }
-            // Mostrar la sección solicitada
-            document.getElementById(sectionId).style.display = 'block';
+            // Mostrar la sección especificada
+            var sectionToShow = modal.querySelector('#' + sectionId);
+            if (sectionToShow) {
+                sectionToShow.style.display = 'block';
+            }
         }
 
         // Función para traducir verbos y manejar conjugaciones
