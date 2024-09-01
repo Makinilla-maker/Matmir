@@ -8,33 +8,42 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+
         .tab {
             overflow: hidden;
             border: 1px solid #ccc;
             background-color: #f1f1f1;
         }
-        .tab button {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-        }
-        .tab button:hover {
-            background-color: #ddd;
-        }
-        .tab button.active {
-            background-color: #ccc;
-        }
+
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+            }
+
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
         .tabcontent {
             display: none;
             padding: 6px 12px;
             border: 1px solid #ccc;
             border-top: none;
         }
-        .number { font-weight: bold; }
+
+        .number {
+            font-weight: bold;
+        }
+
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -43,11 +52,13 @@
             border-radius: 5px;
             background-color: #f9f9f9;
         }
+
         textarea {
             width: 100%;
             height: 100px;
             margin-bottom: 20px;
         }
+
         button {
             padding: 10px 20px;
             background-color: #007bff;
@@ -56,6 +67,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         .result {
             margin-top: 20px;
             padding: 10px;
@@ -63,6 +75,7 @@
             border-radius: 5px;
             background-color: #e9e9e9;
         }
+
         .modal {
             display: none;
             position: fixed;
@@ -77,10 +90,12 @@
 
         .modal-content {
             background-color: #fefefe;
-            margin: 15% auto;
+            margin: 5% auto; /* Ajusta el margen superior para centrar verticalmente */
             padding: 20px;
             border: 1px solid #888;
-            width: 80%;
+            width: 1800px; /* Ancho del modal */
+            height: 900px; /* Altura del modal */
+            overflow: auto; /* Permite scroll si el contenido es mayor que el espacio visible */
         }
 
         .close {
@@ -88,13 +103,46 @@
             float: right;
             font-size: 28px;
             font-weight: bold;
+            cursor: pointer;
         }
 
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+            }
+        #map-container {
+            position: relative;
+            width: 50vw; /* 50% del ancho de la ventana */
+            height: 50vh; /* 50% del alto de la ventana */
+            box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Opcional, para mejorar la visibilidad */
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover; /* Asegura que la imagen cubra completamente el contenedor sin deformarse */
+        }
+
+        .marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transition-property:all ;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
             cursor: pointer;
+        }
+
+        .tooltip {
+            display: none;
+            position: absolute;
+            padding: 5px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            pointer-events: none;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -102,7 +150,6 @@
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'Home')">Inicio</button>
         <button class="tablinks" onclick="openTab(event, 'Book')">El Libro de la Redención</button>
-        <button class="tablinks" onclick="openTab(event, 'Traductor')">Traductor</button>
         <button class="tablinks" onclick="openTab(event, 'Regions')">Regiones</button>
     </div>
 
@@ -122,7 +169,7 @@
         <p><strong>1.1 Nacimiento y Origen</strong></p>
         <p><span class="number">1.</span> En los días cuando la luz aún brillaba pura y sin mancha sobre la tierra, y el mal de Malakar aún no había oscurecido los corazones de los hombres, sucedió que en una aldea humilde, a los pies de las montañas verdes, nació un niño al que llamaron Lucian. <span class="number">2.</span> Y su nacimiento fue como un susurro del Creador, sin trompetas ni grandiosidad, en la quietud de una noche iluminada por una estrella solitaria, que resplandecía con una luz suave y bendita sobre el lugar de su nacimiento.</p>
         <p><span class="number">3.</span> Y los padres de Lucian, Erath y Elara, eran justos ante los ojos del Creador, caminando en todos los caminos de la rectitud y la humildad. <span class="number">4.</span> Y dijeron: "Este niño es un don del Altísimo, y en él pondremos toda nuestra esperanza, para que crezca en bondad y sabiduría, y sea como una luz en estos tiempos de incertidumbre."</p>
-        <img src="primero.png" alt="Héroe del libro">
+        <img src="img/primero.png" alt="Héroe del libro">
         <p><span class="number">5.</span> Y creció Lucian entre los campos verdes y los ríos cristalinos de la aldea de Verdant, amado por todos y conocido por su bondad y compasión. <span class="number">6.</span> Pues desde su infancia, su corazón fue inclinado hacia la justicia y la misericordia, y su mano siempre se extendía hacia los necesitados, compartiendo su pan con los hambrientos y consolando a los que sufrían.</p>
         <p><span class="number">7.</span> Y cuando los ancianos de la aldea lo veían, decían entre ellos: "Bendito sea este niño, pues en él vemos la promesa de un nuevo amanecer, una luz que no se apagará mientras haya justicia en la tierra." <span class="number">8.</span> Y todos los que lo conocían veían en Lucian un reflejo de la pureza y la virtud que alguna vez reinó en el corazón de los hombres.</p>
 
@@ -136,33 +183,41 @@
         <p><span class="number">21.</span> Y así concluye el primer capítulo de los días de Lucian, el hijo de Verdant, en quien la esperanza del Creador fue depositada para ser luz en medio de las tinieblas. <span class="number">22.</span> Y el pueblo aguardaba, sabiendo que el día vendría en que la verdadera misión de Lucian sería revelada, y la oscuridad que se avecinaba sería enfrentada por la luz que nunca se extingue.</p>
     </div>
 
-    <div id="Traductor" class="tabcontent">
-        <h2>Traductor Español a Idioma Inventado</h2>
-        <textarea id="inputText" placeholder="Escribe aquí el texto en español sin acentos..."></textarea>
-        <button onclick="translateText()">Traducir</button>
-        <div class="result" id="resultText"></div>
+    <div id="Regions" class="tabcontent">
+        <div id="map-container">
+            <img src="img/continentMap.png" alt="Mapa Mundial">
+            <!-- Marcadores visuales -->
+            <button class="marker" style="left: 65%; top: 65%;" data-info="Información sobre la Ciudad 2" onclick="openVerdantia()"></button>
+            <div class="tooltip" id="tooltip"></div>
+        </div>
     </div>
 
-    <div id="Regions" class="tabcontent">
-        <button onclick="openVerdantia()">Verdantia</button>
-    </div>
-    
     <!-- Modal -->
     <div id="VerdantiaModal" class="modal" style="display:none;">
         <div class="modal-content">
             <span class="close" onclick="closeVerdantia()">&times;</span>
             <h2>Verdantia</h2>
-            <button onclick="showSection('History')">Historia</button>
-            <button onclick="showSection('Images')">Imágenes</button>
+            <button onclick="showSection('Informacion')">Informacion</button>
             <button onclick="showSection('Translator')">Traductor</button>
-    
-            <div id="History" class="verdantiaSection" style="display:none;">
-                <p>Contenido de Historia de Verdantia.</p>
+
+            <div id="Informacion" class="verdantiaSection" style="display:none;">
+                <h2>Historia de Verdantia</h2>
+                <p><strong>Verdantia</strong> es la capital del Reino de Verdant, situada en el continente de Terravalor. Conocida por su riqueza natural, arquitectura magnífica, y una vibrante historia cultural, Verdantia es un centro de comercio, política y conocimiento en la región.</p>
+                <img src="img/Verdantia1.png" alt="Héroe del libro">
+                <h3>Fundación y Primeros Años</h3>
+                <p>La ciudad de Verdantia fue fundada hace más de mil años por los primeros colonos del Reino de Verdant, atraídos por la fertilidad de sus tierras y la abundancia de recursos naturales. Se estableció inicialmente como un pequeño asentamiento agrícola a orillas del río Silvena, cuya corriente proporcionaba agua fresca y tierra fértil para la agricultura.</p>
+                <p>La ciudad fue creciendo a medida que más colonos llegaron, desarrollándose rápidamente gracias a su ubicación estratégica cerca de rutas comerciales clave y recursos como la madera, el agua y minerales. A mediados del siglo IV del calendario local, Verdantia se había convertido en un importante centro de comercio y gobierno, atrayendo a comerciantes y artesanos de toda la región.</p>
+                <h3>Edad Media y Expansión</h3>
+                <p>Durante la Edad Media de Verdantia, la ciudad experimentó una rápida expansión. El rey Eadric I, conocido como el Fundador, fue fundamental para el desarrollo de la infraestructura de la ciudad, incluyendo la construcción de las murallas exteriores y los primeros caminos pavimentados. Bajo su reinado, Verdantia también se convirtió en un centro cultural, con la fundación de academias de arte y estudios literarios que atrajeron a eruditos de todas partes.</p>
+                <p>En el siglo VII, durante el reinado de la reina Linnea II, Verdantia se convirtió en la capital oficial del Reino de Verdant, consolidando su importancia política. La reina Linnea fue responsable de la construcción del Palacio de la Corona, que sigue siendo la residencia oficial de la familia real hasta el día de hoy.</p>
+                <h3>Guerra de los Reinos y Reconstrucción</h3>
+                <p>En el siglo X, Verdantia fue gravemente afectada por la Guerra de los Reinos, una serie de conflictos entre los estados vecinos que luchaban por el control de los recursos de Terravalor. Durante la guerra, Verdantia sufrió varios ataques y fue parcialmente destruida, incluyendo el saqueo del Palacio de la Corona y la destrucción de parte de sus murallas.</p>
+                <p>Tras el final de la guerra, se llevó a cabo un ambicioso proyecto de reconstrucción bajo el reinado del rey Leor III. Este periodo vio la reconstrucción de las murallas de la ciudad y la modernización de su infraestructura. También se establecieron nuevas instituciones, como la Universidad de Verdantia, que se convirtió en un centro de conocimiento y aprendizaje en el reino.</p>
+                <h3>Era Moderna y la Gran Guerra de Terravalor</h3>
+                <p>En la era moderna, Verdantia se ha mantenido como un faro de estabilidad y prosperidad en el Reino de Verdant. Durante la Gran Guerra de Terravalor, la ciudad se convirtió en el corazón de la resistencia contra las fuerzas invasoras de Ravengarde. A pesar de los numerosos asedios y ataques, la ciudad resistió y jugó un papel clave en la eventual victoria de la Alianza de la Espada Verde.</p>
+                <p>Después de la guerra, Verdantia se embarcó en un nuevo período de desarrollo, con inversiones en tecnología, comercio y cultura. La ciudad se ha expandido más allá de sus murallas originales, incorporando nuevos distritos y mejorando su infraestructura para adaptarse al crecimiento de la población y las necesidades modernas.</p>
             </div>
-            <div id="Images" class="verdantiaSection" style="display:none;">
-                <p>Galería de imágenes de Verdantia.</p>
-            </div>
-            <div id="Translator" class="tabcontent" style="display:none;">
+            <div id="Translator" class="verdantiaSection" style="display:none;">
                 <h2>Traductor Español a Idioma Inventado</h2>
                 <textarea id="inputText" placeholder="Escribe aquí el texto en español sin acentos..."></textarea>
                 <button onclick="translateText()">Traducir</button>
@@ -170,68 +225,66 @@
             </div>
         </div>
     </div>
-    
+
 
     <script>
 
         const dictionary = {
             // Pronombres
-            "yo": "ni", "me": "ni", "mí": "mi", "mi": "mi", "tú": "tu", "tu": "tu", "él": "shu", "el": "shu", "la": " ", 
-            "un": " ", "una": " ", "del": "lash", "ella": " ", "nosotros": "nita", "vosotros": "tuta", "ellos": "shuta", 
-            "ellas": "shuta", "mío": "miri", "mio": "miri", "tuyo": "turi",
+            "yo": "ni", "me": "ni", "mí": "mi", "mi": "mi", "tú": "tu", "tu": "tu", "él": "shu", "el": "shu", "la": " ",
+            "un": " ", "una": " ", "del": "lash", "ella": " ", "nosotros": "nita", "vosotros": "tuta", "ellos": "shuta",
+            "ellas": "shuta", "mío": "miri", "mio": "miri", "tuyo": "turi", "suyo": "nuri", "suyos": "nuris", "suya": "nuri", "suyas": "nuris",
 
             // Sustantivos
-            "hombre": "nal", "mujer": "nul", "niño": "iln", "niña": "iln", "casa": "tani", "agua": "iru", "fuego": "tsar", 
-            "tierra": "kan", "cielo": "rul", "sol": "tar", "luna": "nim", "estrella": "sirt", "piedra": "pan", 
-            "árbol": "lar", "arbol": "lar", "flor": "mir", "comida": "mat", "día": "dar", "dia": "dar", "noche": "nar", 
-            "tiempo": "tarin", "amigo": "rin", "amiga": "rin", "mundo": "munar", "vida": "mat", "manzana": "manzan", 
-            "manzanas": "manzan", "enemigo": "dashir", "enemigos": "dashir", "bosque": "farn", "guerrero": "glan", 
-            "su": "na", "secretos": "krit", "biblioteca": "norosarun", "lugar": "noro", "libro": "sarun", "ojos": "tiran", 
-            "montaña": "gur", "montana": "gur", "ciudad": "metar", "sopa": "linh", "dios": "maki", "mar": "ilvar", 
-            "río": "sek", "rio": "sek", "lago": "narin", "coche": "larik", "avión": "niru", "avion": "niru", "tren": "valen", 
-            "calle": "ken", "camino": "stel", "puerta": "kuni", "ventana": "jar", "mesa": "farnu", "silla": "kenir", 
-            "escuela": "valtar", "universidad": "venotar", "trabajo": "melar", "oficina": "karit", "música": "lenir", 
-            "musica": "lenir", "película": "katar", "pelicula": "katar", "juego": "jirin", "historia": "talir", 
-            "arte": "marin", "ciencia": "zetar", "medicina": "vilar", "luz": "tarn", "oscuridad": "nilat", "sombra": "verin", 
-            "hielo": "firn", "viento": "zalir", "tormenta": "tarik", "trueno": "ronir", "relámpago": "karet", "relampago": "karet", 
-            "lluvia": "nirat", "nieve": "filat", "arena": "matir", "planta": "tilin", "hierba": "malik", "campo": "vatar", 
-            "cueva": "kunir", "valle": "lirin", "océano": "ratal", "oceano": "ratal", "desierto": "kirit", "isla": "nalir", 
-            "playa": "taril", "puerto": "salir", "pueblo": "talir", "aldea": "katir", "capital": "menar", "mercado": "katar", 
-            "supermercado": "valkar", "tienda": "firar", "almacén": "karat", "almacen": "karat", "centro": "farn", "plaza": "talir", 
-            "parque": "narin", "jardín": "tarin", "jardin": "tarin", "teatro": "manir", "cine": "katar", "museo": "tarir", 
-            "galería": "melir", "galeria": "melir", "exposición": "katarin", "exposicion": "katarin", "feria": "selir", 
-            "concierto": "lemir", "festival": "tirar", "evento": "nirar", "espectáculo": "ketar", "espectaculo": "ketar", 
-            "comedia": "vilin", "drama": "kelar", "danza": "tirin", "baile": "tirin", "deporte": "talir", "fútbol": "vikar", 
-            "futbol": "vikar", "tenis": "nirat", "baloncesto": "karan", "voleibol": "kaval", "natación": "karin", 
-            "natacion": "karin", "atletismo": "tarin", "gimnasia": "manir", "lucha": "kitar", "boxeo": "danir", 
-            "karate": "karan", "judo": "nirin", "kickboxing": "talir", "artes": "manar", "marciales": "kitar", 
-            "competición": "manir", "competicion": "manir", "torneo": "kalir", "campeonato": "farin", "liga": "lir", 
-            "copa": "tir", "premio": "ketir", "trofeo": "selir", "medalla": "tarir", "oro": "karin", "plata": "nilin", 
-            "bronce": "panir", "joya": "milin", "diamante": "zarat", "rubí": "nilir", "rubi": "nilir", "zafiro": "velir", 
-            "esmeralda": "tarat", "topacio": "kitir", "turquesa": "kelar", "ámbar": "ketir", "ambar": "ketir", "perla": "firin", 
-            "coral": "tarin", "oro": "karin", "plata": "nilin", "bronce": "panir", "cobre": "vilin", "hierro": "menar", 
-            "acero": "larin", "plomo": "narit", "aluminio": "kanir", "plástico": "manir", "plastico": "manir", "vidrio": "menir", 
-            "cristal": "valir", "cerámica": "felir", "ceramica": "felir", "madera": "larin", "papel": "talir", "cartón": "kalir", 
-            "carton": "kalir", "tela": "nilir", "algodón": "tarin", "algodon": "tarin", "lana": "firin", "seda": "kelir", 
-            "cuero": "natin", "pluma": "pelir", "hilo": "melir", "cuerda": "venar", "cable": "ketar", "cadena": "ferin", 
-            "cordón": "terin", "cordon": "terin", "botón": "tarin", "boton": "tarin", "cremallera": "nilar", "broche": "velar", 
-            "agujeta": "melar", "traje": "manir", "pantalón": "tarin", "pantalon": "tarin", "camisa": "nirin", "blusa": "valar", 
-            "falda": "tirar", "vestido": "melir", "chaqueta": "kelar", "abrigo": "karin", "suéter": "nilir", "sueter": "nilir", 
-            "jersey": "felir", "camiseta": "tanir", "calcetín": "kitir", "calcetin": "kitir", "zapato": "salir", "bota": "kanir", 
-            "sandalia": "taril", "zapatilla": "firar", "gorra": "tirin", "sombrero": "kitar", "bufanda": "ferir", "guante": "menar", 
-            "cinturón": "talar", "cinturon": "talar", "reloj": "kitir", "anillo": "nilir", "collar": "karat", "pulsera": "talir", 
-            "pendiente": "tarin", "arete": "karan", "cintillo": "malin", "diadema": "lerin", "broche": "velar", "moño": "penir", 
-            "mono": "penir", "lazo": "kelar", "corbata": "vatar", "pajarita": "nitar", "pañoleta": "milin", "cintillo": "malin", 
-            "cintillo": "malin", "cinta": "tarin", "faja": "kenir", "corsé": "nilir", "corse": "nilir", "bóxer": "kitar", 
-            "boxer": "kitar", "trusa": "ferin", "pijama": "kelar", "bata": "menar", "chaleco": "tarin", "anorak": "velar", 
-            "gabardina": "vatar", "impermeable": "tilir", "capa": "ferin", "capucha": "tirar", "toga": "melir", "bata": "menar", 
-            "kimono": "kelar", "sari": "tarin", "túnica": "nilir", "tunica": "nilir", "sombrero": "kitar", "casco": "penir", 
-            "gorro": "tirin", "capucha": "tirar", "pañuelo": "menir", "pañuelo": "menir", "cinturón": "talar", "cinturon": "talar", 
-            "collar": "karat", "corona": "larit", "broche": "velar", "anillo": "nilir", "gemelo": "malir", "escarapela": "malin", 
-            "moño": "penir", "lazo": "kelar", "bandera": "nilir", "estandarte": "kelar", "tela": "nilir", "pañuelo": "menir", 
-            "pluma": "pelir", "plumón": "penir", "plumon": "penir", "pelo": "malir", "cabello": "melir", "peluca": "velir", 
-            "bigote": "nilir", "barba": "kalir", "patilla": "ketir", "ceja": "tarin", "pestaña": "menar", "pestaña": "menar", 
-            "ojera": "kenir", "bolsa": "ferin", "pájaro": "niril", "pajaro": "niril", "ave": "nilir", "pez": "nalir",
+            "hombre": "nal", "mujer": "nul", "niño": "iln", "niña": "iln", "casa": "tani", "agua": "iru", "fuego": "tsar",
+            "tierra": "kan", "cielo": "rul", "sol": "tar", "luna": "nim", "estrella": "sirt", "piedra": "pan",
+            "árbol": "lar", "arbol": "lar", "flor": "mir", "comida": "mat", "día": "dar", "dia": "dar", "noche": "nar",
+            "tiempo": "tarin", "amigo": "rin", "amiga": "rin", "mundo": "munar", "vida": "mat", "manzana": "manzan",
+            "manzanas": "manzan", "enemigo": "dashir", "enemigos": "dashir", "bosque": "farn", "guerrero": "glan",
+            "su": "na", "secretos": "krit", "biblioteca": "norosarun", "lugar": "noro", "libro": "sarun", "ojos": "tiran",
+            "montaña": "gur", "montana": "gur", "ciudad": "metar", "sopa": "linh", "dios": "maki", "mar": "ilvar",
+            "río": "sek", "rio": "sek", "lago": "narin", "coche": "larik", "avión": "niru", "avion": "niru", "tren": "valen",
+            "calle": "ken", "camino": "stel", "puerta": "kuni", "ventana": "jar", "mesa": "farnu", "silla": "kenir",
+            "escuela": "valtar", "universidad": "venotar", "trabajo": "melar", "oficina": "karit", "música": "lenir",
+            "musica": "lenir", "película": "katar", "pelicula": "katar", "juego": "jirin", "historia": "talir",
+            "arte": "marin", "ciencia": "zetar", "medicina": "vilar", "luz": "tarn", "oscuridad": "nilat", "sombra": "verin",
+            "hielo": "firn", "viento": "zalir", "tormenta": "tarik", "trueno": "ronir", "relámpago": "karet", "relampago": "karet",
+            "lluvia": "nirat", "nieve": "filat", "arena": "matir", "planta": "tilin", "hierba": "malik", "campo": "vatar",
+            "cueva": "kunir", "valle": "lirin", "océano": "ratal", "oceano": "ratal", "desierto": "kirit", "isla": "nalir",
+            "playa": "taril", "puerto": "salir", "pueblo": "talir", "aldea": "katir", "capital": "menar", "mercado": "katar",
+            "supermercado": "valkar", "tienda": "firar", "almacén": "karat", "almacen": "karat", "centro": "farn", "plaza": "talir",
+            "parque": "narin", "jardín": "tarin", "jardin": "tarin", "teatro": "manir", "cine": "katar", "museo": "tarir",
+            "galería": "melir", "galeria": "melir", "exposición": "katarin", "exposicion": "katarin", "feria": "selir",
+            "concierto": "lemir", "festival": "tirar", "evento": "nirar", "espectáculo": "ketar", "espectaculo": "ketar",
+            "comedia": "vilin", "drama": "kelar", "danza": "tirin", "baile": "tirin", "deporte": "talir", "fútbol": "vikar",
+            "futbol": "vikar", "tenis": "nirat", "baloncesto": "karan", "voleibol": "kaval", "natación": "karin",
+            "natacion": "karin", "atletismo": "tarin", "gimnasia": "manir", "lucha": "kitar", "boxeo": "danir",
+            "karate": "karan", "judo": "nirin", "kickboxing": "talir", "artes": "manar", "marciales": "kitar",
+            "competición": "manir", "competicion": "manir", "torneo": "kalir", "campeonato": "farin", "liga": "lir",
+            "copa": "tir", "premio": "ketir", "trofeo": "selir", "medalla": "tarir", "oro": "karin", "plata": "nilin",
+            "bronce": "panir", "joya": "milin", "diamante": "zarat", "rubí": "nilir", "rubi": "nilir", "zafiro": "velir",
+            "esmeralda": "tarat", "topacio": "kitir", "turquesa": "kelar", "ámbar": "ketir", "ambar": "ketir", "perla": "firin",
+            "coral": "tarin", "cobre": "vilin", "hierro": "menar", "acero": "larin", "plomo": "narit", "aluminio": "kanir",
+            "plástico": "manir", "plastico": "manir", "vidrio": "menir", "cristal": "valir", "cerámica": "felir", "ceramica": "felir",
+            "madera": "larin", "papel": "talir", "cartón": "kalir", "carton": "kalir", "tela": "nilir", "algodón": "tarin",
+            "algodon": "tarin", "lana": "firin", "seda": "kelir", "cuero": "natin", "pluma": "pelir", "hilo": "melir",
+            "cuerda": "venar", "cable": "ketar", "cadena": "ferin", "cordón": "terin", "cordon": "terin", "botón": "tarin",
+            "boton": "tarin", "cremallera": "nilar", "broche": "velar", "agujeta": "melar", "traje": "manir", "pantalón": "tarin",
+            "pantalon": "tarin", "camisa": "nirin", "blusa": "valar", "falda": "tirar", "vestido": "melir", "chaqueta": "kelar",
+            "abrigo": "karin", "suéter": "nilir", "sueter": "nilir", "jersey": "felir", "camiseta": "tanir", "calcetín": "kitir",
+            "calcetin": "kitir", "zapato": "salir", "bota": "kanir", "sandalia": "taril", "zapatilla": "firar", "gorra": "tirin",
+            "sombrero": "kitar", "bufanda": "ferir", "guante": "menar", "cinturón": "talar", "cinturon": "talar", "reloj": "kitir",
+            "anillo": "nilir", "collar": "karat", "pulsera": "talir", "pendiente": "tarin", "arete": "karan", "cintillo": "malin",
+            "diadema": "lerin", "moño": "penir", "mono": "penir", "lazo": "kelar", "corbata": "vatar", "pajarita": "nitar",
+            "pañoleta": "milin", "cintillo": "malin", "cintillo": "malin", "cinta": "tarin", "faja": "kenir", "corsé": "nilir",
+            "corse": "nilir", "bóxer": "kitar", "boxer": "kitar", "trusa": "ferin", "pijama": "kelar", "bata": "menar",
+            "chaleco": "tarin", "anorak": "velar", "gabardina": "vatar", "impermeable": "tilir", "capa": "ferin", "capucha": "tirar",
+            "toga": "melir", "bata": "menar", "kimono": "kelar", "sari": "tarin", "túnica": "nilir", "tunica": "nilir",
+            "sombrero": "kitar", "casco": "penir", "gorro": "tirin", "pañuelo": "menir", "pañuelo": "menir", "cinturón": "talar",
+            "cinturon": "talar", "collar": "karat", "corona": "larit", "gemelo": "malir", "escarapela": "malin", "bandera": "nilir",
+            "estandarte": "kelar", "tela": "nilir", "plumón": "penir", "plumon": "penir", "pelo": "malir", "cabello": "melir",
+            "peluca": "velir", "bigote": "nilir", "barba": "kalir", "patilla": "ketir", "ceja": "tarin", "pestaña": "menar",
+            "ojera": "kenir", "bolsa": "ferin", "pájaro": "niril", "pajaro": "niril", "ave": "nilir", "pez": "nalir", "tortuga": "chiripaca",
 
             // Adjetivos
             "bueno": "lan", "malo": "lun", "grande": "nar", "pequeño": "tiq", "pequeña": "tiq", "alto": "tal",
@@ -240,60 +293,96 @@
             "feroces": "fetir", "oscuro": "nitar", "encantado": "eliar", "curioso": "upil", "curiosa": "upil",
             "antiguo": "vul", "lleno": "plet", "mágico": "rig", "magico": "rig", "abandonado": "adant", "abandonada": "adant",
             "amable": "tiril", "hermoso": "firan", "hermosa": "firan", "joven": "yovar", "duro": "keln", "suave": "meln",
-            "fácil": "tirat", "facil": "tirat", "difícil": "karat", "dificil": "karat", "pequeño": "tiq", "pequeña": "tiq",
-            "tranquilo": "nirat", "tranquila": "nirat", "ruidoso": "ritan", "ruidosa": "ritan", "luminoso": "tiral", 
-            "opaco": "keran", "pesado": "nalan", "ligero": "silen",
+            "fácil": "tirat", "facil": "tirat", "difícil": "karat", "dificil": "karat", "tranquilo": "nirat", "tranquila": "nirat",
+            "ruidoso": "ritan", "ruidosa": "ritan", "luminoso": "tiral", "opaco": "keran", "pesado": "nalan", "ligero": "silen",
+            "desconcertante": "carantalante", "afortunado": "rinak", "desafortunado": "rinalak", "poderoso": "katran",
+            "impotente": "larun", "sabio": "fetil", "ignorante": "kelut", "paciente": "taral", "impaciente": "nurital",
+            "sabroso": "felir", "amargo": "melut", "dulce": "karil", "salado": "renin", "ácido": "sekut", "acido": "sekut","putero":"ori",
 
             // Palabras comunes y conectores
             "hola": "haa", "adiós": "raak", "adios": "raak", "gracias": "mali", "sí": "ke", "si": "ke", "no": "nu",
-            "y": "puh", "o": "no", "pero": "tan", "porque": "lar", "con": "mi", "sin": "lu",
+            "y": "puh", "o": "no", "pero": "tan", "porque": "lar", "con": "mi", "sin": "lu", "a": "na",
             "en": "ni", "sobre": "ra", "bajo": "ri", "para": "ku", "de": "na", "muy": "iku",
             "bien": "opti", "las": "uy", "los": "uy", "contra": "lash", "tal": "tuq", "que": "lar",
             "cuando": "netar", "donde": "narun", "cómo": "kelar", "como": "kelar", "cuál": "kulan", "cual": "kulan",
-            "cuándo": "kenar", "cuanto": "kenar", "al": "nal", "delante": "firat", "detrás": "telat", "debajo": "kelat", 
-            "encima": "rilat", "dentro": "tarat", "fuera": "relat", "hasta": "lanir", "a través": "norit", "a traves": "norit",
+            "cuándo": "kenar", "cuanto": "kenar", "al": "nal", "delante": "firat", "detrás": "telat", "detras": "telat",
+            "debajo": "kelat", "encima": "rilat", "dentro": "tarat", "fuera": "relat", "hasta": "lanir",
+            "a través": "norit", "a traves": "norit", "cerca": "near", "lejos": "faren", "entre": "miran", "durante": "lenar",
+            "después": "nirun", "despues": "nirun", "antes": "fetun", "ahora": "melun", "siempre": "karin",
+            "nunca": "nilun", "a veces": "talun", "ayer": "narin", "hoy": "sarin", "mañana": "lirun", "manana": "lirun",
+            "tarde": "ralin", "temprano": "lenin", "noche": "tirun", "día": "dar", "dia": "dar",
 
             // Verbos regulares
             "comer": "matar", "beber": "liru", "hablar": "lirar", "llamar": "namir", "gustar": "chet",
             "entrar": "kunar", "salvar": "firar", "encontrar": "entur", "viajar": "kunir", "vivir": "narir", "jugar": "kitar",
             "amar": "melar", "correr": "tirar", "caminar": "talir", "saltar": "jirat", "escribir": "karir", "leer": "tarar",
             "decir": "lirar", "pensar": "firir", "crear": "malir", "cantar": "lenir", "bailar": "tirin", "aprender": "venar",
-            "enseñar": "kalir", "trabajar": "terin", "descansar": "kelin", "dormir": "tanir", "soñar": "penar", "reír": "ferir",
-            "reir": "ferir", "llorar": "ralir", "mirar": "valir", "ver": "sarir", "escuchar": "marir", "oír": "karir",
-            "oir": "karir", "tocar": "kenir", "sentir": "melir", "oler": "narir", "gustar": "kirar", "odiar": "lurir",
-            "construir": "fenir", "destruir": "telir", "ganar": "kirir", "perder": "varir", "vencer": "ralir", "ayudar": "linir",
-            "esperar": "valir", "esperar": "valir", "necesitar": "kunir", "buscar": "tenar", "encontrar": "tirar",
+            "enseñar": "kalir", "trabajar": "terin", "descansar": "kelin", "dormir": "tanir", "soñar": "penar", "soñar": "penar",
+            "reír": "ferir", "reir": "ferir", "llorar": "ralir", "mirar": "valir", "ver": "sarir", "escuchar": "marir", "oír": "karir",
+            "oir": "karir", "tocar": "kenir", "sentir": "melir", "odiar": "lurir", "construir": "fenir", "destruir": "telir",
+            "ganar": "kirir", "perder": "varir", "vencer": "ralir", "ayudar": "linir", "esperar": "valir", "necesitar": "kunir",
+            "buscar": "tenar", "robar": "krenar", "mentir": "solir", "recordar": "menir", "olvidar": "lurin", "enseñar": "latur",
+            "luchar": "kitar",
+            // Insultos
+            "tonto": "gorn", "idiota": "zurn", "estúpido": "branak", "estupido": "branak", "imbécil": "gruul", "imbecil": "gruul",
+            "torpe": "klor", "inútil": "vurak", "inutil": "vurak", "necio": "dranor", "loco": "zilak", "cobarde": "krunor",
+            "payaso": "murgin", "baboso": "relintar", "cretino": "trelar", "burro": "zarnil", "vago": "yartal", "gilipollas": "karrek",
+            "miserable": "firgrun", "cretino": "zutarn", "rastrero": "gulak", "rata": "tirlan"
         };
 
-
         const verbEndings = {
-            "aré": "iré", "aré": "ire",
-            "arás": "irás", "aras": "iras",
-            "ará": "irá", "ara": "ira",
-            "aremos": "iremos",
-            "arán": "irán", "aran": "iran",
-            "amos": "anta", "imos": "anta",
-            "an": "anta", "en": "anta",
-            "aba": "arash",
-            "abas": "arut",
+            "iésemos": "iremos", "iesemos": "iremos",
+            "áramos": "iramos", "aramos": "iramos",
+            "ieramos": "iramos", "iéramos": "iramos",
+            "eríamos": "iríamos", "eriamos": "iriamos",
+            "iríamos": "iríamos", "iriamos": "iriamos",
+            "aríamos": "iríamos", "ariamos": "iriamos",
             "ábamos": "aranta", "abamos": "aranta",
-            "abais": "arais",
-            "aban": "aranta",
-            "ía": "irash", "ia": "irash",
-            "ías": "irut", "ias": "irut",
-            "íamos": "iranta", "iamos": "iranta",
+            "iérais": "irais", "ierais": "irais",
+            "iérais": "irais", "ierais": "irais",
+            "eríais": "iríais", "eriais": "iriais",
+            "iríais": "iríais", "iriais": "iriais",
+            "aríais": "iríais", "ariais": "iriais",
+            "iérais": "irais", "ierais": "irais",
+            "aremos": "iremos", "eremos": "iremos",
+            "iremos": "iremos",
             "íais": "irais", "iais": "irais",
-            "ían": "iranta", "ian": "iranta",
-            "é": "ir", "e": "ir",
-            "iste": "irut",
-            "ió": "irash", "io": "irash",
-            "imos": "iranta",
+            "íamos": "iranta", "iamos": "iranta",
+            "aréis": "iréis", "areis": "ireis",
+            "abais": "arais",
+            "ieran": "irán", "ieran": "irán",
+            "erán": "irán", "eran": "iran",
+            "irán": "irán", "iran": "iran",
+            "arán": "irán", "aran": "iran",
             "ieron": "iranta",
-            "ó": "", "o": "",
-            "as": "ut",
-            "es": "ut",
-            "a": "ash",
-            "e": "ash"
+            "arían": "irían", "arian": "irian",
+            "erían": "irían", "erian": "irian",
+            "irían": "irían", "irian": "irian",
+            "iste": "irut",
+            "abas": "arut",
+            "iendo": "iento", "ando": "anto",
+            "imos": "iranta", "amos": "anta",
+            "arán": "irán", "arán": "irán",
+            "amos": "anta", "imos": "anta",
+            "arás": "irás", "aras": "iras",
+            "ieron": "iranta",
+            "abais": "arais",
+            "aste": "ut", "aste": "ut",
+            "iste": "irut","e": "ash",
+            "aré": "iré", "aré": "iré",
+            "iré": "iré", "aré": "iré",
+            "aré": "ire", "arás": "irás",
+            "ará": "irá", "ara": "ira",
+            "aba": "arash",
+            "ió": "irash", "io": "irash",
+            "es": "ut", "as": "ut",
+            "ía": "irash", "ia": "irash",
+            "íe": "ir", "o": "",
+            "an": "anta", "en": "anta",
+            "ié": "ir", "ás": "ut",
+            "as": "ut", "es": "ut",
+            "a": "ash", "e": "ash",
+            "a": "ash", "í": "ir",
         };
 
         const infinitiveEndings = {
@@ -305,7 +394,7 @@
         const irregularVerbs = {
             // "hacer" - presente
             "hago": "mirar", "haces": "mirarut", "hace": "mirarash", "hacemos": "miraranta", "hacen": "miraranta",
-            
+
             // "venir" - presente
             "vengo": "litar", "vienes": "litarut", "viene": "litarash", "venimos": "litaranta", "vienen": "litaranta",
 
@@ -331,7 +420,7 @@
             "soy": "tirar", "eres": "tirarut", "es": "tirarash", "somos": "tiraranta", "son": "tiraranta",
 
             // "estar" - presente
-            "estoy": "tirar", "estás": "tirarut", "está": "tirarash", "estamos": "tiraranta", "están": "tiraranta",
+            "estoy": "tirar", "estás": "tirarut", "estas": "tirarut", "está": "tirarash", "esta": "tirarash", "estamos": "tiraranta", "están": "tiraranta", "estan": "tiraranta",
 
             // "herir" - presente
             "hiero": "danir", "hieres": "danirut", "hiere": "danirash", "herimos": "daniranta", "hieren": "daniranta"
@@ -347,20 +436,23 @@
 
         function openVerdantia() {
             document.getElementById('VerdantiaModal').style.display = 'block';
+            showSection('Informacion');
         }
 
+        // Función para cerrar el modal de Verdantia
         function closeVerdantia() {
             document.getElementById('VerdantiaModal').style.display = 'none';
         }
 
         function showSection(sectionId) {
+            // Ocultar todas las secciones
             var sections = document.getElementsByClassName('verdantiaSection');
             for (var i = 0; i < sections.length; i++) {
                 sections[i].style.display = 'none';
             }
+            // Mostrar la sección solicitada
             document.getElementById(sectionId).style.display = 'block';
         }
-
 
         // Función para traducir verbos y manejar conjugaciones
         function translateVerb(word) {
@@ -371,6 +463,8 @@
             for (const [ending, newEnding] of Object.entries(verbEndings)) {
                 if (word.endsWith(ending)) {
                     const root = word.slice(0, -ending.length);
+                    console.log(root);
+                    console.log(ending);
                     // Buscar la traducción de la raíz más larga posible en el diccionario
                     for (const [ending1, newEnding1] of Object.entries(infinitiveEndings)) {
                         if (dictionary[root + newEnding1]) {
@@ -384,13 +478,12 @@
             return word;  // Devolver la palabra original si no se detecta ninguna conjugación
         }
 
-
         function translateText() {
-            const inputText = document.getElementById("inputText").value;
-            
+            var inputText = document.getElementById('inputText').value;
+
             // Dividir el texto en oraciones utilizando puntos
             let sentences = inputText.split('.').filter(sentence => sentence.trim() !== "");
-            
+
             // Array para almacenar las oraciones traducidas
             let translatedSentences = [];
 
@@ -435,7 +528,6 @@
             document.getElementById("resultText").textContent = translatedText;
         }
 
-
         // Función auxiliar para verificar si la palabra comienza con una letra mayúscula
         function isCapitalized(word) {
             return word && word[0] === word[0].toUpperCase();
@@ -443,8 +535,30 @@
 
         // Función auxiliar para verificar si una palabra es un verbo conjugado
         function isVerb(word) {
-            return Object.keys(verbEndings).some(ending => word.endsWith(ending));
+            return Object.keys(verbEndings).some(ending => word.endsWith(ending))
         }
+
+        // JavaScript para manejar tooltips
+        document.querySelectorAll('.marker').forEach(marker => {
+            marker.addEventListener('mouseover', function (e) {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.style.display = 'block';
+                tooltip.style.left = `${e.pageX + 10}px`;
+                tooltip.style.top = `${e.pageY + 10}px`;
+                tooltip.textContent = this.dataset.info;
+            });
+
+            marker.addEventListener('mouseout', function () {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.style.display = 'none';
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Crear un evento falso
+            var fakeEvent = { currentTarget: document.querySelector('.tablinks[onclick*="Book"]') };
+            openTab(fakeEvent, 'Home');
+        });
 
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
@@ -461,7 +575,7 @@
             if (tabName === 'Book') {
                 highlightNumbers();
             }
-        }
+        }        
 
         function highlightNumbers() {
             var bookContent = document.getElementById('Book');
