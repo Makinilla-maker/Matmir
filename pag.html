@@ -6,38 +6,47 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            display: flex;
+            height: 100vh; /* Asegura que el body toma toda la altura de la ventana */
+            overflow: hidden; /* Evita el scroll innecesario */
         }
 
         .tab {
-            overflow: hidden;
-            border: 1px solid #ccc;
-            background-color: #f1f1f1;
+            height: 100%; /* Asegura que tome toda la altura disponible */
+            width: 200px; /* Ancho de la barra lateral */
+            background-color: #333; /* Fondo oscuro para mayor elegancia */
+            color: white; /* Texto blanco para contraste */
+            overflow: auto;
+            position: fixed;
+            left: 0;
+            top: 0;
         }
 
             .tab button {
-                background-color: inherit;
-                float: left;
+                display: block;
+                width: 100%;
+                text-align: left;
+                padding: 14px 16px;
                 border: none;
                 outline: none;
                 cursor: pointer;
-                padding: 14px 16px;
                 transition: 0.3s;
+                color: white; /* Texto blanco */
+                border-bottom: 1px solid #444; /* Borde sutil entre botones */
+                background-color: transparent; /* Fondo transparente */
             }
 
-                .tab button:hover {
-                    background-color: #ddd;
-                }
-
-                .tab button.active {
-                    background-color: #ccc;
+                .tab button:hover, .tab button.active {
+                    background-color: #555; /* Oscurece el botón al pasar el mouse o estar activo */
                 }
 
         .tabcontent {
-            display: none;
-            padding: 6px 12px;
-            border: 1px solid #ccc;
-            border-top: none;
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 200px; /* Hace espacio para la barra lateral */
+            background-color: #f4f4f4; /* Un fondo claro para el contenido */
+            overflow-y: auto; /* Permite scroll vertical si el contenido es extenso */
         }
 
         .number {
@@ -144,6 +153,26 @@
             pointer-events: none;
             z-index: 1000;
         }
+        .religion-button {
+            border: none;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+            width: 300px; /* Ajusta al tamaño deseado */
+            height: 100px; /* Ajusta al tamaño deseado */
+            border-radius: 5px;
+            background-size: cover !important;
+            background-position: center !important;
+        }
+
+        #lucianismo {
+            background: url('img/Lucianismo.webp') no-repeat center center;
+        }
+
+
     </style>
 </head>
 <body>
@@ -151,6 +180,9 @@
         <button class="tablinks" onclick="openTab(event, 'Home')">Inicio</button>
         <button class="tablinks" onclick="openTab(event, 'Book')">El Libro de la Redención</button>
         <button class="tablinks" onclick="openTab(event, 'Regions')">Regiones</button>
+        <button class="tablinks" onclick="openTab(event, 'Races')">Razas</button>
+        <button class="tablinks" onclick="openTab(event, 'Religions')">Religiones</button>
+        <button class="tablinks" onclick="openTab(event, 'Gods')">Deus</button>
     </div>
 
     <div id="Home" class="tabcontent">
@@ -187,9 +219,21 @@
         <div id="map-container">
             <img src="img/continentMap.png" alt="Mapa Mundial">
             <!-- Marcadores visuales -->
-            <button class="marker" style="left: 65%; top: 65%;" data-info="Información sobre la Ciudad 2" onclick="openVerdantia()"></button>
+            <button class="marker" style="left: 65%; top: 65%;" data-info="Verdantia" onclick="openVerdantia()"></button>
             <div class="tooltip" id="tooltip"></div>
         </div>
+    </div>
+
+    <div id="Races" class="tabcontent">
+
+    </div>
+    <div id="Religions" class="tabcontent">
+        <button id="lucianismo" class="religion-button">
+            Lucianismo
+        </button>
+    </div>
+    <div id="Gods" class="tabcontent">
+
     </div>
 
     <!-- Modal -->
@@ -297,7 +341,7 @@
             "ruidoso": "ritan", "ruidosa": "ritan", "luminoso": "tiral", "opaco": "keran", "pesado": "nalan", "ligero": "silen",
             "desconcertante": "carantalante", "afortunado": "rinak", "desafortunado": "rinalak", "poderoso": "katran",
             "impotente": "larun", "sabio": "fetil", "ignorante": "kelut", "paciente": "taral", "impaciente": "nurital",
-            "sabroso": "felir", "amargo": "melut", "dulce": "karil", "salado": "renin", "ácido": "sekut", "acido": "sekut","putero":"ori",
+            "sabroso": "felir", "amargo": "melut", "dulce": "karil", "salado": "renin", "ácido": "sekut", "acido": "sekut", "putero": "ori",
 
             // Palabras comunes y conectores
             "hola": "haa", "adiós": "raak", "adios": "raak", "gracias": "mali", "sí": "ke", "si": "ke", "no": "nu",
@@ -368,7 +412,7 @@
             "ieron": "iranta",
             "abais": "arais",
             "aste": "ut", "aste": "ut",
-            "iste": "irut","e": "ash",
+            "iste": "irut", "e": "ash",
             "aré": "iré", "aré": "iré",
             "iré": "iré", "aré": "iré",
             "aré": "ire", "arás": "irás",
@@ -556,7 +600,7 @@
 
         document.addEventListener('DOMContentLoaded', function () {
             // Crear un evento falso
-            var fakeEvent = { currentTarget: document.querySelector('.tablinks[onclick*="Book"]') };
+            var fakeEvent = { currentTarget: document.querySelector('.tablinks[onclick*="Home"]') };
             openTab(fakeEvent, 'Home');
         });
 
@@ -575,7 +619,7 @@
             if (tabName === 'Book') {
                 highlightNumbers();
             }
-        }        
+        }
 
         function highlightNumbers() {
             var bookContent = document.getElementById('Book');
