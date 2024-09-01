@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Matmir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Serif', serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            background-color: #f4f4f4;
+        }
+
+        .tab {
+            width: 200px;
+            background-color: #333;
+            color: white;
+            overflow: auto;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+            .tab button {
+                display: block;
+                width: 100%;
+                padding: 14px 16px;
+                border: none;
+                background-color: transparent;
+                color: white;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                border-bottom: 1px solid #444;
+            }
+
+                .tab button:hover, .tab button.active {
+                    background-color: #555;
+                }
+
+        .tabcontent {
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 200px;
+            background-color: #f4f4f4;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #3a3a3a;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 50px auto;
+            padding: 20px 40px;
+            border: 1px solid #888;
+            width: 60vw;
+            height: 80vh;
+            overflow: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+            .close:hover {
+                color: black;
+            }
+
+        #Religions {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .religion-button {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            background-size: cover;
+            background-position: center;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            text-shadow: 1px 1px 2px black;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+            .religion-button:hover {
+                background-color: rgba(0, 0, 0, 0.2);
+                transform: scale(1.05);
+            }
+
+            .religion-button:active {
+                background-color: #366030;
+            }
+    </style>
+</head>
+<body>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Home')">Inicio</button>
+        <button class="tablinks" onclick="openTab(event, 'Regions')">Regiones</button>
+        <button class="tablinks" onclick="openTab(event, 'Races')">Razas</button>
+        <button class="tablinks" onclick="openTab(event, 'Religions')">Religiones</button>
+        <button class="tablinks" onclick="openTab(event, 'Gods')">Dioses</button>
+        <button class="tablinks" onclick="openTab(event, 'TimeLine')">TimeLine</button>
+    </div>
+
+    <div id="Home" class="tabcontent">
+        <h3>Inicio</h3>
+        <p>Bienvenido a nuestra página web. Aquí puedes encontrar información sobre nuestros proyectos y más.</p>
+    </div>
+
+    <div id="Regions" class="tabcontent">
+        <div id="map-container">
+            <img src="img/continentMap.png" alt="Mapa Mundial">
+            <!-- Marcadores visuales -->
+            <button class="marker" style="left: 50%; top: 15%;" data-info="Verdantia" onclick="openModal('VerdantiaModal', 'Informacion');"></button>
+            <button class="marker" style="left: 65%; top: 65%;" data-info="Stilport" onclick="openModal('StilportModal', 'Informacion');"></button>
+            <div class="tooltip" id="tooltip"></div>
+        </div>
+    </div>
+
+    <div id="Races" class="tabcontent">
+
+    </div>
+    <div id="Religions" class="tabcontent">
+        <!-- Ejemplos de botones para diferentes religiones -->
+        <button id="lucianismo" class="religion-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal');">
+            Lucianismo
+        </button>
+
+        <button id="lucianismo" class="religion-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal');">
+            Lucianismo
+        </button>
+
+    </div>
+
+    <div id="Gods" class="tabcontent">
+        <h3>TODO</h3>
+    </div>
+    <div id="TimeLine" class="tabcontent">
+        <h3>TODO</h3>
+    </div>
+
+    <!-- Modal -->
+    <div id="VerdantiaModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('VerdantiaModal')">&times;</span>
+            <h2>Verdantia</h2>
+            <ul class="tab-links">
+                <li onclick="openTabModule(event, 'Informacion')">Informacion</li>
+                <li onclick="openTabModule(event, 'Translator')">Translator</li>
+            </ul>
+
+            <div id="Informacion" class="tab-content" style="display:none;">
+                <h2>Historia de Verdantia</h2>
+                <p><strong>Verdantia</strong> es la capital del Reino de Verdant, situada en el continente de Terravalor. Conocida por su riqueza natural, arquitectura magnífica, y una vibrante historia cultural, Verdantia es un centro de comercio, política y conocimiento en la región.</p>
+                <img src="img/Verdantia1.png" alt="Héroe del libro">
+                <h3>Fundación y Primeros Años</h3>
+                <p>La ciudad de Verdantia fue fundada hace más de mil años por los primeros colonos del Reino de Verdant, atraídos por la fertilidad de sus tierras y la abundancia de recursos naturales. Se estableció inicialmente como un pequeño asentamiento agrícola a orillas del río Silvena, cuya corriente proporcionaba agua fresca y tierra fértil para la agricultura.</p>
+                <p>La ciudad fue creciendo a medida que más colonos llegaron, desarrollándose rápidamente gracias a su ubicación estratégica cerca de rutas comerciales clave y recursos como la madera, el agua y minerales. A mediados del siglo IV del calendario local, Verdantia se había convertido en un importante centro de comercio y gobierno, atrayendo a comerciantes y artesanos de toda la región.</p>
+                <h3>Edad Media y Expansión</h3>
+                <p>Durante la Edad Media de Verdantia, la ciudad experimentó una rápida expansión. El rey Eadric I, conocido como el Fundador, fue fundamental para el desarrollo de la infraestructura de la ciudad, incluyendo la construcción de las murallas exteriores y los primeros caminos pavimentados. Bajo su reinado, Verdantia también se convirtió en un centro cultural, con la fundación de academias de arte y estudios literarios que atrajeron a eruditos de todas partes.</p>
+                <p>En el siglo VII, durante el reinado de la reina Linnea II, Verdantia se convirtió en la capital oficial del Reino de Verdant, consolidando su importancia política. La reina Linnea fue responsable de la construcción del Palacio de la Corona, que sigue siendo la residencia oficial de la familia real hasta el día de hoy.</p>
+                <h3>Guerra de los Reinos y Reconstrucción</h3>
+                <p>En el siglo X, Verdantia fue gravemente afectada por la Guerra de los Reinos, una serie de conflictos entre los estados vecinos que luchaban por el control de los recursos de Terravalor. Durante la guerra, Verdantia sufrió varios ataques y fue parcialmente destruida, incluyendo el saqueo del Palacio de la Corona y la destrucción de parte de sus murallas.</p>
+                <p>Tras el final de la guerra, se llevó a cabo un ambicioso proyecto de reconstrucción bajo el reinado del rey Leor III. Este periodo vio la reconstrucción de las murallas de la ciudad y la modernización de su infraestructura. También se establecieron nuevas instituciones, como la Universidad de Verdantia, que se convirtió en un centro de conocimiento y aprendizaje en el reino.</p>
+                <h3>Era Moderna y la Gran Guerra de Terravalor</h3>
+                <p>En la era moderna, Verdantia se ha mantenido como un faro de estabilidad y prosperidad en el Reino de Verdant. Durante la Gran Guerra de Terravalor, la ciudad se convirtió en el corazón de la resistencia contra las fuerzas invasoras de Ravengarde. A pesar de los numerosos asedios y ataques, la ciudad resistió y jugó un papel clave en la eventual victoria de la Alianza de la Espada Verde.</p>
+                <p>Después de la guerra, Verdantia se embarcó en un nuevo período de desarrollo, con inversiones en tecnología, comercio y cultura. La ciudad se ha expandido más allá de sus murallas originales, incorporando nuevos distritos y mejorando su infraestructura para adaptarse al crecimiento de la población y las necesidades modernas.</p>
+            </div>
+            <div id="Translator" class="tab-content" style="display:none;">
+                <h2>Traductor Español a Idioma Inventado</h2>
+                <textarea id="inputText" placeholder="Escribe aquí el texto en español sin acentos..."></textarea>
+                <button onclick="translateText()">Traducir</button>
+                <div class="result" id="resultText"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="LucianismoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('LucianismoModal')">&times;</span>
+            <h2>Lucianismo</h2>
+            <ul class="tab-links">
+                <li class="active" onclick="openTabModule(event, 'history')">Historia</li>
+                <li onclick="openTabModule(event, 'book')">El Libro</li>
+            </ul>
+            <div id="history" class="tab-content active">
+                <h3>Historia del Lucianismo</h3>
+                <p>Descripción detallada de la historia del Lucianismo...</p>
+            </div>
+            <div id="book" class="tab-content">
+                <h3>El Libro Sagrado del Lucianismo</h3>
+                <p><strong>Prólogo: El Surgimiento del Héroe</strong></p>
+                <p><strong>1.1 El Origen de la Luz y la Oscuridad</strong></p>
+                <p><span class="number">1.</span> En los días antiguos, cuando la tierra aún no conocía la sombra del mal, los hombres vivían en paz, y la creación del Creador florecía bajo la luz del sol. <span class="number">2.</span> Mas en el silencio de los abismos, una fuerza oscura despertó, y su nombre era Malakar, el Oscuro. <span class="number">3.</span> Nacido del odio y de la desesperanza, Malakar se levantó desde las profundidades, trayendo consigo el terror y la destrucción. <span class="number">4.</span> Y su sombra se extendió por los reinos de los hombres, corrompiendo todo lo que tocaba. <span class="number">5.</span> Los cielos se oscurecieron, y la luz se desvaneció, pues Malakar era como una llama de oscuridad, que consume toda esperanza.</p>
+                <p><span class="number">6.</span> Y los hombres clamaron al Creador, pidiendo auxilio, pues no podían soportar la maldad de Malakar. <span class="number">7.</span> Y el Creador, en su infinita misericordia, escuchó sus súplicas y preparó un camino para la redención. <span class="number">8.</span> Y en los corazones de los sabios, plantó una visión, un sueño profético que anunciaba la venida de un salvador. <span class="number">9.</span> Y así estaba escrito: "En tiempos de gran oscuridad, cuando el mundo se encuentre sumido en la desesperación, se levantará un Redentor. <span class="number">10.</span> Él será luz en medio de las tinieblas, y con su fuerza y su pureza, desterrará la sombra y restaurará la paz en la tierra."</p>
+
+                <p><strong>Capítulo 1: Los Primeros Años de Lucian</strong></p>
+                <p><strong>1.1 Nacimiento y Origen</strong></p>
+                <p><span class="number">1.</span> En los días cuando la luz aún brillaba pura y sin mancha sobre la tierra, y el mal de Malakar aún no había oscurecido los corazones de los hombres, sucedió que en una aldea humilde, a los pies de las montañas verdes, nació un niño al que llamaron Lucian. <span class="number">2.</span> Y su nacimiento fue como un susurro del Creador, sin trompetas ni grandiosidad, en la quietud de una noche iluminada por una estrella solitaria, que resplandecía con una luz suave y bendita sobre el lugar de su nacimiento.</p>
+                <p><span class="number">3.</span> Y los padres de Lucian, Erath y Elara, eran justos ante los ojos del Creador, caminando en todos los caminos de la rectitud y la humildad. <span class="number">4.</span> Y dijeron: "Este niño es un don del Altísimo, y en él pondremos toda nuestra esperanza, para que crezca en bondad y sabiduría, y sea como una luz en estos tiempos de incertidumbre."</p>
+                <img src="img/primero.png" alt="Héroe del libro">
+                <p><span class="number">5.</span> Y creció Lucian entre los campos verdes y los ríos cristalinos de la aldea de Verdant, amado por todos y conocido por su bondad y compasión. <span class="number">6.</span> Pues desde su infancia, su corazón fue inclinado hacia la justicia y la misericordia, y su mano siempre se extendía hacia los necesitados, compartiendo su pan con los hambrientos y consolando a los que sufrían.</p>
+                <p><span class="number">7.</span> Y cuando los ancianos de la aldea lo veían, decían entre ellos: "Bendito sea este niño, pues en él vemos la promesa de un nuevo amanecer, una luz que no se apagará mientras haya justicia en la tierra." <span class="number">8.</span> Y todos los que lo conocían veían en Lucian un reflejo de la pureza y la virtud que alguna vez reinó en el corazón de los hombres.</p>
+
+                <p><strong>1.2 La Marca del Héroe</strong></p>
+                <p><span class="number">9.</span> Y aconteció en aquellos días, cuando Lucian era aún un niño, que una manada de lobos descendió de las colinas sobre los rebaños de la aldea. <span class="number">10.</span> Y los pastores, al ver la ferocidad de los lobos, huyeron aterrorizados, dejando atrás a las ovejas y a los corderos para que fueran presa de las bestias.</p>
+                <p><span class="number">11.</span> Mas Lucian, viendo el peligro que acechaba, no huyó como los demás, sino que, armado solo con un cayado y una piedra, se enfrentó a los lobos con un valor que no era común en los hombres de su edad. <span class="number">12.</span> Y dijo en voz alta: "¡Oh, lobos de la oscuridad, no temeréis a un niño, mas temed a la luz del Creador que mora en él! Pues protegeré a estos inocentes con toda la fuerza que Él me ha dado."</p>
+                <p><span class="number">13.</span> Y con un corazón lleno de fe y coraje, Lucian se lanzó contra los lobos, y al ver la luz que emanaba de sus ojos, las bestias, llenas de temor, huyeron de su presencia, pues sentían que el Creador estaba con él. <span class="number">14.</span> Y ningún lobo se atrevió a volver a los prados de Verdant mientras Lucian estuvo allí.</p>
+                <p><span class="number">15.</span> Y cuando los aldeanos supieron de esta hazaña, vinieron a él maravillados y dijeron: "Verdaderamente, este niño es elegido por el Creador, pues con su fe y valentía ha puesto en fuga a los lobos y ha salvado a nuestros rebaños." <span class="number">16.</span> Y desde aquel día, Lucian fue conocido no solo por su bondad, sino también por su fuerza y su valor.</p>
+                <p><span class="number">17.</span> Y creció Lucian en sabiduría y estatura, y en gracia para con el Creador y con los hombres. <span class="number">18.</span> Y todos los que lo veían decían: "Este joven será grande entre nosotros, pues la luz del Creador brilla intensamente en él, y su camino está destinado a ser una guía para todos los hombres."</p>
+                <p><span class="number">19.</span> Así pasaron los años, y Lucian continuó caminando en los caminos de la rectitud y la justicia, siempre guiado por la luz interior que el Creador había plantado en su corazón desde su nacimiento. <span class="number">20.</span> Y aunque aún no conocía su destino, el Creador lo estaba preparando para la gran obra que había de realizar, para la redención de todos los hombres.</p>
+                <p><span class="number">21.</span> Y así concluye el primer capítulo de los días de Lucian, el hijo de Verdant, en quien la esperanza del Creador fue depositada para ser luz en medio de las tinieblas. <span class="number">22.</span> Y el pueblo aguardaba, sabiendo que el día vendría en que la verdadera misión de Lucian sería revelada, y la oscuridad que se avecinaba sería enfrentada por la luz que nunca se extingue.</p>
+
+                <h3>Capítulo 2: El Camino del Héroe</h3>
+                <p><strong>2.1 La Llamada a la Aventura</strong></p>
+                <p><span class="number">1.</span> Y cuando Lucian alcanzó la juventud, comenzó a sentir en su corazón el peso de un destino que aún no comprendía por completo<span class="number">2.</span>Pues en sus sueños, veía visiones de un gran mal que se extendía por la tierra, devorando la luz y la esperanza de los hombres.</p>
+                <p><span class="number">3.</span> Y en medio de estas visiones, una voz suave y poderosa le susurraba: "Levántate, Lucian, pues eres el elegido para enfrentar la oscuridad y restaurar la paz."</p>
+                <p><span class="number">4.</span> Y aunque Lucian no entendía completamente el significado de estos sueños, sabía que eran un llamado del Creador.<span class="number">5.</span> Así que se dirigió a los ancianos de Verdant, buscando consejo y sabiduría.</p>
+                <p><span class="number">6.</span>  Y los ancianos, al escuchar sus palabras, reconocieron en ellas las señales de la profecía que había sido transmitida de generación en generación.<span class="number">7.</span> Dijeron entonces: "Lucian, hijo de Erath y Elara, tu camino está trazado por el Creador. Debes partir hacia el este, hacia las montañas de Thalor, donde encontrarás al sabio Elion, quien te guiará en tu misión."</p>
+                <p><span class="number">8.</span>  Y Lucian, lleno de determinación, se preparó para dejar su hogar, sabiendo que el camino sería arduo y peligroso.<span class="number">9.</span> Tomó solo lo necesario: su cayado, un manto tejido por su madre y un pequeño paquete de provisiones. <span class="number">10.</span>  Y antes de partir, se arrodilló ante el altar del Creador y oró por fuerza y claridad, diciendo: "Oh Creador, guía mis pasos y otórgame la sabiduría para cumplir tu voluntad."</p>
+                <p><span class="number">11.</span> Y con el amanecer, Lucian se despidió de su familia y amigos, quienes lo vieron partir con lágrimas en los ojos pero con fe en sus corazones.<span class="number">12.</span> Y así comenzó el viaje de Lucian, no solo hacia tierras lejanas, sino hacia su propio destino, guiado siempre por la luz que brillaba dentro de él.</p>
+
+                <p><strong>2.2 Las Pruebas del Camino</strong></p>
+                <p><span class="number">13.</span> Y mientras Lucian avanzaba hacia las montañas de Thalor, se enfrentó a muchas pruebas que pondrían a prueba su fe y su fortaleza.<span class="number">14.</span>Primero, atravesó el Bosque de los Susurros, un lugar lleno de sombras y voces engañosas que buscaban confundirlo y desviarlo de su camino.<span class="number">15.</span>Mas Lucian, recordando las enseñanzas de su padre, cerró sus oídos a las voces del engaño y siguió adelante, confiando en la guía del Creador.</p>
+                <p><span class="number">16.</span> Al salir del bosque, se encontró con el Río de las Lágrimas, cuyas aguas eran amargas y profundas, reflejando los lamentos de aquellos que habían perdido toda esperanza. <span class="number">17.</span>Y mientras contemplaba cómo cruzar el río, apareció ante él una figura vestida de blanco, que decía ser un mensajero del Creador.<span class="number">18.</span> Mas Lucian, desconfiando de su presencia, pidió al Creador una señal de verdad. <span class="number">19.</span> Y en ese instante, el río se partió en dos, dejando un camino seco para que Lucian pudiera cruzar. <span class="number">20.</span> Y la figura se desvaneció, mostrando que era una ilusión de Malakar para hacerle dudar.</p>
+                <p><span class="number">21.</span> Más adelante, Lucian llegó a un desierto interminable, donde el sol ardiente y las arenas movedizas amenazaban con consumir su fuerza y su esperanza.<span class="number">22.</span>Y durante muchos días y noches, caminó sin descanso, sus labios resecos y su cuerpo agotado.<span class="number">23.</span>Pero cada vez que se sentía al borde del colapso, una suave brisa le traía recuerdos de Verdant y las palabras de su madre, fortaleciendo su voluntad de seguir adelante.</p>
+                <p><span class="number">24.</span> Finalmente, después de muchas semanas de viaje, Lucian llegó a las Montañas de Thalor, donde el sabio Elion lo estaba esperando.<span class="number">25.</span> Y Elion, al verlo, sonrió y dijo: "Bienvenido, Lucian. El Creador ha hablado de ti y de tu llegada. Aquí aprenderás lo que necesitas para cumplir tu destino."</p>
+                <p><span class="number">26.</span> Y así, Lucian se preparó para las enseñanzas de Elion, sabiendo que cada lección lo acercaría más a su misión final de enfrentar y derrotar a Malakar, el Oscuro.</p>
+
+                <p><strong>2.3 El Encuentro con Malakar</strong></p>
+                <p><span class="number">27.</span> Y después de muchas semanas de aprendizaje bajo la guía del sabio Elion, Lucian sintió que su espíritu estaba listo para enfrentar al gran enemigo, Malakar. <span class="number">28.</span> Fue entonces cuando Elion le habló de la Caverna de las Sombras, un lugar oscuro y profundo donde Malakar había establecido su trono de maldad. <span class="number">29.</span> “Allí,” dijo Elion, “deberás enfrentarlo, pero recuerda, Lucian, que la verdadera batalla no es solo contra la oscuridad exterior, sino también contra la oscuridad que puede crecer dentro de ti.”</p>
+                <p><span class="number">30.</span> Y con estas palabras en su corazón, Lucian descendió de las montañas y se dirigió hacia la caverna, sintiendo la presencia de la oscuridad volverse más densa con cada paso que daba. <span class="number">31.</span> Al llegar a la entrada, el aire mismo parecía pesado con el peso de los siglos de desesperación acumulada. <span class="number">32.</span> Pero Lucian no dudó, y con su cayado en mano, entró en la Caverna de las Sombras, sabiendo que el Creador estaba con él.</p>
+                <p><span class="number">33.</span> Y en la profunda oscuridad de la caverna, donde ni la luz más brillante podía penetrar, una voz baja y burlona resonó desde todas partes: “¿Quién osa entrar en mi dominio? ¿Quién piensa que puede desafiarme?” <span class="number">34.</span> Y Malakar se reveló, su forma una masa cambiante de sombras, sus ojos como pozos sin fondo que absorbían toda luz y esperanza. <span class="number">35.</span> Lucian, con el corazón firme, respondió: “Soy Lucian, portador de la luz del Creador. He venido a desterrar la oscuridad y restaurar la paz en esta tierra.”</p>
+                <p><span class="number">36.</span> Y Malakar se rió, una risa que era como el eco de mil lamentos: “Muchos han venido antes que tú, y todos han caído. ¿Qué te hace pensar que eres diferente?” <span class="number">37.</span> Pero Lucian, lleno de la luz del Creador, no se dejó intimidar. <span class="number">38.</span> Levantó su cayado, y de él emanó una luz brillante que iluminó la caverna, empujando las sombras hacia atrás. “No me doblegaré ante la oscuridad,” dijo Lucian, “porque el Creador me ha enviado para traer luz donde solo hay tinieblas.”</p>
+                <p><span class="number">39.</span> Y así comenzó la gran batalla, una lucha de luz contra oscuridad, de esperanza contra desesperación. <span class="number">40.</span> Cada vez que Malakar se lanzaba hacia Lucian con toda su fuerza, la luz del cayado y la fe de Lucian lo rechazaban. <span class="number">41.</span> Pero la batalla no era solo de fuerza, sino también de voluntad. Malakar intentó invadir los pensamientos de Lucian, susurrándole dudas y miedos: “¿Qué si no eres el elegido? ¿Qué si esta batalla es en vano?”</p>
+                <p><span class="number">42.</span> Pero Lucian recordó las palabras de su madre y padre, la fe de los aldeanos de Verdant, y sobre todo, la guía del Creador. <span class="number">43.</span> Y con un corazón firme y una voz llena de convicción, gritó: “La luz del Creador nunca se apaga. Mientras haya esperanza y fe, la oscuridad jamás prevalecerá.” <span class="number">44.</span> Y con estas palabras, la luz dentro de Lucian se intensificó, irradiando desde su cuerpo como un sol naciente, y Malakar, cegado por la pureza de la luz, comenzó a retroceder, sus sombras disipándose en el aire.</p>
+                <p><span class="number">45.</span> Y finalmente, en un último acto de fe y determinación, Lucian levantó su cayado al cielo y pronunció las palabras del Creador: “Que la luz eterna del Creador destierre todas las sombras y traiga paz a esta tierra.” <span class="number">46.</span> Y un estallido de luz llenó la caverna, envolviendo a Malakar en una explosión de pureza y bondad. <span class="number">47.</span> Y cuando la luz se desvaneció, Malakar ya no estaba, y la caverna, una vez llena de oscuridad, estaba ahora bañada en una paz silenciosa.</p>
+                <p><span class="number">48.</span> Exhausto pero victorioso, Lucian cayó de rodillas, sintiendo el peso de su misión y la gracia del Creador. <span class="number">49.</span> Y en ese momento de quietud, una voz suave y amorosa habló desde lo alto: “Has hecho bien, mi hijo. La oscuridad ha sido desterrada, y la luz del Creador brilla de nuevo en el corazón de los hombres.”</p>
+                <p><span class="number">50.</span> Y así, Lucian salió de la Caverna de las Sombras, sabiendo que había cumplido su destino y que la paz y la luz del Creador habían sido restauradas en la tierra.</p>
+
+            </div>
+            <div id="more" class="tab-content">
+                <h3>Más Información</h3>
+                <p>Otra información relevante sobre el Lucianismo...</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="StilportModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('StilportModal')">&times;</span>
+            <h2>Stilport</h2>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function openModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -8,9 +8,12 @@
         body {
             font-family: 'Noto Serif', serif;
             margin: 0;
+            padding: 20px;
             display: flex;
-            height: 100vh; /* Asegura que el body toma toda la altura de la ventana */
-            overflow: hidden; /* Evita el scroll innecesario */
+            justify-content: space-around; /* Distribuye espacio uniformemente */
+            align-items: center; /* Centra verticalmente */
+            flex-wrap: wrap; /* Permite la envoltura de elementos */
+            background-color: #f4f4f4; /* Color de fondo para todo el cuerpo */
         }
         .tabcontent h3, .tabcontent strong {
             font-family: 'Arial', sans-serif;
@@ -204,40 +207,41 @@
             pointer-events: none;
             z-index: 1000;
         }
-        .religion-button {
-            color: blue; /* Cambia a azul */
-            display: flex;
-            align-items: flex-end; /* Alinea el contenido textual al fondo */
-            justify-content: center; /* Centra el contenido textual horizontalmente */
-            text-align: center; /* Asegura que el texto esté centrado dentro del espacio asignado */
-            text-shadow: 1px 1px 2px black; /* Sombra negra para mejorar la legibilidad */
-            border: none;
-            color: white;
-            text-shadow: 1px 1px 2px black;
-            padding: 10px 20px;
-            font-size: 16px;
-            font- cursor: pointer;
-            outline: none;
-            width: 300px; /* Ajusta al tamaño deseado */
-            height: 300px; /* Ajusta al tamaño deseado */
-            border-radius: 5px;
-            background-size: cover !important;
-            background-position: center !important;
+        #Religions {
+            display: grid;
+            gap: 20px; /* Espacio entre elementos */
+            grid-template-columns: repeat(2, 1fr); /* Ajusta a dos columnas */
+            grid-gap: 20px; /* Espacio entre botones */
+            padding: 20px; /* Espacio alrededor de la sección */
+            justify-content: center; /* Centra los botones horizontalmente */
         }
+        
+        .religion-button {
+            width: 200px; /* Ancho fijo para todos los botones */
+            height: 200px; /* Altura fija para todos los botones */
+            margin: 10px; /* Espaciado entre botones */
+            background-size: cover; /* Asegura que la imagen cubra completamente el botón */
+            background-position: center; /* Centra la imagen dentro del botón */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white; /* Color de texto para mejorar la legibilidad */
+            font-size: 24px; /* Tamaño de fuente grande para fácil lectura */
+            text-shadow: 1px 1px 2px black; /* Sombra de texto para destacar sobre el fondo */
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
             .religion-button:hover {
-                background-color: #3e8e41; /* Cambia el color de fondo cuando el mouse está sobre el botón */
+                background-color: rgba(0, 0, 0, 0.2); /* Efecto al pasar el ratón */
+                transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
             }
 
             .religion-button:active {
                 background-color: #366030; /* Cambia el color de fondo cuando el botón está presionado */
             }
-
-
-
-        #lucianismo {
-            background: url('img/Lucianismo.webp') no-repeat center center;
-        }
-
 
     </style>
 </head>
@@ -270,14 +274,29 @@
 
     </div>
     <div id="Religions" class="tabcontent">
-        <button id="lucianismo" class="religion-button" onclick="openModal('LucianismoModal',' ');">
+        <!-- Ejemplos de botones para diferentes religiones -->
+        <button id="lucianismo" class="religion-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal');">
             Lucianismo
         </button>
+
+        <button id="lucianismo" class="religion-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal');">
+            Lucianismo
+        </button>
+
     </div>
+
     <div id="Gods" class="tabcontent">
         <h3>TODO</h3>
+        <button id="lucianismo" class="religion-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal');">
+            Lucianismo
+        </button>
+
+        <button id="lucianismo" class="religion-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal');">
+            Lucianismo
+        </button>
+
     </div>
-    <div id="Home" class="tabcontent">
+    <div id="TimeLine" class="tabcontent">
         <h3>TODO</h3>
     </div>
 
@@ -370,7 +389,16 @@
                 <p><span class="number">26.</span> Y así, Lucian se preparó para las enseñanzas de Elion, sabiendo que cada lección lo acercaría más a su misión final de enfrentar y derrotar a Malakar, el Oscuro.</p>
 
                 <p><strong>2.3 El Encuentro con Malakar</strong></p>
-                <p><span class="number">28.</span> Y después de muchos días de aprendizaje bajo la guía de Elion, Lucian se sintió listo para enfrentar su destino...</p>
+                <p><span class="number">27.</span> Y después de muchas semanas de aprendizaje bajo la guía del sabio Elion, Lucian sintió que su espíritu estaba listo para enfrentar al gran enemigo, Malakar. <span class="number">28.</span> Fue entonces cuando Elion le habló de la Caverna de las Sombras, un lugar oscuro y profundo donde Malakar había establecido su trono de maldad. <span class="number">29.</span> “Allí,” dijo Elion, “deberás enfrentarlo, pero recuerda, Lucian, que la verdadera batalla no es solo contra la oscuridad exterior, sino también contra la oscuridad que puede crecer dentro de ti.”</p>
+                <p><span class="number">30.</span> Y con estas palabras en su corazón, Lucian descendió de las montañas y se dirigió hacia la caverna, sintiendo la presencia de la oscuridad volverse más densa con cada paso que daba. <span class="number">31.</span> Al llegar a la entrada, el aire mismo parecía pesado con el peso de los siglos de desesperación acumulada. <span class="number">32.</span> Pero Lucian no dudó, y con su cayado en mano, entró en la Caverna de las Sombras, sabiendo que el Creador estaba con él.</p>
+                <p><span class="number">33.</span> Y en la profunda oscuridad de la caverna, donde ni la luz más brillante podía penetrar, una voz baja y burlona resonó desde todas partes: “¿Quién osa entrar en mi dominio? ¿Quién piensa que puede desafiarme?” <span class="number">34.</span> Y Malakar se reveló, su forma una masa cambiante de sombras, sus ojos como pozos sin fondo que absorbían toda luz y esperanza. <span class="number">35.</span> Lucian, con el corazón firme, respondió: “Soy Lucian, portador de la luz del Creador. He venido a desterrar la oscuridad y restaurar la paz en esta tierra.”</p>
+                <p><span class="number">36.</span> Y Malakar se rió, una risa que era como el eco de mil lamentos: “Muchos han venido antes que tú, y todos han caído. ¿Qué te hace pensar que eres diferente?” <span class="number">37.</span> Pero Lucian, lleno de la luz del Creador, no se dejó intimidar. <span class="number">38.</span> Levantó su cayado, y de él emanó una luz brillante que iluminó la caverna, empujando las sombras hacia atrás. “No me doblegaré ante la oscuridad,” dijo Lucian, “porque el Creador me ha enviado para traer luz donde solo hay tinieblas.”</p>
+                <p><span class="number">39.</span> Y así comenzó la gran batalla, una lucha de luz contra oscuridad, de esperanza contra desesperación. <span class="number">40.</span> Cada vez que Malakar se lanzaba hacia Lucian con toda su fuerza, la luz del cayado y la fe de Lucian lo rechazaban. <span class="number">41.</span> Pero la batalla no era solo de fuerza, sino también de voluntad. Malakar intentó invadir los pensamientos de Lucian, susurrándole dudas y miedos: “¿Qué si no eres el elegido? ¿Qué si esta batalla es en vano?”</p>
+                <p><span class="number">42.</span> Pero Lucian recordó las palabras de su madre y padre, la fe de los aldeanos de Verdant, y sobre todo, la guía del Creador. <span class="number">43.</span> Y con un corazón firme y una voz llena de convicción, gritó: “La luz del Creador nunca se apaga. Mientras haya esperanza y fe, la oscuridad jamás prevalecerá.” <span class="number">44.</span> Y con estas palabras, la luz dentro de Lucian se intensificó, irradiando desde su cuerpo como un sol naciente, y Malakar, cegado por la pureza de la luz, comenzó a retroceder, sus sombras disipándose en el aire.</p>
+                <p><span class="number">45.</span> Y finalmente, en un último acto de fe y determinación, Lucian levantó su cayado al cielo y pronunció las palabras del Creador: “Que la luz eterna del Creador destierre todas las sombras y traiga paz a esta tierra.” <span class="number">46.</span> Y un estallido de luz llenó la caverna, envolviendo a Malakar en una explosión de pureza y bondad. <span class="number">47.</span> Y cuando la luz se desvaneció, Malakar ya no estaba, y la caverna, una vez llena de oscuridad, estaba ahora bañada en una paz silenciosa.</p>
+                <p><span class="number">48.</span> Exhausto pero victorioso, Lucian cayó de rodillas, sintiendo el peso de su misión y la gracia del Creador. <span class="number">49.</span> Y en ese momento de quietud, una voz suave y amorosa habló desde lo alto: “Has hecho bien, mi hijo. La oscuridad ha sido desterrada, y la luz del Creador brilla de nuevo en el corazón de los hombres.”</p>
+                <p><span class="number">50.</span> Y así, Lucian salió de la Caverna de las Sombras, sabiendo que había cumplido su destino y que la paz y la luz del Creador habían sido restauradas en la tierra.</p>
+
             </div>
             <div id="more" class="tab-content">
                 <h3>Más Información</h3>
@@ -383,7 +411,6 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('StilportModal')">&times;</span>
             <h2>Stilport</h2>
-
         </div>
     </div>
 
@@ -732,18 +759,18 @@
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
+                console.log('Ocultando contenido:', tabcontent[i].id);
             }
             tablinks = document.getElementsByClassName("tablinks");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
             document.getElementById(tabName).style.display = "block";
+            console.log('Mostrando contenido:', tabName);
             evt.currentTarget.className += " active";
-            if (tabName === 'Book') {
-                highlightNumbers();
-            }
-
         }
+
+
         function openTabModule(evt, tabId) {
             var i, tabcontent, tablinks;
             // Obtener todos los elementos con class="tab-content" y ocultarlos
