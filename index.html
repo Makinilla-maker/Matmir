@@ -57,6 +57,7 @@
         .number {
             font-weight: bold;
             color: #555;
+            margin-right: 5px;
         }
 
         .container {
@@ -94,7 +95,7 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 1;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
@@ -130,7 +131,46 @@
             .close:focus {
                 color: black;
                 text-decoration: none;
+                cursor: pointer;
             }
+
+        .tab-links {
+            overflow: hidden;
+            background-color: #f1f1f1;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+            .tab-links li {
+                float: left;
+                border: 1px solid #ccc;
+                background-color: inherit;
+                margin: 0;
+                display: block;
+                padding: 10px 15px;
+                cursor: pointer;
+            }
+
+                .tab-links li:hover {
+                    background-color: #ddd;
+                }
+
+            .tab-links .active {
+                background-color: #ccc;
+            }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+            clear: both;
+        }
+
+            .tab-content.active {
+                display: block;
+            }
+
         #map-container {
             position: relative;
             width: 50vw; /* 50% del ancho de la ventana */
@@ -204,7 +244,6 @@
 <body>
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'Home')">Inicio</button>
-        <button class="tablinks" onclick="openTab(event, 'Book')">El Libro de la Redención</button>
         <button class="tablinks" onclick="openTab(event, 'Regions')">Regiones</button>
         <button class="tablinks" onclick="openTab(event, 'Races')">Razas</button>
         <button class="tablinks" onclick="openTab(event, 'Religions')">Religiones</button>
@@ -214,31 +253,6 @@
     <div id="Home" class="tabcontent">
         <h3>Inicio</h3>
         <p>Bienvenido a nuestra página web. Aquí puedes encontrar información sobre nuestros proyectos y más.</p>
-    </div>
-
-    <div id="Book" class="tabcontent">
-        <h3>El Libro de la Redención</h3>
-        <p><strong>Prólogo: El Surgimiento del Héroe</strong></p>
-        <p><strong>1.1 El Origen de la Luz y la Oscuridad</strong></p>
-        <p><span class="number">1.</span> En los días antiguos, cuando la tierra aún no conocía la sombra del mal, los hombres vivían en paz, y la creación del Creador florecía bajo la luz del sol. <span class="number">2.</span> Mas en el silencio de los abismos, una fuerza oscura despertó, y su nombre era Malakar, el Oscuro. <span class="number">3.</span> Nacido del odio y de la desesperanza, Malakar se levantó desde las profundidades, trayendo consigo el terror y la destrucción. <span class="number">4.</span> Y su sombra se extendió por los reinos de los hombres, corrompiendo todo lo que tocaba. <span class="number">5.</span> Los cielos se oscurecieron, y la luz se desvaneció, pues Malakar era como una llama de oscuridad, que consume toda esperanza.</p>
-        <p><span class="number">6.</span> Y los hombres clamaron al Creador, pidiendo auxilio, pues no podían soportar la maldad de Malakar. <span class="number">7.</span> Y el Creador, en su infinita misericordia, escuchó sus súplicas y preparó un camino para la redención. <span class="number">8.</span> Y en los corazones de los sabios, plantó una visión, un sueño profético que anunciaba la venida de un salvador. <span class="number">9.</span> Y así estaba escrito: "En tiempos de gran oscuridad, cuando el mundo se encuentre sumido en la desesperación, se levantará un Redentor. <span class="number">10.</span> Él será luz en medio de las tinieblas, y con su fuerza y su pureza, desterrará la sombra y restaurará la paz en la tierra."</p>
-
-        <p><strong>Capítulo 1: Los Primeros Años de Lucian</strong></p>
-        <p><strong>1.1 Nacimiento y Origen</strong></p>
-        <p><span class="number">1.</span> En los días cuando la luz aún brillaba pura y sin mancha sobre la tierra, y el mal de Malakar aún no había oscurecido los corazones de los hombres, sucedió que en una aldea humilde, a los pies de las montañas verdes, nació un niño al que llamaron Lucian. <span class="number">2.</span> Y su nacimiento fue como un susurro del Creador, sin trompetas ni grandiosidad, en la quietud de una noche iluminada por una estrella solitaria, que resplandecía con una luz suave y bendita sobre el lugar de su nacimiento.</p>
-        <p><span class="number">3.</span> Y los padres de Lucian, Erath y Elara, eran justos ante los ojos del Creador, caminando en todos los caminos de la rectitud y la humildad. <span class="number">4.</span> Y dijeron: "Este niño es un don del Altísimo, y en él pondremos toda nuestra esperanza, para que crezca en bondad y sabiduría, y sea como una luz en estos tiempos de incertidumbre."</p>
-        <img src="img/primero.png" alt="Héroe del libro">
-        <p><span class="number">5.</span> Y creció Lucian entre los campos verdes y los ríos cristalinos de la aldea de Verdant, amado por todos y conocido por su bondad y compasión. <span class="number">6.</span> Pues desde su infancia, su corazón fue inclinado hacia la justicia y la misericordia, y su mano siempre se extendía hacia los necesitados, compartiendo su pan con los hambrientos y consolando a los que sufrían.</p>
-        <p><span class="number">7.</span> Y cuando los ancianos de la aldea lo veían, decían entre ellos: "Bendito sea este niño, pues en él vemos la promesa de un nuevo amanecer, una luz que no se apagará mientras haya justicia en la tierra." <span class="number">8.</span> Y todos los que lo conocían veían en Lucian un reflejo de la pureza y la virtud que alguna vez reinó en el corazón de los hombres.</p>
-
-        <p><strong>1.2 La Marca del Héroe</strong></p>
-        <p><span class="number">9.</span> Y aconteció en aquellos días, cuando Lucian era aún un niño, que una manada de lobos descendió de las colinas sobre los rebaños de la aldea. <span class="number">10.</span> Y los pastores, al ver la ferocidad de los lobos, huyeron aterrorizados, dejando atrás a las ovejas y a los corderos para que fueran presa de las bestias.</p>
-        <p><span class="number">11.</span> Mas Lucian, viendo el peligro que acechaba, no huyó como los demás, sino que, armado solo con un cayado y una piedra, se enfrentó a los lobos con un valor que no era común en los hombres de su edad. <span class="number">12.</span> Y dijo en voz alta: "¡Oh, lobos de la oscuridad, no temeréis a un niño, mas temed a la luz del Creador que mora en él! Pues protegeré a estos inocentes con toda la fuerza que Él me ha dado."</p>
-        <p><span class="number">13.</span> Y con un corazón lleno de fe y coraje, Lucian se lanzó contra los lobos, y al ver la luz que emanaba de sus ojos, las bestias, llenas de temor, huyeron de su presencia, pues sentían que el Creador estaba con él. <span class="number">14.</span> Y ningún lobo se atrevió a volver a los prados de Verdant mientras Lucian estuvo allí.</p>
-        <p><span class="number">15.</span> Y cuando los aldeanos supieron de esta hazaña, vinieron a él maravillados y dijeron: "Verdaderamente, este niño es elegido por el Creador, pues con su fe y valentía ha puesto en fuga a los lobos y ha salvado a nuestros rebaños." <span class="number">16.</span> Y desde aquel día, Lucian fue conocido no solo por su bondad, sino también por su fuerza y su valor.</p>
-        <p><span class="number">17.</span> Y creció Lucian en sabiduría y estatura, y en gracia para con el Creador y con los hombres. <span class="number">18.</span> Y todos los que lo veían decían: "Este joven será grande entre nosotros, pues la luz del Creador brilla intensamente en él, y su camino está destinado a ser una guía para todos los hombres."</p>
-        <p><span class="number">19.</span> Así pasaron los años, y Lucian continuó caminando en los caminos de la rectitud y la justicia, siempre guiado por la luz interior que el Creador había plantado en su corazón desde su nacimiento. <span class="number">20.</span> Y aunque aún no conocía su destino, el Creador lo estaba preparando para la gran obra que había de realizar, para la redención de todos los hombres.</p>
-        <p><span class="number">21.</span> Y así concluye el primer capítulo de los días de Lucian, el hijo de Verdant, en quien la esperanza del Creador fue depositada para ser luz en medio de las tinieblas. <span class="number">22.</span> Y el pueblo aguardaba, sabiendo que el día vendría en que la verdadera misión de Lucian sería revelada, y la oscuridad que se avecinaba sería enfrentada por la luz que nunca se extingue.</p>
     </div>
 
     <div id="Regions" class="tabcontent">
@@ -268,10 +282,12 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('VerdantiaModal')">&times;</span>
             <h2>Verdantia</h2>
-            <button onclick="showSection('Informacion')">Informacion</button>
-            <button onclick="showSection('Translator')">Traductor</button>
+            <ul class="tab-links">
+                <li onclick="openTabModule(event, 'Informacion')">Informacion</li>
+                <li onclick="openTabModule(event, 'Translator')">Translator</li>
+            </ul>
 
-            <div id="Informacion" class="verdantiaSection" style="display:none;">
+            <div id="Informacion" class="tab-content" style="display:none;">
                 <h2>Historia de Verdantia</h2>
                 <p><strong>Verdantia</strong> es la capital del Reino de Verdant, situada en el continente de Terravalor. Conocida por su riqueza natural, arquitectura magnífica, y una vibrante historia cultural, Verdantia es un centro de comercio, política y conocimiento en la región.</p>
                 <img src="img/Verdantia1.png" alt="Héroe del libro">
@@ -288,7 +304,7 @@
                 <p>En la era moderna, Verdantia se ha mantenido como un faro de estabilidad y prosperidad en el Reino de Verdant. Durante la Gran Guerra de Terravalor, la ciudad se convirtió en el corazón de la resistencia contra las fuerzas invasoras de Ravengarde. A pesar de los numerosos asedios y ataques, la ciudad resistió y jugó un papel clave en la eventual victoria de la Alianza de la Espada Verde.</p>
                 <p>Después de la guerra, Verdantia se embarcó en un nuevo período de desarrollo, con inversiones en tecnología, comercio y cultura. La ciudad se ha expandido más allá de sus murallas originales, incorporando nuevos distritos y mejorando su infraestructura para adaptarse al crecimiento de la población y las necesidades modernas.</p>
             </div>
-            <div id="Translator" class="verdantiaSection" style="display:none;">
+            <div id="Translator" class="tab-content" style="display:none;">
                 <h2>Traductor Español a Idioma Inventado</h2>
                 <textarea id="inputText" placeholder="Escribe aquí el texto en español sin acentos..."></textarea>
                 <button onclick="translateText()">Traducir</button>
@@ -297,11 +313,65 @@
         </div>
     </div>
 
-    <div id="LucianismoModal" class="modal" style="display:none;">
+    <div id="LucianismoModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('LucianismoModal')">&times;</span>
             <h2>Lucianismo</h2>
-            
+            <ul class="tab-links">
+                <li class="active" onclick="openTabModule(event, 'history')">Historia</li>
+                <li onclick="openTabModule(event, 'book')">El Libro</li>
+            </ul>
+            <div id="history" class="tab-content active">
+                <h3>Historia del Lucianismo</h3>
+                <p>Descripción detallada de la historia del Lucianismo...</p>
+            </div>
+            <div id="book" class="tab-content">
+                <h3>El Libro Sagrado del Lucianismo</h3>
+                <p><strong>Prólogo: El Surgimiento del Héroe</strong></p>
+                <p><strong>1.1 El Origen de la Luz y la Oscuridad</strong></p>
+                <p><span class="number">1.</span> En los días antiguos, cuando la tierra aún no conocía la sombra del mal, los hombres vivían en paz, y la creación del Creador florecía bajo la luz del sol. <span class="number">2.</span> Mas en el silencio de los abismos, una fuerza oscura despertó, y su nombre era Malakar, el Oscuro. <span class="number">3.</span> Nacido del odio y de la desesperanza, Malakar se levantó desde las profundidades, trayendo consigo el terror y la destrucción. <span class="number">4.</span> Y su sombra se extendió por los reinos de los hombres, corrompiendo todo lo que tocaba. <span class="number">5.</span> Los cielos se oscurecieron, y la luz se desvaneció, pues Malakar era como una llama de oscuridad, que consume toda esperanza.</p>
+                <p><span class="number">6.</span> Y los hombres clamaron al Creador, pidiendo auxilio, pues no podían soportar la maldad de Malakar. <span class="number">7.</span> Y el Creador, en su infinita misericordia, escuchó sus súplicas y preparó un camino para la redención. <span class="number">8.</span> Y en los corazones de los sabios, plantó una visión, un sueño profético que anunciaba la venida de un salvador. <span class="number">9.</span> Y así estaba escrito: "En tiempos de gran oscuridad, cuando el mundo se encuentre sumido en la desesperación, se levantará un Redentor. <span class="number">10.</span> Él será luz en medio de las tinieblas, y con su fuerza y su pureza, desterrará la sombra y restaurará la paz en la tierra."</p>
+
+                <p><strong>Capítulo 1: Los Primeros Años de Lucian</strong></p>
+                <p><strong>1.1 Nacimiento y Origen</strong></p>
+                <p><span class="number">1.</span> En los días cuando la luz aún brillaba pura y sin mancha sobre la tierra, y el mal de Malakar aún no había oscurecido los corazones de los hombres, sucedió que en una aldea humilde, a los pies de las montañas verdes, nació un niño al que llamaron Lucian. <span class="number">2.</span> Y su nacimiento fue como un susurro del Creador, sin trompetas ni grandiosidad, en la quietud de una noche iluminada por una estrella solitaria, que resplandecía con una luz suave y bendita sobre el lugar de su nacimiento.</p>
+                <p><span class="number">3.</span> Y los padres de Lucian, Erath y Elara, eran justos ante los ojos del Creador, caminando en todos los caminos de la rectitud y la humildad. <span class="number">4.</span> Y dijeron: "Este niño es un don del Altísimo, y en él pondremos toda nuestra esperanza, para que crezca en bondad y sabiduría, y sea como una luz en estos tiempos de incertidumbre."</p>
+                <img src="img/primero.png" alt="Héroe del libro">
+                <p><span class="number">5.</span> Y creció Lucian entre los campos verdes y los ríos cristalinos de la aldea de Verdant, amado por todos y conocido por su bondad y compasión. <span class="number">6.</span> Pues desde su infancia, su corazón fue inclinado hacia la justicia y la misericordia, y su mano siempre se extendía hacia los necesitados, compartiendo su pan con los hambrientos y consolando a los que sufrían.</p>
+                <p><span class="number">7.</span> Y cuando los ancianos de la aldea lo veían, decían entre ellos: "Bendito sea este niño, pues en él vemos la promesa de un nuevo amanecer, una luz que no se apagará mientras haya justicia en la tierra." <span class="number">8.</span> Y todos los que lo conocían veían en Lucian un reflejo de la pureza y la virtud que alguna vez reinó en el corazón de los hombres.</p>
+
+                <p><strong>1.2 La Marca del Héroe</strong></p>
+                <p><span class="number">9.</span> Y aconteció en aquellos días, cuando Lucian era aún un niño, que una manada de lobos descendió de las colinas sobre los rebaños de la aldea. <span class="number">10.</span> Y los pastores, al ver la ferocidad de los lobos, huyeron aterrorizados, dejando atrás a las ovejas y a los corderos para que fueran presa de las bestias.</p>
+                <p><span class="number">11.</span> Mas Lucian, viendo el peligro que acechaba, no huyó como los demás, sino que, armado solo con un cayado y una piedra, se enfrentó a los lobos con un valor que no era común en los hombres de su edad. <span class="number">12.</span> Y dijo en voz alta: "¡Oh, lobos de la oscuridad, no temeréis a un niño, mas temed a la luz del Creador que mora en él! Pues protegeré a estos inocentes con toda la fuerza que Él me ha dado."</p>
+                <p><span class="number">13.</span> Y con un corazón lleno de fe y coraje, Lucian se lanzó contra los lobos, y al ver la luz que emanaba de sus ojos, las bestias, llenas de temor, huyeron de su presencia, pues sentían que el Creador estaba con él. <span class="number">14.</span> Y ningún lobo se atrevió a volver a los prados de Verdant mientras Lucian estuvo allí.</p>
+                <p><span class="number">15.</span> Y cuando los aldeanos supieron de esta hazaña, vinieron a él maravillados y dijeron: "Verdaderamente, este niño es elegido por el Creador, pues con su fe y valentía ha puesto en fuga a los lobos y ha salvado a nuestros rebaños." <span class="number">16.</span> Y desde aquel día, Lucian fue conocido no solo por su bondad, sino también por su fuerza y su valor.</p>
+                <p><span class="number">17.</span> Y creció Lucian en sabiduría y estatura, y en gracia para con el Creador y con los hombres. <span class="number">18.</span> Y todos los que lo veían decían: "Este joven será grande entre nosotros, pues la luz del Creador brilla intensamente en él, y su camino está destinado a ser una guía para todos los hombres."</p>
+                <p><span class="number">19.</span> Así pasaron los años, y Lucian continuó caminando en los caminos de la rectitud y la justicia, siempre guiado por la luz interior que el Creador había plantado en su corazón desde su nacimiento. <span class="number">20.</span> Y aunque aún no conocía su destino, el Creador lo estaba preparando para la gran obra que había de realizar, para la redención de todos los hombres.</p>
+                <p><span class="number">21.</span> Y así concluye el primer capítulo de los días de Lucian, el hijo de Verdant, en quien la esperanza del Creador fue depositada para ser luz en medio de las tinieblas. <span class="number">22.</span> Y el pueblo aguardaba, sabiendo que el día vendría en que la verdadera misión de Lucian sería revelada, y la oscuridad que se avecinaba sería enfrentada por la luz que nunca se extingue.</p>
+
+                <h3>Capítulo 2: El Camino del Héroe</h3>
+                <p><strong>2.1 La Llamada a la Aventura</strong></p>
+                <p><span class="number">1.</span> Y cuando Lucian alcanzó la juventud, comenzó a sentir en su corazón el peso de un destino que aún no comprendía por completo<span class="number">2.</span>Pues en sus sueños, veía visiones de un gran mal que se extendía por la tierra, devorando la luz y la esperanza de los hombres.</p>
+                <p><span class="number">3.</span> Y en medio de estas visiones, una voz suave y poderosa le susurraba: "Levántate, Lucian, pues eres el elegido para enfrentar la oscuridad y restaurar la paz."</p>
+                <p><span class="number">4.</span> Y aunque Lucian no entendía completamente el significado de estos sueños, sabía que eran un llamado del Creador.<span class="number">5.</span> Así que se dirigió a los ancianos de Verdant, buscando consejo y sabiduría.</p>
+                <p><span class="number">6.</span>  Y los ancianos, al escuchar sus palabras, reconocieron en ellas las señales de la profecía que había sido transmitida de generación en generación.<span class="number">7.</span> Dijeron entonces: "Lucian, hijo de Erath y Elara, tu camino está trazado por el Creador. Debes partir hacia el este, hacia las montañas de Thalor, donde encontrarás al sabio Elion, quien te guiará en tu misión."</p>
+                <p><span class="number">8.</span>  Y Lucian, lleno de determinación, se preparó para dejar su hogar, sabiendo que el camino sería arduo y peligroso.<span class="number">9.</span> Tomó solo lo necesario: su cayado, un manto tejido por su madre y un pequeño paquete de provisiones. <span class="number">10.</span>  Y antes de partir, se arrodilló ante el altar del Creador y oró por fuerza y claridad, diciendo: "Oh Creador, guía mis pasos y otórgame la sabiduría para cumplir tu voluntad."</p>
+                <p><span class="number">11.</span> Y con el amanecer, Lucian se despidió de su familia y amigos, quienes lo vieron partir con lágrimas en los ojos pero con fe en sus corazones.<span class="number">12.</span> Y así comenzó el viaje de Lucian, no solo hacia tierras lejanas, sino hacia su propio destino, guiado siempre por la luz que brillaba dentro de él.</p>
+
+                <p><strong>2.2 Las Pruebas del Camino</strong></p>
+                <p><span class="number">13.</span> Y mientras Lucian avanzaba hacia las montañas de Thalor, se enfrentó a muchas pruebas que pondrían a prueba su fe y su fortaleza.<span class="number">14.</span>Primero, atravesó el Bosque de los Susurros, un lugar lleno de sombras y voces engañosas que buscaban confundirlo y desviarlo de su camino.<span class="number">15.</span>Mas Lucian, recordando las enseñanzas de su padre, cerró sus oídos a las voces del engaño y siguió adelante, confiando en la guía del Creador.</p>
+                <p><span class="number">16.</span> Al salir del bosque, se encontró con el Río de las Lágrimas, cuyas aguas eran amargas y profundas, reflejando los lamentos de aquellos que habían perdido toda esperanza. <span class="number">17.</span>Y mientras contemplaba cómo cruzar el río, apareció ante él una figura vestida de blanco, que decía ser un mensajero del Creador.<span class="number">18.</span> Mas Lucian, desconfiando de su presencia, pidió al Creador una señal de verdad. <span class="number">19.</span> Y en ese instante, el río se partió en dos, dejando un camino seco para que Lucian pudiera cruzar. <span class="number">20.</span> Y la figura se desvaneció, mostrando que era una ilusión de Malakar para hacerle dudar.</p>
+                <p><span class="number">21.</span> Más adelante, Lucian llegó a un desierto interminable, donde el sol ardiente y las arenas movedizas amenazaban con consumir su fuerza y su esperanza.<span class="number">22.</span>Y durante muchos días y noches, caminó sin descanso, sus labios resecos y su cuerpo agotado.<span class="number">23.</span>Pero cada vez que se sentía al borde del colapso, una suave brisa le traía recuerdos de Verdant y las palabras de su madre, fortaleciendo su voluntad de seguir adelante.</p>
+                <p><span class="number">24.</span> Finalmente, después de muchas semanas de viaje, Lucian llegó a las Montañas de Thalor, donde el sabio Elion lo estaba esperando.<span class="number">25.</span> Y Elion, al verlo, sonrió y dijo: "Bienvenido, Lucian. El Creador ha hablado de ti y de tu llegada. Aquí aprenderás lo que necesitas para cumplir tu destino."</p>
+                <p><span class="number">26.</span> Y así, Lucian se preparó para las enseñanzas de Elion, sabiendo que cada lección lo acercaría más a su misión final de enfrentar y derrotar a Malakar, el Oscuro.</p>
+
+                <p><strong>2.3 El Encuentro con Malakar</strong></p>
+                <p><span class="number">28.</span> Y después de muchos días de aprendizaje bajo la guía de Elion, Lucian se sintió listo para enfrentar su destino...</p>
+            </div>
+            <div id="more" class="tab-content">
+                <h3>Más Información</h3>
+                <p>Otra información relevante sobre el Lucianismo...</p>
+            </div>
         </div>
     </div>
 
@@ -668,7 +738,31 @@
             if (tabName === 'Book') {
                 highlightNumbers();
             }
+
         }
+        function openTabModule(evt, tabId) {
+            var i, tabcontent, tablinks;
+            // Obtener todos los elementos con class="tab-content" y ocultarlos
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Obtener todos los elementos con class="tab-links" y remover la clase "active"
+            tablinks = document.querySelectorAll(".tab-links li");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Mostrar el contenido de la pestaña actual y añadir una clase "active" al botón que abrió la pestaña
+            document.getElementById(tabId).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
 
         function highlightNumbers() {
             var bookContent = document.getElementById('Book');
