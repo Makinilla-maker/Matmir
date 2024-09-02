@@ -10,45 +10,58 @@
             margin: 0;
             padding: 20px;
             display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            background-color: #f4f4f4;
+            justify-content: space-around; /* Distribuye espacio uniformemente */
+            align-items: center; /* Centra verticalmente */
+            flex-wrap: wrap; /* Permite la envoltura de elementos */
+            background-color: #f4f4f4; /* Color de fondo para todo el cuerpo */
+        }
+
+        .tabcontent h3, .tabcontent strong {
+            font-family: 'Arial', sans-serif;
+            color: #333;
         }
 
         .tab {
-            width: 200px;
-            background-color: #333;
-            color: white;
+            height: 100%; /* Asegura que tome toda la altura disponible */
+            width: 200px; /* Ancho de la barra lateral */
+            background-color: #333; /* Fondo oscuro para mayor elegancia */
+            color: white; /* Texto blanco para contraste */
             overflow: auto;
             position: fixed;
             left: 0;
             top: 0;
-            bottom: 0;
         }
 
             .tab button {
                 display: block;
                 width: 100%;
+                text-align: left;
                 padding: 14px 16px;
                 border: none;
-                background-color: transparent;
-                color: white;
+                outline: none;
                 cursor: pointer;
-                transition: background-color 0.3s;
-                border-bottom: 1px solid #444;
+                transition: 0.3s;
+                color: white; /* Texto blanco */
+                border-bottom: 1px solid #444; /* Borde sutil entre botones */
+                background-color: transparent; /* Fondo transparente */
             }
 
                 .tab button:hover, .tab button.active {
-                    background-color: #555;
+                    background-color: #555; /* Oscurece el botón al pasar el mouse o estar activo */
                 }
 
         .tabcontent {
             flex-grow: 1;
             padding: 20px;
-            margin-left: 200px;
-            background-color: #f4f4f4;
-            overflow-y: auto;
+            margin-left: 200px; /* Hace espacio para la barra lateral */
+            background-color: #f4f4f4; /* Un fondo claro para el contenido */
+            overflow-y: auto; /* Permite scroll vertical si el contenido es extenso */
+        }
+
+        .number {
+            font-weight: bold;
+            color: #555;
+            margin-right: 5px;
         }
 
         .container {
@@ -60,17 +73,27 @@
             background-color: #f9f9f9;
         }
 
-        textarea, button {
+        textarea {
             width: 100%;
-            padding: 10px;
+            height: 100px;
             margin-bottom: 20px;
         }
 
         button {
+            padding: 10px 20px;
             background-color: #007bff;
-            color: #3a3a3a;
+            color: rgb(58, 58, 58);
+            border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #e9e9e9;
         }
 
         .modal {
@@ -87,9 +110,14 @@
 
         .modal-content {
             background-color: #fefefe;
-            margin: 50px auto;
-            padding: 20px 40px;
+            margin: 2% auto;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 40px;
+            padding-right: 40px;
             border: 1px solid #888;
+            /*width: 1500px;
+    height: 900px;*/
             width: 60vw;
             height: 80vh;
             overflow: auto;
@@ -103,43 +131,120 @@
             cursor: pointer;
         }
 
-            .close:hover {
+            .close:hover,
+            .close:focus {
                 color: black;
+                text-decoration: none;
+                cursor: pointer;
             }
+
+        .tab-links {
+            overflow: hidden;
+            background-color: #f1f1f1;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+            .tab-links li {
+                float: left;
+                border: 1px solid #ccc;
+                background-color: inherit;
+                margin: 0;
+                display: block;
+                padding: 10px 15px;
+                cursor: pointer;
+            }
+
+                .tab-links li:hover {
+                    background-color: #ddd;
+                }
+
+            .tab-links .active {
+                background-color: #ccc;
+            }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+            clear: both;
+        }
+
+            .tab-content.active {
+                display: block;
+            }
+
+        #map-container {
+            position: relative;
+            width: 50vw; /* 50% del ancho de la ventana */
+            height: 50vh; /* 50% del alto de la ventana */
+            box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Opcional, para mejorar la visibilidad */
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover; /* Asegura que la imagen cubra completamente el contenedor sin deformarse */
+        }
+
+        .marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transition-property: all;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+
+        .tooltip {
+            display: none;
+            position: absolute;
+            padding: 5px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            pointer-events: none;
+            z-index: 1000;
+        }
 
         #Religions {
             display: grid;
-            gap: 20px;
-            grid-template-columns: repeat(2, 1fr);
-            padding: 20px;
-            justify-content: center;
+            gap: 20px; /* Espacio entre elementos */
+            grid-template-columns: repeat(2, 1fr); /* Ajusta a dos columnas */
+            grid-gap: 20px; /* Espacio entre botones */
+            padding: 20px; /* Espacio alrededor de la sección */
+            justify-content: center; /* Centra los botones horizontalmente */
         }
 
         .religion-button {
-            width: 200px;
-            height: 200px;
-            margin: 10px;
-            background-size: cover;
-            background-position: center;
+            width: 200px; /* Ancho fijo para todos los botones */
+            height: 200px; /* Altura fija para todos los botones */
+            margin: 10px; /* Espaciado entre botones */
+            background-size: cover; /* Asegura que la imagen cubra completamente el botón */
+            background-position: center; /* Centra la imagen dentro del botón */
             border: none;
             border-radius: 5px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 24px;
-            text-shadow: 1px 1px 2px black;
+            color: white; /* Color de texto para mejorar la legibilidad */
+            font-size: 24px; /* Tamaño de fuente grande para fácil lectura */
+            text-shadow: 1px 1px 2px black; /* Sombra de texto para destacar sobre el fondo */
             transition: background-color 0.3s, transform 0.3s;
         }
 
             .religion-button:hover {
-                background-color: rgba(0, 0, 0, 0.2);
-                transform: scale(1.05);
+                background-color: rgba(0, 0, 0, 0.2); /* Efecto al pasar el ratón */
+                transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
             }
 
             .religion-button:active {
-                background-color: #366030;
+                background-color: #366030; /* Cambia el color de fondo cuando el botón está presionado */
             }
     </style>
 </head>
@@ -171,26 +276,25 @@
     <div id="Races" class="tabcontent">
 
     </div>
-    <div id="Religions" class="tabcontent">
-        <!-- Ejemplos de botones para diferentes religiones -->
-        <button id="lucianismo" class="religion-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal');">
-            Lucianismo
-        </button>
 
-        <button id="lucianismo" class="religion-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal');">
-            Lucianismo
-        </button>
-
+    <div id="Religions" class="tabcontent grid">
+        <!-- Añadir la clase grid aquí -->
+        <button class="religion-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal','history');">Lucianismo</button>
+        <button class="religion-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal','history');">Lucianismo</button>
+        <button class="religion-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal','history');">Lucianismo</button>
+        <button class="religion-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal','history');">Lucianismo</button>
+        <!-- Más botones... -->
     </div>
 
     <div id="Gods" class="tabcontent">
         <h3>TODO</h3>
     </div>
+
     <div id="TimeLine" class="tabcontent">
         <h3>TODO</h3>
     </div>
 
-    <!-- Modal -->
+    <!-- Modales... -->
     <div id="VerdantiaModal" class="modal" style="display:none;">
         <div class="modal-content">
             <span class="close" onclick="closeModal('VerdantiaModal')">&times;</span>
@@ -303,30 +407,391 @@
             <h2>Stilport</h2>
         </div>
     </div>
-
     <script>
+
+        const dictionary = {
+            // Pronombres
+            "yo": "ni", "me": "ni", "mí": "mi", "mi": "mi", "tú": "tu", "tu": "tu", "él": "shu", "el": "shu", "la": " ",
+            "un": " ", "una": " ", "del": "lash", "ella": " ", "nosotros": "nita", "vosotros": "tuta", "ellos": "shuta",
+            "ellas": "shuta", "mío": "miri", "mio": "miri", "tuyo": "turi", "suyo": "nuri", "suyos": "nuris", "suya": "nuri", "suyas": "nuris",
+
+            // Sustantivos
+            "hombre": "nal", "mujer": "nul", "niño": "iln", "niña": "iln", "casa": "tani", "agua": "iru", "fuego": "tsar",
+            "tierra": "kan", "cielo": "rul", "sol": "tar", "luna": "nim", "estrella": "sirt", "piedra": "pan",
+            "árbol": "lar", "arbol": "lar", "flor": "mir", "comida": "mat", "día": "dar", "dia": "dar", "noche": "nar",
+            "tiempo": "tarin", "amigo": "rin", "amiga": "rin", "mundo": "munar", "vida": "mat", "manzana": "manzan",
+            "manzanas": "manzan", "enemigo": "dashir", "enemigos": "dashir", "bosque": "farn", "guerrero": "glan",
+            "su": "na", "secretos": "krit", "biblioteca": "norosarun", "lugar": "noro", "libro": "sarun", "ojos": "tiran",
+            "montaña": "gur", "montana": "gur", "ciudad": "metar", "sopa": "linh", "dios": "maki", "mar": "ilvar",
+            "río": "sek", "rio": "sek", "lago": "narin", "coche": "larik", "avión": "niru", "avion": "niru", "tren": "valen",
+            "calle": "ken", "camino": "stel", "puerta": "kuni", "ventana": "jar", "mesa": "farnu", "silla": "kenir",
+            "escuela": "valtar", "universidad": "venotar", "trabajo": "melar", "oficina": "karit", "música": "lenir",
+            "musica": "lenir", "película": "katar", "pelicula": "katar", "juego": "jirin", "historia": "talir",
+            "arte": "marin", "ciencia": "zetar", "medicina": "vilar", "luz": "tarn", "oscuridad": "nilat", "sombra": "verin",
+            "hielo": "firn", "viento": "zalir", "tormenta": "tarik", "trueno": "ronir", "relámpago": "karet", "relampago": "karet",
+            "lluvia": "nirat", "nieve": "filat", "arena": "matir", "planta": "tilin", "hierba": "malik", "campo": "vatar",
+            "cueva": "kunir", "valle": "lirin", "océano": "ratal", "oceano": "ratal", "desierto": "kirit", "isla": "nalir",
+            "playa": "taril", "puerto": "salir", "pueblo": "talir", "aldea": "katir", "capital": "menar", "mercado": "katar",
+            "supermercado": "valkar", "tienda": "firar", "almacén": "karat", "almacen": "karat", "centro": "farn", "plaza": "talir",
+            "parque": "narin", "jardín": "tarin", "jardin": "tarin", "teatro": "manir", "cine": "katar", "museo": "tarir",
+            "galería": "melir", "galeria": "melir", "exposición": "katarin", "exposicion": "katarin", "feria": "selir",
+            "concierto": "lemir", "festival": "tirar", "evento": "nirar", "espectáculo": "ketar", "espectaculo": "ketar",
+            "comedia": "vilin", "drama": "kelar", "danza": "tirin", "baile": "tirin", "deporte": "talir", "fútbol": "vikar",
+            "futbol": "vikar", "tenis": "nirat", "baloncesto": "karan", "voleibol": "kaval", "natación": "karin",
+            "natacion": "karin", "atletismo": "tarin", "gimnasia": "manir", "lucha": "kitar", "boxeo": "danir",
+            "karate": "karan", "judo": "nirin", "kickboxing": "talir", "artes": "manar", "marciales": "kitar",
+            "competición": "manir", "competicion": "manir", "torneo": "kalir", "campeonato": "farin", "liga": "lir",
+            "copa": "tir", "premio": "ketir", "trofeo": "selir", "medalla": "tarir", "oro": "karin", "plata": "nilin",
+            "bronce": "panir", "joya": "milin", "diamante": "zarat", "rubí": "nilir", "rubi": "nilir", "zafiro": "velir",
+            "esmeralda": "tarat", "topacio": "kitir", "turquesa": "kelar", "ámbar": "ketir", "ambar": "ketir", "perla": "firin",
+            "coral": "tarin", "cobre": "vilin", "hierro": "menar", "acero": "larin", "plomo": "narit", "aluminio": "kanir",
+            "plástico": "manir", "plastico": "manir", "vidrio": "menir", "cristal": "valir", "cerámica": "felir", "ceramica": "felir",
+            "madera": "larin", "papel": "talir", "cartón": "kalir", "carton": "kalir", "tela": "nilir", "algodón": "tarin",
+            "algodon": "tarin", "lana": "firin", "seda": "kelir", "cuero": "natin", "pluma": "pelir", "hilo": "melir",
+            "cuerda": "venar", "cable": "ketar", "cadena": "ferin", "cordón": "terin", "cordon": "terin", "botón": "tarin",
+            "boton": "tarin", "cremallera": "nilar", "broche": "velar", "agujeta": "melar", "traje": "manir", "pantalón": "tarin",
+            "pantalon": "tarin", "camisa": "nirin", "blusa": "valar", "falda": "tirar", "vestido": "melir", "chaqueta": "kelar",
+            "abrigo": "karin", "suéter": "nilir", "sueter": "nilir", "jersey": "felir", "camiseta": "tanir", "calcetín": "kitir",
+            "calcetin": "kitir", "zapato": "salir", "bota": "kanir", "sandalia": "taril", "zapatilla": "firar", "gorra": "tirin",
+            "sombrero": "kitar", "bufanda": "ferir", "guante": "menar", "cinturón": "talar", "cinturon": "talar", "reloj": "kitir",
+            "anillo": "nilir", "collar": "karat", "pulsera": "talir", "pendiente": "tarin", "arete": "karan", "cintillo": "malin",
+            "diadema": "lerin", "moño": "penir", "mono": "penir", "lazo": "kelar", "corbata": "vatar", "pajarita": "nitar",
+            "pañoleta": "milin", "cintillo": "malin", "cintillo": "malin", "cinta": "tarin", "faja": "kenir", "corsé": "nilir",
+            "corse": "nilir", "bóxer": "kitar", "boxer": "kitar", "trusa": "ferin", "pijama": "kelar", "bata": "menar",
+            "chaleco": "tarin", "anorak": "velar", "gabardina": "vatar", "impermeable": "tilir", "capa": "ferin", "capucha": "tirar",
+            "toga": "melir", "bata": "menar", "kimono": "kelar", "sari": "tarin", "túnica": "nilir", "tunica": "nilir",
+            "sombrero": "kitar", "casco": "penir", "gorro": "tirin", "pañuelo": "menir", "pañuelo": "menir", "cinturón": "talar",
+            "cinturon": "talar", "collar": "karat", "corona": "larit", "gemelo": "malir", "escarapela": "malin", "bandera": "nilir",
+            "estandarte": "kelar", "tela": "nilir", "plumón": "penir", "plumon": "penir", "pelo": "malir", "cabello": "melir",
+            "peluca": "velir", "bigote": "nilir", "barba": "kalir", "patilla": "ketir", "ceja": "tarin", "pestaña": "menar",
+            "ojera": "kenir", "bolsa": "ferin", "pájaro": "niril", "pajaro": "niril", "ave": "nilir", "pez": "nalir", "tortuga": "chiripaca",
+
+            // Adjetivos
+            "bueno": "lan", "malo": "lun", "grande": "nar", "pequeño": "tiq", "pequeña": "tiq", "alto": "tal",
+            "bajo": "kem", "nuevo": "mir", "viejo": "vul", "rápido": "skan", "rapido": "skan", "lento": "lem",
+            "caliente": "tsar", "frío": "nur", "frio": "nur", "valiente": "valir", "fuerte": "donar", "feroz": "fetir",
+            "feroces": "fetir", "oscuro": "nitar", "encantado": "eliar", "curioso": "upil", "curiosa": "upil",
+            "antiguo": "vul", "lleno": "plet", "mágico": "rig", "magico": "rig", "abandonado": "adant", "abandonada": "adant",
+            "amable": "tiril", "hermoso": "firan", "hermosa": "firan", "joven": "yovar", "duro": "keln", "suave": "meln",
+            "fácil": "tirat", "facil": "tirat", "difícil": "karat", "dificil": "karat", "tranquilo": "nirat", "tranquila": "nirat",
+            "ruidoso": "ritan", "ruidosa": "ritan", "luminoso": "tiral", "opaco": "keran", "pesado": "nalan", "ligero": "silen",
+            "desconcertante": "carantalante", "afortunado": "rinak", "desafortunado": "rinalak", "poderoso": "katran",
+            "impotente": "larun", "sabio": "fetil", "ignorante": "kelut", "paciente": "taral", "impaciente": "nurital",
+            "sabroso": "felir", "amargo": "melut", "dulce": "karil", "salado": "renin", "ácido": "sekut", "acido": "sekut", "putero": "ori",
+
+            // Palabras comunes y conectores
+            "hola": "haa", "adiós": "raak", "adios": "raak", "gracias": "mali", "sí": "ke", "si": "ke", "no": "nu",
+            "y": "puh", "o": "no", "pero": "tan", "porque": "lar", "con": "mi", "sin": "lu", "a": "na",
+            "en": "ni", "sobre": "ra", "bajo": "ri", "para": "ku", "de": "na", "muy": "iku",
+            "bien": "opti", "las": "uy", "los": "uy", "contra": "lash", "tal": "tuq", "que": "lar",
+            "cuando": "netar", "donde": "narun", "cómo": "kelar", "como": "kelar", "cuál": "kulan", "cual": "kulan",
+            "cuándo": "kenar", "cuanto": "kenar", "al": "nal", "delante": "firat", "detrás": "telat", "detras": "telat",
+            "debajo": "kelat", "encima": "rilat", "dentro": "tarat", "fuera": "relat", "hasta": "lanir",
+            "a través": "norit", "a traves": "norit", "cerca": "near", "lejos": "faren", "entre": "miran", "durante": "lenar",
+            "después": "nirun", "despues": "nirun", "antes": "fetun", "ahora": "melun", "siempre": "karin",
+            "nunca": "nilun", "a veces": "talun", "ayer": "narin", "hoy": "sarin", "mañana": "lirun", "manana": "lirun",
+            "tarde": "ralin", "temprano": "lenin", "noche": "tirun", "día": "dar", "dia": "dar",
+
+            // Verbos regulares
+            "comer": "matar", "beber": "liru", "hablar": "lirar", "llamar": "namir", "gustar": "chet",
+            "entrar": "kunar", "salvar": "firar", "encontrar": "entur", "viajar": "kunir", "vivir": "narir", "jugar": "kitar",
+            "amar": "melar", "correr": "tirar", "caminar": "talir", "saltar": "jirat", "escribir": "karir", "leer": "tarar",
+            "decir": "lirar", "pensar": "firir", "crear": "malir", "cantar": "lenir", "bailar": "tirin", "aprender": "venar",
+            "enseñar": "kalir", "trabajar": "terin", "descansar": "kelin", "dormir": "tanir", "soñar": "penar", "soñar": "penar",
+            "reír": "ferir", "reir": "ferir", "llorar": "ralir", "mirar": "valir", "ver": "sarir", "escuchar": "marir", "oír": "karir",
+            "oir": "karir", "tocar": "kenir", "sentir": "melir", "odiar": "lurir", "construir": "fenir", "destruir": "telir",
+            "ganar": "kirir", "perder": "varir", "vencer": "ralir", "ayudar": "linir", "esperar": "valir", "necesitar": "kunir",
+            "buscar": "tenar", "robar": "krenar", "mentir": "solir", "recordar": "menir", "olvidar": "lurin", "enseñar": "latur",
+            "luchar": "kitar",
+            // Insultos
+            "tonto": "gorn", "idiota": "zurn", "estúpido": "branak", "estupido": "branak", "imbécil": "gruul", "imbecil": "gruul",
+            "torpe": "klor", "inútil": "vurak", "inutil": "vurak", "necio": "dranor", "loco": "zilak", "cobarde": "krunor",
+            "payaso": "murgin", "baboso": "relintar", "cretino": "trelar", "burro": "zarnil", "vago": "yartal", "gilipollas": "karrek",
+            "miserable": "firgrun", "cretino": "zutarn", "rastrero": "gulak", "rata": "tirlan"
+        };
+
+        const verbEndings = {
+            "iésemos": "iremos", "iesemos": "iremos",
+            "áramos": "iramos", "aramos": "iramos",
+            "ieramos": "iramos", "iéramos": "iramos",
+            "eríamos": "iríamos", "eriamos": "iriamos",
+            "iríamos": "iríamos", "iriamos": "iriamos",
+            "aríamos": "iríamos", "ariamos": "iriamos",
+            "ábamos": "aranta", "abamos": "aranta",
+            "iérais": "irais", "ierais": "irais",
+            "iérais": "irais", "ierais": "irais",
+            "eríais": "iríais", "eriais": "iriais",
+            "iríais": "iríais", "iriais": "iriais",
+            "aríais": "iríais", "ariais": "iriais",
+            "iérais": "irais", "ierais": "irais",
+            "aremos": "iremos", "eremos": "iremos",
+            "iremos": "iremos",
+            "íais": "irais", "iais": "irais",
+            "íamos": "iranta", "iamos": "iranta",
+            "aréis": "iréis", "areis": "ireis",
+            "abais": "arais",
+            "ieran": "irán", "ieran": "irán",
+            "erán": "irán", "eran": "iran",
+            "irán": "irán", "iran": "iran",
+            "arán": "irán", "aran": "iran",
+            "ieron": "iranta",
+            "arían": "irían", "arian": "irian",
+            "erían": "irían", "erian": "irian",
+            "irían": "irían", "irian": "irian",
+            "iste": "irut",
+            "abas": "arut",
+            "iendo": "iento", "ando": "anto",
+            "imos": "iranta", "amos": "anta",
+            "arán": "irán", "arán": "irán",
+            "amos": "anta", "imos": "anta",
+            "arás": "irás", "aras": "iras",
+            "ieron": "iranta",
+            "abais": "arais",
+            "aste": "ut", "aste": "ut",
+            "iste": "irut", "e": "ash",
+            "aré": "iré", "aré": "iré",
+            "iré": "iré", "aré": "iré",
+            "aré": "ire", "arás": "irás",
+            "ará": "irá", "ara": "ira",
+            "aba": "arash",
+            "ió": "irash", "io": "irash",
+            "es": "ut", "as": "ut",
+            "ía": "irash", "ia": "irash",
+            "íe": "ir", "o": "",
+            "an": "anta", "en": "anta",
+            "ié": "ir", "ás": "ut",
+            "as": "ut", "es": "ut",
+            "a": "ash", "e": "ash",
+            "a": "ash", "í": "ir",
+        };
+
+        const infinitiveEndings = {
+            "ar": "ar",
+            "er": "er",
+            "ir": "ir"
+        };
+
+        const irregularVerbs = {
+            // "hacer" - presente
+            "hago": "mirar", "haces": "mirarut", "hace": "mirarash", "hacemos": "miraranta", "hacen": "miraranta",
+
+            // "venir" - presente
+            "vengo": "litar", "vienes": "litarut", "viene": "litarash", "venimos": "litaranta", "vienen": "litaranta",
+
+            // "decir" - presente
+            "digo": "rutar", "dices": "rutarut", "dice": "rutarash", "decimos": "rutaranta", "dicen": "rutaranta",
+
+            // "dormir" - presente
+            "duermo": "tanir", "duermes": "tanirut", "duerme": "tanirash", "dormimos": "taniranta", "duermen": "taniranta",
+
+            // "poder" - presente
+            "puedo": "pritar", "puedes": "pritarut", "puede": "pritarash", "podemos": "pritaranta", "pueden": "pritaranta",
+
+            // "pensar" - presente
+            "pienso": "firar", "piensas": "firarut", "piensa": "firarash", "pensamos": "firaranta", "piensan": "firaranta",
+
+            // "ir" - presente
+            "voy": "vitar", "vas": "vitarut", "va": "vitarash", "vamos": "vitaranta", "van": "vitaranta",
+
+            // "tener" - presente
+            "tengo": "karar", "tienes": "kararut", "tiene": "kararash", "tenemos": "kararanta", "tienen": "kararanta",
+
+            // "ser" - presente
+            "soy": "tirar", "eres": "tirarut", "es": "tirarash", "somos": "tiraranta", "son": "tiraranta",
+
+            // "estar" - presente
+            "estoy": "tirar", "estás": "tirarut", "estas": "tirarut", "está": "tirarash", "esta": "tirarash", "estamos": "tiraranta", "están": "tiraranta", "estan": "tiraranta",
+
+            // "herir" - presente
+            "hiero": "danir", "hieres": "danirut", "hiere": "danirash", "herimos": "daniranta", "hieren": "daniranta"
+        };
+
+        const phrases = {
+            "por favor": "taki",
+            "lo siento": "ruli",
+            "buenos días": "haa dar", "buenos dias": "haa dar",
+            "hasta luego": "liraak", "cómo estás": "kelar tirarut", "como estas": "kelar tirarut",
+            // ... Agrega más frases compuestas aquí
+        };
+
+        function openModal(modalId, sectionId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            if (sectionId != ' ') {
+                showSection(modalId, sectionId);
+            }
+        }
+
+        // Función para cerrar el modal de Verdantia
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function showSection(modalId, sectionId) {
+            // Ocultar todas las secciones dentro del modal especificado
+            var modal = document.getElementById(modalId);
+            var sections = modal.getElementsByClassName('section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].style.display = 'none';
+            }
+            // Mostrar la sección especificada
+            var sectionToShow = modal.querySelector('#' + sectionId);
+            if (sectionToShow) {
+                sectionToShow.style.display = 'block';
+            }
+        }
+
+        // Función para traducir verbos y manejar conjugaciones
+        function translateVerb(word) {
+            // Comprobación de verbos irregulares
+            if (irregularVerbs[word]) {
+                return irregularVerbs[word];
+            }
+            for (const [ending, newEnding] of Object.entries(verbEndings)) {
+                if (word.endsWith(ending)) {
+                    const root = word.slice(0, -ending.length);
+                    console.log(root);
+                    console.log(ending);
+                    // Buscar la traducción de la raíz más larga posible en el diccionario
+                    for (const [ending1, newEnding1] of Object.entries(infinitiveEndings)) {
+                        if (dictionary[root + newEnding1]) {
+                            return dictionary[root + newEnding1] + newEnding;
+                        }
+                    }
+                    return word; // Si no se encuentra la traducción, devolver la raíz.
+                }
+            }
+
+            return word;  // Devolver la palabra original si no se detecta ninguna conjugación
+        }
+
+        function translateText() {
+            var inputText = document.getElementById('inputText').value;
+
+            // Dividir el texto en oraciones utilizando puntos
+            let sentences = inputText.split('.').filter(sentence => sentence.trim() !== "");
+
+            // Array para almacenar las oraciones traducidas
+            let translatedSentences = [];
+
+            // Procesar cada oración por separado
+            sentences.forEach(sentence => {
+                let words = sentence.split(" ").filter(word => word.trim() !== "");
+                let translatedWords = [];
+                let skipNext = false;
+
+                for (let i = 0; i < words.length; i++) {
+                    if (skipNext) {
+                        skipNext = false;
+                        continue;
+                    }
+
+                    let word = words[i].toLowerCase();
+                    let nextWord = words[i + 1] ? words[i + 1].toLowerCase() : '';
+
+                    // Chequear frases compuestas de dos palabras
+                    if (phrases[word + " " + nextWord]) {
+                        translatedWords.push(phrases[word + " " + nextWord]);
+                        skipNext = true;  // Saltar la siguiente palabra porque ya fue procesada
+                    } else if (dictionary[word]) {
+                        translatedWords.push(dictionary[word]); // Traducir usando el diccionario
+                    } else if (irregularVerbs[word]) {
+                        translatedWords.push(irregularVerbs[word]);
+                    } else if (isVerb(word)) {
+                        translatedWords.push(translateVerb(word));  // Traducir verbo si es necesario
+                    } else if (isCapitalized(words[i]) && i !== 0) {
+                        translatedWords.push(words[i]);  // Mantener palabra original si está capitalizada y no es la primera palabra
+                    } else {
+                        translatedWords.push(word);  // Devolver la palabra original si no se encuentra en el diccionario
+                    }
+                }
+
+                // Unir las palabras traducidas de la oración
+                translatedSentences.push(translatedWords.join(" "));
+            });
+
+            // Unir todas las oraciones traducidas con un punto y espacio
+            const translatedText = translatedSentences.join(". ");
+            document.getElementById("resultText").textContent = translatedText;
+        }
+
+        // Función auxiliar para verificar si la palabra comienza con una letra mayúscula
+        function isCapitalized(word) {
+            return word && word[0] === word[0].toUpperCase();
+        }
+
+        // Función auxiliar para verificar si una palabra es un verbo conjugado
+        function isVerb(word) {
+            return Object.keys(verbEndings).some(ending => word.endsWith(ending))
+        }
+
+        // JavaScript para manejar tooltips
+        document.querySelectorAll('.marker').forEach(marker => {
+            marker.addEventListener('mouseover', function (e) {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.style.display = 'block';
+                tooltip.style.left = `${e.pageX + 10}px`;
+                tooltip.style.top = `${e.pageY + 10}px`;
+                tooltip.textContent = this.dataset.info;
+            });
+
+            marker.addEventListener('mouseout', function () {
+                const tooltip = document.getElementById('tooltip');
+                tooltip.style.display = 'none';
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Crear un evento falso
+            var fakeEvent = { currentTarget: document.querySelector('.tablinks[onclick*="Home"]') };
+            openTab(fakeEvent, 'Home');
+        });
+
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
+
+            // Ocultar todos los contenidos de las pestañas
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
+                tabcontent[i].style.display = "none"; // Se asegura de reiniciar el display a none
             }
+
+            // Remover la clase 'active' de todos los enlaces de las pestañas
             tablinks = document.getElementsByClassName("tablinks");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
-            document.getElementById(tabName).style.display = "block";
+
+            // Mostrar el contenido de la pestaña actual y añadir la clase 'active'
+            var activeTab = document.getElementById(tabName);
+            activeTab.style.display = activeTab.classList.contains('grid') ? "grid" : "block"; // Utiliza 'grid' si tiene la clase 'grid'
+            if (evt) evt.currentTarget.className += " active";
+        }
+
+        function openTabModule(evt, tabId) {
+            var i, tabcontent, tablinks;
+            // Oculta todos los contenidos de las subpestañas
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            // Remueve la clase 'active' de todos los enlaces de las subpestañas
+            tablinks = document.querySelectorAll(".tab-links li");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            // Muestra el contenido de la subpestaña actual y añade una clase 'active' al botón que abrió la subpestaña
+            document.getElementById(tabId).style.display = "block";
             evt.currentTarget.className += " active";
         }
 
-        function openModal(modalId) {
-            var modal = document.getElementById(modalId);
-            modal.style.display = 'block';
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
         }
 
-        function closeModal(modalId) {
-            var modal = document.getElementById(modalId);
-            modal.style.display = 'none';
+        function highlightNumbers() {
+            var bookContent = document.getElementById('Book');
+            bookContent.innerHTML = bookContent.innerHTML.replace(/\b(\d+)\b/g, '<span class="number">$1</span>');
         }
     </script>
 </body>
