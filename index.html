@@ -175,11 +175,8 @@
                 }
 
             #map-container {
-                position: fixed;
-                width: 80vw; /* 80% del ancho de la ventana */
-                height: 60vh; /* 60% del alto de la ventana */
-                border: 0px solid #ccc; /* Borde para visualizar el contenedor */
-                margin: 0px auto; /* Centrado horizontal y algo de margen */
+                width: 100%; /* Asegúrate de que el contenedor es responsivo */
+                position: relative; /* Importante para que la posición de los marcadores sea relativa al mapa */
             }
 
             img {
@@ -189,17 +186,22 @@
                 object-fit: contain; /* Cambio clave: ajusta la imagen para que se muestre completamente sin cortes */
             }
 
-
             .marker {
                 position: absolute;
-                width: 20px;
-                height: 20px;
+                width: 20px; /* Puedes ajustar esto con JavaScript si es necesario */
+                height: 20px; /* Puedes ajustar esto con JavaScript si es necesario */
                 background-color: red;
-                transition-property: all;
-                border-radius: 50%;
-                transform: translate(-50%, -50%);
+                border-radius: 10%;
+                border: 2px solid #fff;
                 cursor: pointer;
+                transition: transform 0.3s, box-shadow 0.3s;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.5);
             }
+
+                .marker:hover {
+                    transform: scale(1.2);
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+                }
 
             .tooltip {
                 display: none;
@@ -298,11 +300,12 @@
     </div>
 
     <div id="Regions" class="tabcontent">
-        <div id="map-container">
+        <div id="map-container" style="position: relative;">
             <img src="img/continentMap.png" alt="Mapa Mundial">
             <!-- Marcadores visuales
             <button class="marker" style="left: 50%; top: 15%;" data-info="Verdantia" onclick="openModal('VerdantiaModal', 'Informacion');"></button> -->
-            <button class="marker" style="left: 72%; top: 35%;" data-info="Stilport" onclick="openModal('StilportModal', 'StilportInformacion');"></button>
+            <button class="marker" style="left: 80%; top: 33%;" data-info="Stilport" onclick="openModal('StilportModal', 'StilportInformacion');"></button>
+            <button class="marker" style="left: 35%; top: 78%;" data-info="Stilport" onclick="openModal('BelyarModal', 'BelyarInformacion');"></button>
             <div class="tooltip" id="tooltip"></div>
         </div>
     </div>
@@ -344,7 +347,7 @@
         <p></p>
         <p></p>
         <button class="ilustration-button" style="background-image: url('img/Pakito.png');" onclick="openModal('PakitoModal','PakitoInformation');">Pakito</button>
-        <button class="ilustration-button" style="background-image: url('img/Bahrrie.png');" onclick="openModal('BahrrieModal','BahrrieInformation');">Bahrrie</button>
+        <button class="ilustration-button" style="background-image: url('img/Bahrrie.png');" onclick="openModal('BharrigModal','BahrrieInformation');">Bharrig</button>
         <button class="ilustration-button" style="background-image: url('img/Shallturn.png');" onclick="openModal('ShallturnModal','ShallturnInformation');">Shallturn</button>
         <button class="ilustration-button" style="background-image: url('img/Kitty.png');" onclick="openModal('KittyModal','KittyInformation');">Kitty</button>
         <button class="ilustration-button" style="background-image: url('img/Warren.webp');" onclick="openModal('WarrenModal','WarrenInformation');">Warren</button>
@@ -433,7 +436,31 @@
 
             <div id="StilportInformacion" class="tab-content" style="display:none;">
                 <p>Strilport es una ciudad portuaria vibrante situada en la costa oriental de un vasto continente conocido por sus tierras fértiles y sus rutas comerciales vitales. La ciudad se encuentra entre la desembocadura de dos rios: el río <strong>Grimsby</strong> y el rio <strong>Yitura</strong> que serpentea desde las montañas del interior hacia el mar, proporcionando una vía navegable natural que ha convertido a Strilport en un centro comercial clave. El puerto de Strilport está construido sobre una bahía natural protegida, lo que permite que barcos de todos los tamaños atraquen con seguridad.</p>
-                <p>La ciudad está dividida en varios distritos, cada uno con su propio carácter distintivo. Al norte, se alzan las Colinas de Marfil, una serie de colinas suaves cubiertas de piedra caliza blanca que dan a Strilport un aspecto brillante y majestuoso cuando se las ve desde el mar. Al oeste, el Bosque de Veldor proporciona madera y caza, mientras que al sur se extienden vastos campos de cultivo y tierras de pastoreo.</p>            
+                <p>La ciudad está dividida en varios distritos, cada uno con su propio carácter distintivo. Al norte, se alzan las Colinas de Marfil, una serie de colinas suaves cubiertas de piedra caliza blanca que dan a Strilport un aspecto brillante y majestuoso cuando se las ve desde el mar. Al oeste, el Bosque de Veldor proporciona madera y caza, mientras que al sur se extienden vastos campos de cultivo y tierras de pastoreo.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="BelyarModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('BelyarModal')">&times;</span>
+            <h2>Belyar</h2>
+            <ul class="tab-links">
+                <li onclick="openTabModule(event, 'BelyarInformacion')">Informacion</li>
+                <li onclick="openTabModule(event, 'BelyarResidents')">Residentes</li>
+            </ul>
+
+            <div id="BelyarInformacion" class="tab-content" style="display:none;">
+                <p> <strong>Belyar</strong> era una tierra rica y próspera antes de que la sombra de la corrupción se abatiera sobre ella. Situado en un vasto valle rodeado por imponentes montañas y bosques frondosos, Belyar era conocido por sus fértiles tierras y su habilidad para cultivar los ingredientes más finos para la repostería, algo que el gremio de pasteleros de la familia de Bharrig aprovechaba con maestría. Los ríos cristalinos que atravesaban el reino no solo regaban los campos, sino que también servían como arterias comerciales que conectaban a Belyar con otras regiones.</p>
+                <p>El rey anterior, que murió misteriosamente, era un monarca justo y querido por su pueblo. Bajo su reinado, Belyar era un lugar donde la diversidad era celebrada y la colaboración entre razas era la norma. Las festividades que se organizaban en honor a la unión de diferentes culturas eran legendarias, y la pastelería jugaba un papel central en ellas, con creaciones tan variadas y exquisitas como los habitantes del reino.</p>
+                <p>Sin embargo, con la llegada de Murin al trono, Belyar comenzó a cambiar. Lo que antes era un lugar de armonía y prosperidad se transformó en un reino de miedo y opresión. Las políticas xenófobas de Murin rompieron el tejido social que había mantenido unido al reino durante generaciones. Las ciudades, antes bulliciosas y llenas de vida, se convirtieron en lugares sombríos donde la vigilancia y el temor se habían vuelto comunes. Los mercenarios de Arthur patrullaban las calles, imponiendo la voluntad del nuevo rey y sofocando cualquier resistencia con brutalidad.</p>
+                <p>El nuevo ejército que Murin formó con la ayuda del corrupto humano Astrophel se llama <strong>Los Segadores de MINERALES</strong>. Este ejército de mercenarios se convirtió rápidamente en una fuerza temida en todo Belyar, conocidos por su brutalidad y falta de piedad.</p>
+                <p>Las comunidades que antes vivían en paz comenzaron a desmoronarse. Las razas no enanas se vieron forzadas a huir o esconderse, mientras que aquellos que se resistieron fueron cruelmente castigados. Los campos que alguna vez producían abundancia comenzaron a ser abandonados, y las tierras fértiles se convirtieron en terrenos baldíos donde solo crecían las malas hierbas.</p>
+                <p>Ahora, el reino que una vez fue un paraíso de diversidad y cultura se ha convertido en una sombra de lo que era. La opresión y la tiranía de Murin han dejado cicatrices profundas en Belyar, pero la esperanza de venganza y justicia sigue viva en el corazón de Bharrig, quien sueña con restaurar su hogar a su antigua gloria y vengar a su familia.</p>
+            </div>
+
+            <div id="BelyarResidents" class="tab-content" style="display:none;">
+                <button class="ilustration-button" style="background-image: url('img/Bahrrie.png');" onclick="openModal('BharrigModal','BharrigInformation');">Bharrig</button>
             </div>
         </div>
     </div>
@@ -523,18 +550,18 @@
         </div>
     </div>
 
-    <div id="BahrrieModal" class="modal">
+    <div id="BharrigModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('BahrrieModal')">&times;</span>
-            <h2>Bahrrie</h2>
+            <span class="close" onclick="closeModal('BharrigModal')">&times;</span>
+            <h2>Bharrig</h2>
             <ul class="tab-links">
-                <li onclick="openTabModule(event, 'BahrrieInformation')">Informacion</li>
-                <li onclick="openTabModule(event, 'BahrrieSheet')">Sheet</li>
+                <li onclick="openTabModule(event, 'BharrigInformation')">Informacion</li>
+                <li onclick="openTabModule(event, 'BharrigSheet')">Sheet</li>
             </ul>
-            <div id="BahrrieInformation" class="tab-content active">
+            <div id="BharrigInformation" class="tab-content active">
                 <h3>Informacion</h3>
             </div>
-            <div id="BahrrieSheet" class="tab-content">
+            <div id="BharrigSheet" class="tab-content">
                 <h3>Ficha aqui</h3>
             </div>
         </div>
@@ -994,6 +1021,19 @@
                 alert("Contraseña incorrecta");
             }
         }
+
+        window.addEventListener('resize', scaleMarkers);
+
+        function scaleMarkers() {
+            var mapWidth = document.getElementById('map-container').offsetWidth;
+            var scaleFactor = mapWidth / 800; // Suponiendo que 800px es el ancho original del mapa
+            document.querySelectorAll('.marker').forEach(marker => {
+                marker.style.transform = 'scale(' + scaleFactor + ')';
+            });
+        }
+
+        scaleMarkers(); // Llama a la función inicialmente y cada vez que la ventana cambie de tamaño
+
 
     </script>
 </body>
