@@ -301,7 +301,7 @@
             <img src="img/continentMap.png" alt="Mapa Mundial">
             <!-- Marcadores visuales
             <button class="marker" style="left: 50%; top: 15%;" data-info="Verdantia" onclick="openModal('VerdantiaModal', 'Informacion');"></button> -->
-            <button class="marker" style="left: 72%; top: 35%;" data-info="Stilport" onclick="openModal('StilportModal', 'Informacion');"></button>
+            <button class="marker" style="left: 72%; top: 35%;" data-info="Stilport" onclick="openModal('StilportModal', 'StilportInformacion');"></button>
             <div class="tooltip" id="tooltip"></div>
         </div>
     </div>
@@ -317,8 +317,8 @@
         <p></p>
         <p></p>
         <p></p>
-        <button class="ilustration-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal','history');">Lucianismo</button>
-        <button id="contenido-secreto" class="ilustration-button" style="background-image: url('img/Lucianismo.webp'); display:none;" onclick="openModal('LucianismoModal','history');">Lucianismo</button>
+        <button class="ilustration-button" style="background-image: url('img/Lucianismo.webp');" onclick="openModal('LucianismoModal','LucianismoHistory');">Lucianismo</button>
+        <button id="contenido-secreto" class="ilustration-button" style="background-image: url('img/Lucianismo.webp'); display:none;" onclick="openModal('LucianismoModal','LucianismoHistory');">Lucianismo</button>
     </div>
 
     <div id="Gods" class="tabcontent grid">
@@ -390,11 +390,11 @@
             <span class="close" onclick="closeModal('VerdantiaModal')">&times;</span>
             <h2>Verdantia</h2>
             <ul class="tab-links">
-                <li onclick="openTabModule(event, 'Informacion')">Informacion</li>
-                <li onclick="openTabModule(event, 'Translator')">Translator</li>
+                <li onclick="openTabModule(event, 'VerdantiaInformacion')">Informacion</li>
+                <li onclick="openTabModule(event, 'VerdantiaTranslator')">Translator</li>
             </ul>
 
-            <div id="Informacion" class="tab-content" style="display:none;">
+            <div id="VerdantiaInformacion" class="tab-content" style="display:none;">
                 <h2>Historia de Verdantia</h2>
                 <p><strong>Verdantia</strong> es la capital del Reino de Verdant, situada en el continente de Terravalor. Conocida por su riqueza natural, arquitectura magnífica, y una vibrante historia cultural, Verdantia es un centro de comercio, política y conocimiento en la región.</p>
                 <img src="img/Verdantia1.png" alt="Héroe del libro">
@@ -411,7 +411,7 @@
                 <p>En la era moderna, Verdantia se ha mantenido como un faro de estabilidad y prosperidad en el Reino de Verdant. Durante la Gran Guerra de Terravalor, la ciudad se convirtió en el corazón de la resistencia contra las fuerzas invasoras de Ravengarde. A pesar de los numerosos asedios y ataques, la ciudad resistió y jugó un papel clave en la eventual victoria de la Alianza de la Espada Verde.</p>
                 <p>Después de la guerra, Verdantia se embarcó en un nuevo período de desarrollo, con inversiones en tecnología, comercio y cultura. La ciudad se ha expandido más allá de sus murallas originales, incorporando nuevos distritos y mejorando su infraestructura para adaptarse al crecimiento de la población y las necesidades modernas.</p>
             </div>
-            <div id="Translator" class="tab-content" style="display:none;">
+            <div id="VerdantiaTranslator" class="tab-content" style="display:none;">
                 <h2>Traductor Español a Idioma Inventado</h2>
                 <textarea id="inputText" placeholder="Escribe aquí el texto en español sin acentos..."></textarea>
                 <button onclick="translateText()">Traducir</button>
@@ -439,14 +439,14 @@
             <span class="close" onclick="closeModal('LucianismoModal')">&times;</span>
             <h2>Lucianismo</h2>
             <ul class="tab-links">
-                <li class="active" onclick="openTabModule(event, 'history')">Historia</li>
-                <li onclick="openTabModule(event, 'book')">El Libro</li>
+                <li class="active" onclick="openTabModule(event, 'LucianismoHistory')">Historia</li>
+                <li onclick="openTabModule(event, 'LucianismoBook')">El Libro</li>
             </ul>
-            <div id="history" class="tab-content active">
+            <div id="LucianismoHistory" class="tab-content active">
                 <h3>Historia del Lucianismo</h3>
                 <p>Descripción detallada de la historia del Lucianismo...</p>
             </div>
-            <div id="book" class="tab-content">
+            <div id="LucianismoBook" class="tab-content">
                 <h3>El Libro Sagrado del Lucianismo</h3>
                 <p><strong>Prólogo: El Surgimiento del Héroe</strong></p>
                 <p><strong>1.1 El Origen de la Luz y la Oscuridad</strong></p>
@@ -497,10 +497,6 @@
                 <p><span class="number">48.</span> Exhausto pero victorioso, Lucian cayó de rodillas, sintiendo el peso de su misión y la gracia del Creador. <span class="number">49.</span> Y en ese momento de quietud, una voz suave y amorosa habló desde lo alto: “Has hecho bien, mi hijo. La oscuridad ha sido desterrada, y la luz del Creador brilla de nuevo en el corazón de los hombres.”</p>
                 <p><span class="number">50.</span> Y así, Lucian salió de la Caverna de las Sombras, sabiendo que había cumplido su destino y que la paz y la luz del Creador habían sido restauradas en la tierra.</p>
 
-            </div>
-            <div id="more" class="tab-content">
-                <h3>Más Información</h3>
-                <p>Otra información relevante sobre el Lucianismo...</p>
             </div>
         </div>
     </div>
