@@ -5,280 +5,351 @@
     <title>Matmir</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
     <style>
-            body {
-                font-family: 'Noto Serif', serif;
-                margin: 0;
-                padding: 20px;
-                display: flex;
-                justify-content: space-around; /* Distribuye espacio uniformemente */
-                align-items: center; /* Centra verticalmente */
-                flex-wrap: wrap; /* Permite la envoltura de elementos */
-                background-color: #f4f4f4; /* Color de fondo para todo el cuerpo */
-            }
+        body {
+            font-family: 'Noto Serif', serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around; /* Distribuye espacio uniformemente */
+            align-items: center; /* Centra verticalmente */
+            flex-wrap: wrap; /* Permite la envoltura de elementos */
+            background-color: #f4f4f4; /* Color de fondo para todo el cuerpo */
+        }
 
-            .tabcontent h3, .tabcontent strong {
-                font-family: 'Arial', sans-serif;
-                color: #333;
-            }
+        .tabcontent h3, .tabcontent strong {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            font-size: 2.25rem;
+        }
 
-            .tab {
-                height: 100%; /* Asegura que tome toda la altura disponible */
-                width: 200px; /* Ancho de la barra lateral */
-                background-color: #333; /* Fondo oscuro para mayor elegancia */
-                color: white; /* Texto blanco para contraste */
-                overflow: auto;
-                position: fixed;
-                left: 0;
-                top: 0;
-            }
+        .tab {
+            height: 100%; /* Asegura que tome toda la altura disponible */
+            width: 200px; /* Ancho de la barra lateral */
+            background-color: #333; /* Fondo oscuro para mayor elegancia */
+            color: white; /* Texto blanco para contraste */
+            overflow: auto;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
 
-                .tab button {
-                    display: block;
-                    width: 100%;
-                    text-align: left;
-                    padding: 14px 16px;
-                    border: none;
-                    outline: none;
-                    cursor: pointer;
-                    transition: 0.3s;
-                    color: white; /* Texto blanco */
-                    border-bottom: 1px solid #444; /* Borde sutil entre botones */
-                    background-color: transparent; /* Fondo transparente */
-                }
-
-                    .tab button:hover, .tab button.active {
-                        background-color: #555; /* Oscurece el botón al pasar el mouse o estar activo */
-                    }
-
-            .tabcontent {
-                flex-grow: 1;
-                padding: 20px;
-                margin-left: 200px; /* Hace espacio para la barra lateral */
-                background-color: #f4f4f4; /* Un fondo claro para el contenido */
-                overflow-y: auto; /* Permite scroll vertical si el contenido es extenso */
-            }
-
-            .number {
-                font-weight: bold;
-                color: #555;
-                margin-right: 5px;
-            }
-
-            .container {
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 20px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                background-color: #f9f9f9;
-            }
-
-            textarea {
-                width: 100%;
-                height: 100px;
-                margin-bottom: 20px;
-            }
-
-            button {
-                padding: 10px 20px;
-                background-color: #007bff;
-                color: rgb(58, 58, 58);
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-
-            .result {
-                margin-top: 20px;
-                padding: 10px;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                background-color: #e9e9e9;
-            }
-
-            .modal {
-                display: none;
-                position: fixed;
-                z-index: 1000;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                overflow: auto;
-                background-color: rgba(0,0,0,0.4);
-            }
-
-            .modal-content {
-                background-color: #fefefe;
-                margin: 2% auto;
-                padding-top: 20px;
-                padding-bottom: 20px;
-                padding-left: 40px;
-                padding-right: 40px;
-                border: 1px solid #888;
-                width: 60vw;
-                height: 80vh;
-                overflow: auto;
-            }
-
-            .close {
-                color: #aaa;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-                cursor: pointer;
-            }
-
-                .close:hover,
-                .close:focus {
-                    color: black;
-                    text-decoration: none;
-                    cursor: pointer;
-                }
-
-            .tab-links {
-                overflow: hidden;
-                background-color: #f1f1f1;
-                padding: 0;
-                margin: 0;
-                list-style-type: none;
-            }
-
-                .tab-links li {
-                    float: left;
-                    border: 1px solid #ccc;
-                    background-color: inherit;
-                    margin: 0;
-                    display: block;
-                    padding: 10px 15px;
-                    cursor: pointer;
-                }
-
-                    .tab-links li:hover {
-                        background-color: #ddd;
-                    }
-
-                .tab-links .active {
-                    background-color: #ccc;
-                }
-
-            .tab-content {
-                display: none;
-                padding: 20px;
-                border: 1px solid #ccc;
-                border-top: none;
-                clear: both;
-            }
-
-                .tab-content.active {
-                    display: block;
-                }
-
-            #map-container {
-                width: 100%; /* Asegúrate de que el contenedor es responsivo */
-                position: relative; /* Importante para que la posición de los marcadores sea relativa al mapa */
-            }
-
-            img {
-                width: 100%;
-                height: 100%;
+            .tab button {
                 display: block;
-                object-fit: contain; /* Cambio clave: ajusta la imagen para que se muestre completamente sin cortes */
-            }
-
-            .marker {
-                position: absolute;
-                width: 20px; /* Puedes ajustar esto con JavaScript si es necesario */
-                height: 20px; /* Puedes ajustar esto con JavaScript si es necesario */
-                background-color: red;
-                border-radius: 10%;
-                border: 2px solid #fff;
+                width: 100%;
+                text-align: left;
+                padding: 14px 16px;
+                border: none;
+                outline: none;
                 cursor: pointer;
-                transition: transform 0.3s, box-shadow 0.3s;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+                transition: 0.3s;
+                color: white; /* Texto blanco */
+                border-bottom: 1px solid #444; /* Borde sutil entre botones */
+                background-color: transparent; /* Fondo transparente */
             }
 
-                .marker:hover {
-                    transform: scale(1.2);
-                    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+                .tab button:hover, .tab button.active {
+                    background-color: #555; /* Oscurece el botón al pasar el mouse o estar activo */
                 }
 
-            .tooltip {
-                display: none;
-                position: absolute;
-                padding: 5px;
-                background-color: #fff;
+        .tabcontent {
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 200px; /* Hace espacio para la barra lateral */
+            background-color: #f4f4f4; /* Un fondo claro para el contenido */
+            overflow-y: auto; /* Permite scroll vertical si el contenido es extenso */
+        }
+
+        .number {
+            font-weight: bold;
+            color: #555;
+            margin-right: 5px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: rgb(58, 58, 58);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #e9e9e9;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 2% auto;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 40px;
+            padding-right: 40px;
+            border: 1px solid #888;
+            width: 60vw;
+            height: 80vh;
+            overflow: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        .tab-links {
+            overflow: hidden;
+            background-color: #f1f1f1;
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+            .tab-links li {
+                float: left;
                 border: 1px solid #ccc;
-                pointer-events: none;
-                z-index: 1000;
-            }
-
-            #Religions {
-                display: grid;
-                gap: 20px; /* Espacio entre elementos */
-                grid-template-columns: repeat(6, 1fr); /* Ajusta a dos columnas */
-                grid-gap: 20px; /* Espacio entre botones */
-                padding: 20px; /* Espacio alrededor de la sección */
-                justify-content: center; /* Centra los botones horizontalmente */
-            }
-
-            #Characters {
-                display: grid;
-                gap: 20px; /* Espacio entre elementos */
-                grid-template-columns: repeat(6, 1fr); /* Ajusta a dos columnas */
-                grid-gap: 20px; /* Espacio entre botones */
-                padding: 20px; /* Espacio alrededor de la sección */
-                justify-content: center; /* Centra los botones horizontalmente */
-            }
-
-            #Gods {
-                display: grid;
-                gap: 20px; /* Espacio entre elementos */
-                grid-template-columns: repeat(6, 1fr); /* Ajusta a dos columnas */
-                grid-gap: 20px; /* Espacio entre botones */
-                padding: 20px; /* Espacio alrededor de la sección */
-                justify-content: center; /* Centra los botones horizontalmente */
-            }
-
-            .ilustration-button {
-                width: 200px; /* Ancho fijo para todos los botones */
-                height: 200px; /* Altura fija para todos los botones */
-                margin: 10px; /* Espaciado entre botones */
-                background-size: cover; /* Asegura que la imagen cubra completamente el botón */
-                background-position: center; /* Centra la imagen dentro del botón */
-                border: none;
-                border-radius: 30px;
+                background-color: inherit;
+                margin: 0;
+                display: block;
+                padding: 10px 15px;
                 cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: white; /* Color de texto para mejorar la legibilidad */
-                font-size: 24px; /* Tamaño de fuente grande para fácil lectura */
-                text-shadow: 1px 1px 2px black; /* Sombra de texto para destacar sobre el fondo */
-                transition: background-color 0.3s, transform 0.3s;
             }
 
-                .ilustration-button:hover {
-                    background-color: rgba(0, 0, 0, 0.2); /* Efecto al pasar el ratón */
-                    transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
+                .tab-links li:hover {
+                    background-color: #ddd;
                 }
 
-                .ilustration-button:active {
-                    background-color: #366030; /* Cambia el color de fondo cuando el botón está presionado */
-                }
+            .tab-links .active {
+                background-color: #ccc;
+            }
 
-            #boton-password {
-                cursor: pointer;
-                padding: 10px 20px;
-                background-color: #007bff;
-                color: white;
-                border: none;
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+            clear: both;
+        }
+
+            .tab-content.active {
+                display: block;
+            }
+
+        #map-container {
+            width: 100%; /* Asegúrate de que el contenedor es responsivo */
+            position: relative; /* Importante para que la posición de los marcadores sea relativa al mapa */
+        }
+
+        #TimeLine {
+            position: relative;
+            width: 100%; /* Ajusta al tamaño de tu contenedor o necesidad */
+            max-width: 1704px; /* Ajusta al tamaño de tu imagen de la línea del tiempo */
+        }
+
+        .timeline-item {
+            position: absolute;
+            bottom: 0; /* Ajustar si necesitas más espacio por debajo */
+            width: 150px; /* O el ancho que prefieras para los contenidos de cada evento */
+        }
+            .timeline-item .timeline-content {
+                background: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente */
+                padding: 10px;
                 border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             }
 
-            #formulario-password {
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            .timeline-item:hover .timeline-content {
+                transform: scale(0); /* Aumenta el tamaño del contenido */
+                z-index: 10; /* Asegura que se muestre sobre otros elementos */
+                transition: transform 0.3s ease-in-out; /* Suaviza la transición */
             }
+
+            /* Ajustar las posiciones específicas según necesites */
+            .timeline-item[data-year="Fin-Edad-Magica"] {
+                left: 15%; /* Ajusta este porcentaje según donde debe ir en la imagen */
+            }
+
+
+            .timeline-item::before {
+                content: "";
+                position: absolute;
+                left: -8px;
+                top: 0;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: #fff;
+                border: 3px solid #333;
+                transition: transform 0.3s ease-in-out;
+                transform: scale(0); /* Inicia la animación de cero */
+            }
+
+        .timeline-content {
+            margin-left: 30px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 3px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .timeline-item.active::before {
+            transform: scale(1); /* Escala a tamaño normal */
+        }
+
+        .timeline-item.active .timeline-content {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain; /* Cambio clave: ajusta la imagen para que se muestre completamente sin cortes */
+        }
+
+        .marker {
+            position: absolute;
+            width: 20px; /* Puedes ajustar esto con JavaScript si es necesario */
+            height: 20px; /* Puedes ajustar esto con JavaScript si es necesario */
+            background-color: red;
+            border-radius: 10%;
+            border: 2px solid #fff;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+            .marker:hover {
+                transform: scale(1.2);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+            }
+
+        .tooltip {
+            display: none;
+            position: absolute;
+            padding: 5px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        #Religions {
+            display: grid;
+            gap: 20px; /* Espacio entre elementos */
+            grid-template-columns: repeat(6, 1fr); /* Ajusta a dos columnas */
+            grid-gap: 20px; /* Espacio entre botones */
+            padding: 20px; /* Espacio alrededor de la sección */
+            justify-content: center; /* Centra los botones horizontalmente */
+        }
+
+        #Characters {
+            display: grid;
+            gap: 20px; /* Espacio entre elementos */
+            grid-template-columns: repeat(6, 1fr); /* Ajusta a dos columnas */
+            grid-gap: 20px; /* Espacio entre botones */
+            padding: 20px; /* Espacio alrededor de la sección */
+            justify-content: center; /* Centra los botones horizontalmente */
+        }
+
+        #Gods {
+            display: grid;
+            gap: 20px; /* Espacio entre elementos */
+            grid-template-columns: repeat(6, 1fr); /* Ajusta a dos columnas */
+            grid-gap: 20px; /* Espacio entre botones */
+            padding: 20px; /* Espacio alrededor de la sección */
+            justify-content: center; /* Centra los botones horizontalmente */
+        }
+
+        .ilustration-button {
+            width: 200px; /* Ancho fijo para todos los botones */
+            height: 200px; /* Altura fija para todos los botones */
+            margin: 10px; /* Espaciado entre botones */
+            background-size: cover; /* Asegura que la imagen cubra completamente el botón */
+            background-position: center; /* Centra la imagen dentro del botón */
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white; /* Color de texto para mejorar la legibilidad */
+            font-size: 24px; /* Tamaño de fuente grande para fácil lectura */
+            text-shadow: 1px 1px 2px black; /* Sombra de texto para destacar sobre el fondo */
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+            .ilustration-button:hover {
+                background-color: rgba(0, 0, 0, 0.2); /* Efecto al pasar el ratón */
+                transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
+            }
+
+            .ilustration-button:active {
+                background-color: #366030; /* Cambia el color de fondo cuando el botón está presionado */
+            }
+
+        #boton-password {
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #formulario-password {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        #imagenEspecifica {
+            width: 60vw; /* Anchura deseada */
+            height: 40vh; /* Altura deseada */
+            object-fit: contain; /* Asegura que la imagen se ajuste proporcionalmente */
+        }
+
 
     </style>
 </head>
@@ -294,7 +365,7 @@
     </div>
 
     <div id="Home" class="tabcontent">
-        <h3>Inicio</h3>
+        <img src="img/MatmirImg.png" alt="Mapa Mundial" id="imagenEspecifica">
         <p>Bienvenido a Matmir, el mundo de fantasia creado para mis partidas de DND</p>
         <p></p>
     </div>
@@ -337,6 +408,48 @@
 
     <div id="TimeLine" class="tabcontent">
         <h3>Timeline</h3>
+        <img src="img/timeLine.png" alt="Timeline" usemap="#timeline-map">
+
+
+        <!-- Texto sobre la timeline -->
+        <h3>La Edad Mágica: El Amanecer del Poder Arcano</h3>
+        <h2>Introducción a la Edad Mágica</h2>
+        La Edad Mágica es conocida como la primera era del planeta, un tiempo en el que la magia pura y sin restricciones gobernaba el mundo. Esta era legendaria estuvo marcada por la presencia de cinco magos elementales increíblemente poderosos, cada uno de los cuales dominaba uno de los elementos fundamentales de la existencia: fuego, aire, tierra, agua y electricidad. Durante siglos, estos magos no solo gobernaron el mundo, sino que también dieron forma a la misma realidad con su magia y caprichos.
+        
+        <h2>Los Cinco Magos Elementales</h2>
+        <p>Los magos elementales eran seres de poder inimaginable, surgidos de los mismos elementos que controlaban. Cada uno poseía un dominio absoluto sobre su elemento, y su influencia se extendía por todo el planeta.</p>
+        <ul>
+            <li>Pyroth, el Señor del Fuego: Un mago cuyas llamas ardían eternamente, capaz de moldear y manipular el fuego a voluntad. Pyroth se regocijaba en la creación de volcanes y tormentas de fuego, disfrutando del caos y la renovación que su elemento traía.</li>
+            <li>Terrak, el Guardián de la Tierra: Un gigante de roca y tierra, Terrak controlaba las montañas y los valles. Cada pisada suya podía cambiar el paisaje, y bajo su vigilancia, las plantas crecían y las tierras fértiles se extendían.</li>
+            <li>Aquaris, el Soberano del Agua: Un ser fluido y cambiante, Aquaris dominaba todos los cuerpos de agua, desde los ríos más tranquilos hasta los océanos más furiosos. Podía transformar una gota de agua en una inundación y gobernar las mareas con un solo gesto.</li>
+            <li>Voltaris, el Amo de la Electricidad: Un mago hecho de energía pura, capaz de manipular el relámpago y la electricidad. Voltaris era impredecible y rápido como una tormenta eléctrica, y su poder podía animar la vida o destruirla al instante.</li>
+        </ul>
+
+        <h2>El Juego de los Dioses</h2>
+        <p>Durante incontables años, estos cinco magos se divirtieron con sus poderes, dando forma al mundo y jugando entre ellos como dioses caprichosos. Cambiaban paisajes, creaban tormentas y cataclismos, y transformaban regiones enteras en desiertos, bosques o mares a su antojo. Sin límites ni consecuencias para sus acciones, los magos elementales vivieron en una era de eterna diversión y creatividad desenfrenada.</p>
+        <p>Sin embargo, como todas las cosas, incluso el poder ilimitado puede llevar al aburrimiento. Con el tiempo, los cinco magos comenzaron a sentir una falta de propósito en su existencia interminable. Sus juegos, antes emocionantes y llenos de desafío, se volvieron repetitivos y carentes de emoción. Así, decidieron crear algo nuevo, algo que nunca antes se había visto en el mundo: una raza que pudiera compartir su esencia y sus poderes.</p>
+        
+        <h2>La Creación de la Humanidad</h2>
+        <p>Para romper la monotonía de la eternidad, los magos elementales se unieron en un acto de creación sin precedentes. Usando sus propios poderes elementales, dieron forma a una nueva raza, hecha a su imagen y semejanza: los humanos.</p>
+        <ul>
+            <li>Tierra se convirtió en la carne, dándole a los humanos la solidez y la fuerza de las montañas y la tierra.</li>
+            <li>Agua se transformó en la sangre, vital y fluida, otorgando la capacidad de adaptarse y fluir con la vida.</li>
+            <li>Fuego se manifestó como el corazón, llenando a los humanos de pasión, emoción y energía.</li>
+            <li>Aire se convirtió en los pulmones, el soplo de vida que permitía respirar y moverse con libertad.</li>
+            <li>Electricidad animó el cerebro, la chispa de inteligencia y conciencia que hacía a los humanos pensadores y creadores.</li>
+        </ul>
+        <p>Además, cada mago otorgó una pequeña fracción de su poder puro a los humanos, imbuyéndolos con el potencial de manipular los elementos, aunque en una escala mucho menor. Con este don, los humanos se convirtieron en una raza única, con la capacidad de aprender y adaptarse, de crear y destruir, de amar y odiar.</p>
+        
+        <h2>La Caída de los Magos</h2>
+        <p>Al principio, los humanos reverenciaban a sus creadores como dioses y los adoraban con devoción. Sin embargo, a medida que la humanidad crecía en número y poder, comenzaron a surgir conflictos entre ellos y los magos. La ambición y la sed de poder se manifestaron en los corazones humanos, llevándolos a querer más de los dones que habían recibido.</p>
+        <p>La coexistencia pacífica no duró. Las diferencias entre los magos y los humanos se profundizaron, y surgieron tensiones y desconfianzas. Los humanos, viendo a los magos como tiranos inmortales que jugaban con sus vidas, comenzaron a resentir su poder y su influencia.</p>
+        <p>Eventualmente, este resentimiento estalló en conflicto. Se formaron facciones entre los humanos, algunas buscando la libertad de los magos, mientras otras querían apoderarse de más de su poder. Guerras brutales se libraron entre los seguidores de cada mago, mientras los humanos traicionaban y conspiraban unos contra otros para obtener más poder.</p>
+        <p>Finalmente, en una serie de traiciones y conflictos devastadores conocidos como Las Guerras de los Cinco Elementos, los magos elementales fueron derribados por aquellos a quienes habían creado. Aunque eran increíblemente poderosos, los magos no eran inmortales en el sentido literal; sus cuerpos elementales podían ser desmantelados y dispersados si se enfrentaban a suficiente oposición unida. Uno a uno, cayeron ante el levantamiento de sus propias creaciones, y con su caída, La Edad Mágica llegó a su fin.</p>
+    
+        <h2>El Inicio de una Nueva Era</h2>
+        <p>Con la muerte de los magos, comenzó una nueva era para la humanidad, una época conocida como La Edad del Hombre. Sin los magos para gobernar o influir, los humanos se encontraron libres para forjar su propio destino. Los poderes elementales que les habían sido otorgados permanecieron, aunque disminuidos, y la magia se convirtió en un arte que algunos podían aprender, pero que ninguno podía dominar por completo como lo hacían los antiguos magos.</p>
+        <p>La historia de la Edad Mágica y los cinco magos elementales pasó a convertirse en leyenda, un recordatorio de los peligros del poder desenfrenado y de la capacidad humana para la traición y la redención. Hoy, los ecos de esa era todavía resuenan en el mundo, con magia en el aire y elementos que aún responden a aquellos que poseen el conocimiento y el coraje para controlarlos.</p>
+        <p>La Edad Mágica se mantiene como un periodo de misterio y reverencia, un tiempo cuando los dioses caminaban entre los hombres, y cuando la creación misma era moldeada por los caprichos de cinco seres poderosos. Ahora, esa magia se dispersa en cada rincón del mundo, esperando a ser redescubierta por aquellos valientes lo suficiente para buscarla</p>
     </div>
 
     <div id="Characters" class="tabcontent grid">
@@ -351,7 +464,6 @@
         <button class="ilustration-button" style="background-image: url('img/Shallturn.png');" onclick="openModal('ShallturnModal','ShallturnInformation');">Shallturn</button>
         <button class="ilustration-button" style="background-image: url('img/Kitty.png');" onclick="openModal('KittyModal','KittyInformation');">Kitty</button>
         <button class="ilustration-button" style="background-image: url('img/Warren.webp');" onclick="openModal('WarrenModal','WarrenInformation');">Warren</button>
-
     </div>
 
     <div id="contenido-secreto" style="display:none;">
@@ -390,7 +502,7 @@
             </div>
         </div>
     </div>
-    <!-- Religiones -->
+    <!-- Regiones -->
     <div id="VerdantiaModal" class="modal" style="display:none;">
         <div class="modal-content">
             <span class="close" onclick="closeModal('VerdantiaModal')">&times;</span>
@@ -417,16 +529,19 @@
                 <p>En la era moderna, Verdantia se ha mantenido como un faro de estabilidad y prosperidad en el Reino de Verdant. Durante la Gran Guerra de Terravalor, la ciudad se convirtió en el corazón de la resistencia contra las fuerzas invasoras de Ravengarde. A pesar de los numerosos asedios y ataques, la ciudad resistió y jugó un papel clave en la eventual victoria de la Alianza de la Espada Verde.</p>
                 <p>Después de la guerra, Verdantia se embarcó en un nuevo período de desarrollo, con inversiones en tecnología, comercio y cultura. La ciudad se ha expandido más allá de sus murallas originales, incorporando nuevos distritos y mejorando su infraestructura para adaptarse al crecimiento de la población y las necesidades modernas.</p>
             </div>
+
             <div id="VerdantiaTranslator" class="tab-content" style="display:none;">
                 <h2>Traductor Español a Idioma Inventado</h2>
                 <textarea id="inputText" placeholder="Escribe aquí el texto en español sin acentos..."></textarea>
                 <button onclick="translateText()">Traducir</button>
                 <div class="result" id="resultText"></div>
             </div>
+
         </div>
     </div>
 
     <div id="StilportModal" class="modal" style="display:none;">
+
         <div class="modal-content">
             <span class="close" onclick="closeModal('StilportModal')">&times;</span>
             <h2>Stilport</h2>
@@ -437,8 +552,20 @@
             <div id="StilportInformacion" class="tab-content" style="display:none;">
                 <p>Strilport es una ciudad portuaria vibrante situada en la costa oriental de un vasto continente conocido por sus tierras fértiles y sus rutas comerciales vitales. La ciudad se encuentra entre la desembocadura de dos rios: el río <strong>Grimsby</strong> y el rio <strong>Yitura</strong> que serpentea desde las montañas del interior hacia el mar, proporcionando una vía navegable natural que ha convertido a Strilport en un centro comercial clave. El puerto de Strilport está construido sobre una bahía natural protegida, lo que permite que barcos de todos los tamaños atraquen con seguridad.</p>
                 <p>La ciudad está dividida en varios distritos, cada uno con su propio carácter distintivo. Al norte, se alzan las Colinas de Marfil, una serie de colinas suaves cubiertas de piedra caliza blanca que dan a Strilport un aspecto brillante y majestuoso cuando se las ve desde el mar. Al oeste, el Bosque de Veldor proporciona madera y caza, mientras que al sur se extienden vastos campos de cultivo y tierras de pastoreo.</p>
+                <h2>Cultura y Sociedad</h2>
+                <p>Strilport es una ciudad cosmopolita, hogar de una gran variedad de razas y culturas que coexisten en un vibrante tapiz social. La mezcla de diferentes tradiciones ha dado lugar a una cultura única, caracterizada por su diversidad y tolerancia. Las calles de Strilport están llenas de mercados bulliciosos, festivales de colores y una constante afluencia de visitantes de tierras lejanas.</p>
+                <h2>Lugares Importantes</h2>
+                <ul>
+                    <li> <strong>El Puerto</strong>: Uno de los puntos mas visitados por trabajadores ya que gran parte de los recursos propios de Strilport proviene de la pesca. En el encontraras tiendas de topo tipo con productos aún mas variados. </li>
+                    <li><strong>El Gran Mercado de Strilport</strong>:El mercado central es un laberinto de callejones estrechos y puestos abarrotados, donde se puede encontrar casi cualquier cosa que se desee. Desde hierbas raras y componentes mágicos hasta objetos cotidianos y curiosidades extranjeras, el mercado es un punto de encuentro para comerciantes, aventureros y visitantes de todos los rincones del mundo. El <strong>Pabellón de los Mil Tesoros</strong> es una sección especial del mercado reservada para los objetos más raros y valiosos, custodiados día y noche por guardias contratados. </li>
+                    <li><strong>El Bosque de Veldorn</strong>: Situado al norte de la ciudad, este vasto bosque es tanto una fuente de recursos naturales como un lugar de misterio. Los leñadores y cazadores entran al bosque con frecuencia, pero siempre con cautela, ya que se rumorea que criaturas mágicas y antiguas habitan entre sus árboles centenarios.</li>
+                    <li><strong>La Academia de los Arcanos de Eldertide</strong>: Una prestigiosa escuela de magia y estudios arcanos, la academia se encuentra en el distrito de Eldertide y es conocida por su impresionante biblioteca de grimorios y pergaminos. Aquí, magos y hechiceros de todas partes vienen a aprender y perfeccionar su arte bajo la tutela de algunos de los mejores maestros del continente.</li>
+                    <li><strong>El Dragón Dorado</strong> es la posada y restaurante más prestigioso de Strilport, conocido en todo el país por su lujo, su excelente servicio, y su clientela de élite. Situado en el corazón del distrito comercial, cerca del puerto y de las principales rutas de acceso a la ciudad, El Dragón Dorado ha sido durante mucho tiempo el destino preferido de nobles, mercaderes ricos, y aventureros de renombre.</li>
+                </ul>
             </div>
+
         </div>
+
     </div>
 
     <div id="BelyarModal" class="modal" style="display:none;">
@@ -465,6 +592,7 @@
         </div>
     </div>
 
+    <!-- Religiones -->
     <div id="LucianismoModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('LucianismoModal')">&times;</span>
@@ -1034,6 +1162,34 @@
 
         scaleMarkers(); // Llama a la función inicialmente y cada vez que la ventana cambie de tamaño
 
+        window.addEventListener('scroll', function () {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                if (item.getBoundingClientRect().top < window.innerHeight / 1.5) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Alternativamente, si quieres que aparezcan al cargar sin necesidad de scroll:
+        document.addEventListener('DOMContentLoaded', () => {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('active');
+                }, 200 * index); // Añade un retraso basado en el índice para efecto secuencial
+            });
+        });
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('mouseover', function () {
+                this.querySelector('.timeline-content').style.transform = 'scale(0.9)';
+            });
+
+            item.addEventListener('mouseout', function () {
+                this.querySelector('.timeline-content').style.transform = 'scale(1)';
+            });
+        });
 
     </script>
 </body>
